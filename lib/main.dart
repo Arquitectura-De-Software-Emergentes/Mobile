@@ -41,12 +41,12 @@ class HomePage extends StatelessWidget {
         backgroundColor: Styles.primaryColor,
         leading: IconButton(
           icon: const Icon(Icons.menu),
-          onPressed: (){},
+          onPressed: () {},
         ),
-        actions:const [
+        actions: const [
           Padding(
-              padding: EdgeInsets.only(right: 10),
-            child:  CircleAvatar(
+            padding: EdgeInsets.only(right: 10),
+            child: CircleAvatar(
               backgroundColor: Colors.grey,
             ),
           ),
@@ -56,12 +56,15 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlinedButton(onPressed: (){
-              Navigator.push(
-                context,MaterialPageRoute(builder: (context) => const OffersListScreen())
-              );
-            }, child: const Text('Teacher')),
-            FilledButton(onPressed: (){}, child: const Text('Recruiter')),
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OffersListScreen()));
+                },
+                child: const Text('Teacher')),
+            FilledButton(onPressed: () {}, child: const Text('Recruiter')),
           ],
         ),
       ),
