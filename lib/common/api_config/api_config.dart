@@ -1,3 +1,3 @@
 class ApiConfig {
-  static String baseUrl = 'https//exaplem.com/';
+  static String baseUrl = 'https//example.com/';
 }
