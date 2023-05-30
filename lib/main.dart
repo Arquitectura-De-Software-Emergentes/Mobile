@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,27 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
@@ -42,18 +27,135 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TecherFinder'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(onPressed: (){}, child: Text('Teacher')),
-            ElevatedButton(onPressed: (){}, child: Text('Recruiter')),
+        appBar: AppBar(
+          backgroundColor: Color(0xFFFBBB3F),
+          title: const Text('Teacher Finder'),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () { },
+          ),
+          actions: [
+
           ],
         ),
-      ),
+        body: Container(
+          padding: const EdgeInsets.all(30),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    SizedBox(
+                      width: 160,
+                      height: 160,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(""),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),color: Color(0xFFFBBB3F)),
+                        child: const Icon(
+                          LineAwesomeIcons.alternate_pencil,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 50),
+                Form(child: Column(
+                  children: [
+                    Container(
+                      width: 400,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Full Name",
+                          prefixIcon: Icon(LineAwesomeIcons.user),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Location"),
+                          prefixIcon: Icon(LineAwesomeIcons.map),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide(color: Colors.black),
+
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Email"),
+                          prefixIcon: Icon(LineAwesomeIcons.envelope_1),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      child: TextFormField(
+                        decoration:  InputDecoration(
+                          label: Text("Phone"),
+                          prefixIcon: Icon(LineAwesomeIcons.phone),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height:60),
+                    SizedBox(
+                      height: 45,
+                      width: 250,
+                      child: ElevatedButton(
+                        onPressed: () { },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
+                        child: const Text("Edit Profile",style: TextStyle(color: Colors.white),),
+                      ),
+                    )
+                  ],
+                ))
+              ],
+            ),
+          ),
+        )
     );
   }
 }
