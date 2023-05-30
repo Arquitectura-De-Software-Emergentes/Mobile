@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,24 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.light(
+          primary: Styles.primaryColor,
+          secondary: Styles.secondaryColor,
+          onPrimary: const Color(0xFFFFFFFF),
+          primaryContainer: const Color(0xFF171740),
+        ),
+        fontFamily: Styles.fontFamily,
         useMaterial3: true,
       ),
       home: const HomePage(),
@@ -43,14 +37,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TecherFinder'),
+        title: const Text('Teacher Finder'),
+        backgroundColor: Styles.primaryColor,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: (){},
+        ),
+        actions:const [
+          Padding(
+              padding: EdgeInsets.only(right: 10),
+            child:  CircleAvatar(
+              backgroundColor: Colors.grey,
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: (){}, child: Text('Teacher')),
-            ElevatedButton(onPressed: (){}, child: Text('Recruiter')),
+            OutlinedButton(onPressed: (){
+              Navigator.push(
+                context,MaterialPageRoute(builder: (context) => const OffersListScreen())
+              );
+            }, child: const Text('Teacher')),
+            FilledButton(onPressed: (){}, child: const Text('Recruiter')),
           ],
         ),
       ),
