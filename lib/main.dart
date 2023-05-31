@@ -22,10 +22,8 @@ class MyApp extends StatelessWidget {
           onPrimary: Styles.black,
           primaryContainer: const Color(0xFF171740),
           surface: Colors.white,
-
         ),
         fontFamily: Styles.fontFamily,
-
       ),
       home: const HomePage(),
     );
