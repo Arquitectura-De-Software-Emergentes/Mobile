@@ -12,10 +12,6 @@ class OfferDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Teacher Finder'),
         backgroundColor: Styles.primaryColor,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 10),
@@ -29,7 +25,7 @@ class OfferDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical:45, horizontal: 25),
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12), // Radio de los bordes de la tarjeta
+            borderRadius: BorderRadius.circular(12),
           ),
             elevation: 5,
           child: Column(
@@ -101,7 +97,7 @@ class OfferDetailScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 8.0,
                                           child: Text(
-                                            '\u2022', // Punto identificador
+                                            '\u2022',
                                             style: TextStyle(fontSize: 16.0),
                                           ),
                                         ),
@@ -114,7 +110,7 @@ class OfferDetailScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 8.0,
                                           child: Text(
-                                            '\u2022', // Punto identificador
+                                            '\u2022',
                                             style: TextStyle(fontSize: 16.0),
                                           ),
                                         ),
@@ -130,7 +126,7 @@ class OfferDetailScreen extends StatelessWidget {
                                 'Benefits: ',style: TextStyle(fontSize: 14),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Column(
                                   children: [
                                     const Row(
@@ -175,7 +171,36 @@ class OfferDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               FilledButton(
-                                onPressed: (){},
+                                onPressed: (){
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Are you sure'),
+                                        actions: [
+                                          FilledButton(
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor:Styles.error
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child:  Text('Cancel',style: TextStyle(color: Styles.white)),
+                                          ),
+                                          FilledButton(
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: Styles.secondaryColor
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Confirm',style: TextStyle(color: Styles.white),),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
                                 style: FilledButton.styleFrom(
                                   backgroundColor: Styles.secondaryColor,
                                   minimumSize:  Size(MediaQuery.of(context).size.width,40),
@@ -183,8 +208,6 @@ class OfferDetailScreen extends StatelessWidget {
                                 child:  Text('Apply',style: TextStyle(color: Styles.white, fontWeight: FontWeight.bold),),
 
                               )
-
-
                             ],
                           ),
                         ),
