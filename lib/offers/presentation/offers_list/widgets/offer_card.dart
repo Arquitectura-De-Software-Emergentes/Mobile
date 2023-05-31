@@ -48,16 +48,17 @@ class OfferCard extends StatelessWidget {
                         style: FilledButton.styleFrom(
                             backgroundColor: Styles.secondaryColor),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (
-                              (context) => OfferDetailScreen(offer: offer,)
-                              )
-                            )
-                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => OfferDetailScreen(
+                                        offer: offer,
+                                      ))));
                         },
-                        child:  Text('View',
-                            style: TextStyle(
-                              color: Styles.white,
-                                fontSize: 14),)),
+                        child: Text(
+                          'View',
+                          style: TextStyle(color: Styles.white, fontSize: 14),
+                        )),
                   ],
                 )
               ],
