@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/offers/domain/entities/offer.dart';
+import 'package:teacher_finder/offers/presentation/offer_detail/offer_detail_screen.dart';
 
 import '../../../../common/styles/styles.dart';
 
@@ -46,10 +47,17 @@ class OfferCard extends StatelessWidget {
                     FilledButton(
                         style: FilledButton.styleFrom(
                             backgroundColor: Styles.secondaryColor),
-                        onPressed: () {},
-                        child: const Text('View',
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (
+                              (context) => OfferDetailScreen(offer: offer,)
+                              )
+                            )
+                          );
+                        },
+                        child:  Text('View',
                             style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold))),
+                              color: Styles.white,
+                                fontSize: 14),)),
                   ],
                 )
               ],
