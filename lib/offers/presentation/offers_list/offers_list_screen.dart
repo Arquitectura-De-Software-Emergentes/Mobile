@@ -55,9 +55,11 @@ class _OffersListScreenState extends State<OffersListScreen> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: TextField(
                         decoration: InputDecoration(
+
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 8.0),
                           border: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
                           ),
@@ -70,9 +72,11 @@ class _OffersListScreenState extends State<OffersListScreen> {
                   ),
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.red,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      side: BorderSide(color: Styles.black),
                     ),
                     onPressed: () {},
                     child: Padding(
