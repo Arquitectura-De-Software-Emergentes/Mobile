@@ -19,11 +19,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.light(
           primary: Styles.primaryColor,
           secondary: Styles.secondaryColor,
-          onPrimary: const Color(0xFFFFFFFF),
+          onPrimary: Styles.black,
           primaryContainer: const Color(0xFF171740),
+          surface: Colors.white,
+
         ),
         fontFamily: Styles.fontFamily,
-        useMaterial3: true,
+
       ),
       home: const HomePage(),
     );
