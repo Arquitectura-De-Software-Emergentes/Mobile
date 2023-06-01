@@ -77,7 +77,6 @@ class HomePage extends StatelessWidget {
                           builder: (context) => const MyOffersListScreen()));
                 },
                 child: const Text('Recruiter')),
-            // FilledButton(onPressed: () {}, child: const Text('Recruiter')),
           ],
         ),
       ),
