@@ -39,17 +39,103 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Container(
-          padding: const EdgeInsets.only(left: 40,right: 40),
+          padding: const EdgeInsets.only(left: 30,right: 30),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40),
-                Text("New Job Offer", style: TextStyle(fontSize: 35,color: Colors.black)),
-                SizedBox(height: 40),
+                SizedBox(height: 20),
+                Text("New Job Offer", style: TextStyle(fontWeight:FontWeight.w500 ,fontSize: 30,color: Colors.black)),
+
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: "Puesto de trabajo"
+                      filled: true,
+                    fillColor: Color(0xFFEFEFF0),
+                    contentPadding: EdgeInsets.symmetric(vertical: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    )
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                TextFormField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFEFEFF0),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      )
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                TextFormField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFEFEFF0),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      )
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                TextFormField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFEFEFF0),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      )
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                TextFormField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFEFEFF0),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      )
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                TextFormField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFEFEFF0),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      )
+                  ),
+                ),
+                SizedBox(height: 40),
+                Center(
+                  child: SizedBox(
+                    height: 45,
+                    width: 150,
+                    child: ElevatedButton(
+                      onPressed: () { },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
+                      child: const Text("Create",style: TextStyle(color: Colors.white),),
+                    ),
                   ),
                 )
               ],
