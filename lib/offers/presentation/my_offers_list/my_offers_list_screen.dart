@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
 import '../../../common/styles/styles.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
+import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
+import '../../infrastructure/repositories/offer_repository.dart';
 import '../my_offer_detail/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatefulWidget {
@@ -15,14 +16,15 @@ class MyOffersListScreen extends StatefulWidget {
 
 class _MyOffersListScreenState extends State<MyOffersListScreen> {
   late Future<List<Offer>> _offersList;
-  final offerRepository = OfferRepository();
+
 
   @override
   void initState() {
+    final OfferRemoteDataProvider offerRemoteDataProvider = OfferRemoteDataProvider();
+    final offerRepository = OfferRepository(offerRemoteDataProvider: offerRemoteDataProvider);
     super.initState();
     _offersList = offerRepository.getAllOffers();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

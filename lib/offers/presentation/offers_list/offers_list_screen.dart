@@ -4,6 +4,7 @@ import 'package:teacher_finder/offers/infrastructure/repositories/offer_reposito
 import '../../../common/styles/styles.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
+import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
 import '../offer_detail/offer_detail_screen.dart';
 
 class OffersListScreen extends StatefulWidget {
@@ -15,10 +16,12 @@ class OffersListScreen extends StatefulWidget {
 
 class _OffersListScreenState extends State<OffersListScreen> {
   late Future<List<Offer>> _offersList;
-  final offerRepository = OfferRepository();
 
   @override
   void initState() {
+
+    final OfferRemoteDataProvider offerRemoteDataProvider = OfferRemoteDataProvider();
+    final offerRepository = OfferRepository(offerRemoteDataProvider: offerRemoteDataProvider);
     _offersList = offerRepository.getAllOffers();
     super.initState();
   }
