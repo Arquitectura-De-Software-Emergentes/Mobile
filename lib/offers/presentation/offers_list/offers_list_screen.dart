@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
-import 'package:teacher_finder/offers/presentation/offers_list/widgets/offer_card.dart';
 
 import '../../../common/styles/styles.dart';
+import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../offer_detail/offer_detail_screen.dart';
 

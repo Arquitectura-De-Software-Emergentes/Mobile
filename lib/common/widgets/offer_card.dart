@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/offers/domain/entities/offer.dart';
-import 'package:teacher_finder/offers/presentation/offer_detail/offer_detail_screen.dart';
 
 import '../../../../common/styles/styles.dart';
 
