@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   line_awesome_flutter: ^2.0.0
+  http: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -89,3 +90,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Mulish
+      fonts:
+      - asset: assets/fonts/Mulish-Regular.ttf

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
+
+import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,13 +11,21 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          primary: Styles.primaryColor,
+          secondary: Styles.secondaryColor,
+          onPrimary: Styles.black,
+          primaryContainer: const Color(0xFF171740),
+          surface: Colors.white,
+        ),
+        fontFamily: Styles.fontFamily,
       ),
       home: const HomePage(),
     );
@@ -27,121 +38,48 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFFFBBB3F),
-          title: const Text('Teacher Finder'),
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () { },
-          ),
-          actions: [
-
-          ],
+      appBar: AppBar(
+        title: const Text('Teacher Finder'),
+        backgroundColor: Styles.primaryColor,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {},
         ),
-        body: Container(
-          padding: const EdgeInsets.only(left: 30,right: 30),
-          child: Form(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20),
-                Text("New Job Offer", style: TextStyle(fontWeight:FontWeight.w500 ,fontSize: 30,color: Colors.black)),
-
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                    fillColor: Color(0xFFEFEFF0),
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )
-                  ),
-                ),
-                SizedBox(height: 40),
-                Center(
-                  child: SizedBox(
-                    height: 45,
-                    width: 150,
-                    child: ElevatedButton(
-                      onPressed: () { },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
-                      child: const Text("Create",style: TextStyle(color: Colors.white),),
-                    ),
-                  ),
-                )
-              ],
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              backgroundColor: Colors.grey,
             ),
           ),
-        )
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OffersListScreen()));
+                },
+                child: const Text('Teacher')),
+            const SizedBox(
+              height: 15,
+            ),
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyOffersListScreen()));
+                },
+                child: const Text('Recruiter')),
+          ],
+        ),
+      ),
     );
   }
 }
