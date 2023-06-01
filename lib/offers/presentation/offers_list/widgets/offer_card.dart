@@ -5,8 +5,10 @@ import 'package:teacher_finder/offers/presentation/offer_detail/offer_detail_scr
 import '../../../../common/styles/styles.dart';
 
 class OfferCard extends StatelessWidget {
-  const OfferCard({Key? key, required this.offer}) : super(key: key);
+  const OfferCard({Key? key, required this.offer, required this.onPress}) : super(key: key);
   final Offer offer;
+  final VoidCallback onPress;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,12 +50,7 @@ class OfferCard extends StatelessWidget {
                         style: FilledButton.styleFrom(
                             backgroundColor: Styles.secondaryColor),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => OfferDetailScreen(
-                                        offer: offer,
-                                      ))));
+                          onPress();
                         },
                         child: Text(
                           'View',
