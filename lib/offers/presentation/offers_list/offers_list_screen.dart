@@ -4,6 +4,7 @@ import 'package:teacher_finder/offers/presentation/offers_list/widgets/offer_car
 
 import '../../../common/styles/styles.dart';
 import '../../domain/entities/offer.dart';
+import '../offer_detail/offer_detail_screen.dart';
 
 class OffersListScreen extends StatefulWidget {
   const OffersListScreen({Key? key}) : super(key: key);
@@ -102,7 +103,11 @@ class _OffersListScreenState extends State<OffersListScreen> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
                       Offer offer = snapshot.data![index];
-                      return OfferCard(offer: offer);
+                      return OfferCard(
+                          offer: offer,
+                          onPress: () {
+                            goToOfferDetail(offer);
+                          });
                     },
                   );
                 }
@@ -112,5 +117,14 @@ class _OffersListScreenState extends State<OffersListScreen> {
         ],
       ),
     );
+  }
+
+  void goToOfferDetail(Offer offer) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: ((context) => OfferDetailScreen(
+                  offer: offer,
+                ))));
   }
 }

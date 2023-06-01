@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
+import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -64,7 +66,17 @@ class HomePage extends StatelessWidget {
                           builder: (context) => const OffersListScreen()));
                 },
                 child: const Text('Teacher')),
-            FilledButton(onPressed: () {}, child: const Text('Recruiter')),
+            const SizedBox(
+              height: 15,
+            ),
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyOffersListScreen()));
+                },
+                child: const Text('Recruiter')),
           ],
         ),
       ),
