@@ -133,7 +133,7 @@ class EditProfileTeacherScreen extends StatelessWidget {
                         onPressed: () { },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
-                        child: const Text("Edit",style: TextStyle(color: Colors.white),),
+                        child: const Text("Confirm",style: TextStyle(color: Colors.white),),
                       ),
                     )
                   ],
