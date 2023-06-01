@@ -170,48 +170,7 @@ class MyOfferDetailScreen extends StatelessWidget {
                               ),
                               FilledButton(
                                 onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Align(
-                                            alignment: Alignment.center,
-                                            child: Text('Are you sure?')),
-                                        actions: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              FilledButton(
-                                                style: FilledButton.styleFrom(
-                                                    backgroundColor:
-                                                        Styles.error),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('Cancel',
-                                                    style: TextStyle(
-                                                        color: Styles.white)),
-                                              ),
-                                              FilledButton(
-                                                style: FilledButton.styleFrom(
-                                                    backgroundColor:
-                                                        Styles.secondaryColor),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text(
-                                                  'Confirm',
-                                                  style: TextStyle(
-                                                      color: Styles.white),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
+                                  showTeachers(offer);
                                 },
                                 style: FilledButton.styleFrom(
                                   backgroundColor: Styles.secondaryColor,
@@ -219,7 +178,26 @@ class MyOfferDetailScreen extends StatelessWidget {
                                       MediaQuery.of(context).size.width, 40),
                                 ),
                                 child: Text(
-                                  'Apply',
+                                  'Show Teachers',
+                                  style: TextStyle(
+                                      color: Styles.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              FilledButton(
+                                onPressed: () {
+                                  modifyOffer(offer);
+                                },
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: Styles.secondaryColor,
+                                  minimumSize: Size(
+                                      MediaQuery.of(context).size.width, 40),
+                                ),
+                                child: Text(
+                                  'Modify',
                                   style: TextStyle(
                                       color: Styles.white,
                                       fontWeight: FontWeight.bold),
@@ -239,4 +217,8 @@ class MyOfferDetailScreen extends StatelessWidget {
       ),
     );
   }
+
+  void showTeachers(Offer offer) {}
+
+  void modifyOffer(Offer offer) {}
 }
