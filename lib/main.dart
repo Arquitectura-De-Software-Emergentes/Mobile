@@ -45,27 +45,34 @@ class HomePage extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(""),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),color: Color(0xFFFBBB3F)),
-                        child: const Icon(
-                          LineAwesomeIcons.alternate_pencil,
-                          color: Colors.black,
-                          size: 20,
+                    Stack(
+                      children: [
+                        SizedBox(
+                          width: 160,
+                          height: 160,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(""),
+                          ),
                         ),
-                      ),
-                    )
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            child: FloatingActionButton(
+                              backgroundColor: Color(0xFFFBBB3F),
+                              onPressed: (){},
+                              child: const Icon(
+                                LineAwesomeIcons.alternate_pencil,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 const SizedBox(height: 50),
@@ -147,7 +154,7 @@ class HomePage extends StatelessWidget {
                         onPressed: () { },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
-                        child: const Text("Edit Profile",style: TextStyle(color: Colors.white),),
+                        child: const Text("Edit",style: TextStyle(color: Colors.white),),
                       ),
                     )
                   ],
