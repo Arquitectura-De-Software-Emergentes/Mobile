@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
 
-import '../../../common/styles/styles.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../../infrastructure/data_sources/offer_remote_data_provider.dart';

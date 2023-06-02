@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
-
-import '../../../common/styles/styles.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/widgets/filter_button.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
 import '../offer_detail/offer_detail_screen.dart';
+import 'widgets/search_bar_custom.dart';
 
 class OffersListScreen extends StatefulWidget {
   const OffersListScreen({Key? key}) : super(key: key);
@@ -43,37 +43,10 @@ class _OffersListScreenState extends State<OffersListScreen> {
                 children: [
                   Flexible(
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 8.0),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                          ),
-                          labelText: 'Search',
-                          prefixIcon: Icon(Icons.search, color: Styles.gray),
-                          labelStyle: TextStyle(color: Styles.gray),
-                        ),
-                      ),
-                    ),
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: const SearchBarCustom()),
                   ),
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      side: BorderSide(color: Styles.black),
-                    ),
-                    onPressed: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Icon(Icons.filter_list, color: Styles.gray),
-                    ),
-                  ),
+                  const FilterButton(),
                 ],
               ),
             ),
