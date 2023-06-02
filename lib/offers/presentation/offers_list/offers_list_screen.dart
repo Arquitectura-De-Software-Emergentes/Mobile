@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
 import '../../../common/styles/styles.dart';
@@ -19,9 +20,10 @@ class _OffersListScreenState extends State<OffersListScreen> {
 
   @override
   void initState() {
-
-    final OfferRemoteDataProvider offerRemoteDataProvider = OfferRemoteDataProvider();
-    final offerRepository = OfferRepository(offerRemoteDataProvider: offerRemoteDataProvider);
+    final OfferRemoteDataProvider offerRemoteDataProvider =
+        OfferRemoteDataProvider();
+    final offerRepository =
+        OfferRepository(offerRemoteDataProvider: offerRemoteDataProvider);
     _offersList = offerRepository.getAllOffers();
     super.initState();
   }
@@ -29,22 +31,7 @@ class _OffersListScreenState extends State<OffersListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Teacher Finder'),
-        backgroundColor: Styles.primaryColor,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey,
-            ),
-          ),
-        ],
-      ),
+      appBar: const AppBarCustom(isHome: true),
       body: Column(
         children: [
           Padding(
