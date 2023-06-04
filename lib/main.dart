@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/injections.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import 'common/widgets/app_bar_custom.dart';
 import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
 void main() {
+  offerDependencies();
   runApp(const MyApp());
 }
 
