@@ -111,7 +111,9 @@ class NewOffertPage extends StatelessWidget {
                     height: 45,
                     width: 150,
                     child: ElevatedButton(
-                      onPressed: () { },
+                      onPressed: () {
+                        OfferCreated(context);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
                       child: const Text("Create",style: TextStyle(color: Colors.white),),
@@ -122,6 +124,51 @@ class NewOffertPage extends StatelessWidget {
             ),
           ),
         )
+    );
+  }
+  void OfferCreated(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 80.0,
+              ),
+              SizedBox(height: 16.0),
+              Text(
+                "Offer created",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 16.0),
+              Center(
+                child: SizedBox(
+                  height: 45,
+                  width: 100,
+                  child: ElevatedButton(
+                    onPressed: () {
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
+                    child: const Text("OK",style: TextStyle(color: Colors.white),),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
