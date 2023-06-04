@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: Styles.fontFamily,
       ),
-      home: const HomePage(),
+      home: const HomePage (),
     );
   }
 }

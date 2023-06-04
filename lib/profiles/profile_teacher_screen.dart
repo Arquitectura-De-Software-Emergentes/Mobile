@@ -42,26 +42,102 @@ class ProfileTeacherSreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    Icon(Icons.account_circle),
+                    Icon(Icons.mail),
                     SizedBox(width: 8),
-                    Text("Correo:", style: Theme.of(context).textTheme.headline5),
+                    Text("Email address", style: Theme.of(context).textTheme.headline6),
                   ],
                 ),
                 Container(
                   width: 400,
                   decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1,
-                    ),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text("Pedrito Gonzales@gmail.com", style: Theme.of(context).textTheme.headline6,),
+                    child: Text(
+                      "Pedrito_Gonzales@gmail.com",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ),
                 ),
-
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Icon(Icons.phone_android),
+                    SizedBox(width: 8),
+                    Text("Phone", style: Theme.of(context).textTheme.headline6),
+                  ],
+                ),
+                Container(
+                  width: 400,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "999-888-777",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Icon(Icons.book_outlined),
+                    SizedBox(width: 8),
+                    Text("Academic Degree", style: Theme.of(context).textTheme.headline6),
+                  ],
+                ),
+                Container(
+                  width: 400,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Magister",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Icon(Icons.account_circle),
+                    SizedBox(width: 8),
+                    Text("Phone", style: Theme.of(context).textTheme.headline6),
+                  ],
+                ),
+                Container(
+                  width: 400,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "999-888-777",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                ),
+                const SizedBox(height:40),
+                SizedBox(
+                  height: 45,
+                  width: 250,
+                  child: ElevatedButton(
+                    onPressed: () { },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
+                    child: const Text("Edit Profile",style: TextStyle(color: Colors.white),),
+                  ),
+                )
               ],
             ),
           ),
