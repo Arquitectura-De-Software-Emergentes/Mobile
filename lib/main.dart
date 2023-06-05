@@ -5,7 +5,6 @@ import 'package:teacher_finder/offers/presentation/offers_list/offers_list_scree
 
 import 'common/widgets/app_bar_custom.dart';
 import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
-import 'offers/presentation/new_offer/new_offert.dart';
 
 void main() {
   offerDependencies();
