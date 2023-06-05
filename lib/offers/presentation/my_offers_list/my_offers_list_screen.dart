@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
+import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
 
-import '../../../common/styles/styles.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
+import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
+import '../../infrastructure/repositories/offer_repository.dart';
 import '../my_offer_detail/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatefulWidget {
@@ -15,10 +16,13 @@ class MyOffersListScreen extends StatefulWidget {
 
 class _MyOffersListScreenState extends State<MyOffersListScreen> {
   late Future<List<Offer>> _offersList;
-  final offerRepository = OfferRepository();
 
   @override
   void initState() {
+    final OfferRemoteDataProvider offerRemoteDataProvider =
+        OfferRemoteDataProvider();
+    final offerRepository =
+        OfferRepository(offerRemoteDataProvider: offerRemoteDataProvider);
     super.initState();
     _offersList = offerRepository.getAllOffers();
   }
@@ -26,22 +30,7 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Teacher Finder'),
-        backgroundColor: Styles.primaryColor,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey,
-            ),
-          ),
-        ],
-      ),
+      appBar: const AppBarCustom(isHome: true),
       body: Column(
         children: [
           const SizedBox(
