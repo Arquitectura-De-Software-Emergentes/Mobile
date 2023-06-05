@@ -14,15 +14,19 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		46zQmeJ5kY2c2PcfadQw0agTkmk=
+		</data>
+		<key>flutter_assets/AssetManifest.smcbin</key>
+		<data>
+		WqI3ho8gsKGhgb5Cz3xFlGv1w0Q=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
-		vKJkVIcw+LGHFnKJGwrQwCREv68=
+		3u0pUFGiIbrWbKLWNW31Mf3iZAY=
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		VB8Dttzwsjh2PlaYIOq39lCtM9o=
+		zsgUJOCJBmJgPVGosxBRQB6XIvs=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -34,11 +38,15 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		QTr2O9pkSMr0K/e5uC/i0lo/8ko=
+		45pDqTijxaQpqnCpyva1FXSIoMs=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
+		</data>
+		<key>flutter_assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf</key>
+		<data>
+		6us+0+Uac46Xs1XRYRzcTTL5QvE=
 		</data>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -62,21 +70,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			jfCA/iO+xgkfz12zMDyBsGmpda1k1mBMxCarcoTsrOs=
+			</data>
+		</dict>
+		<key>flutter_assets/AssetManifest.smcbin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DC+j4jVwB1c4i7fPUDrwrrUQl+qwyBkFYZo2WeUI1qM=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zX4DZFvESy3Ue3y2JvUcTsv1Whl6t3JBYotHrBZfviE=
+			vNhauvpPgwICz/fXTeHK03Oc8x632emRLDM/W5v/5Vc=
 			</data>
 		</dict>
 		<key>flutter_assets/NOTICES.Z</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4PYeqQdNPbZ/ev3bV41pKJqkRybMiZfqKtOtxp7xBX4=
+			vLApor9n1Fh9cZGyk7u9YiCEYyjr8Ptrg805eggfbNg=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -97,7 +112,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Fg1/Hvl4IamoIqCe8m7/xKQh2RLDqLHNereCCMdpPHo=
+			7WqsjgVfA8Q6BGsKZvz67sLo37HkbK7+kQKfjZnDmSg=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -105,6 +120,13 @@
 			<key>hash2</key>
 			<data>
 			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MQApiodAVF7kBzaO1YAMdLDuHDt4xLMRNxbICBm1bKM=
 			</data>
 		</dict>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
