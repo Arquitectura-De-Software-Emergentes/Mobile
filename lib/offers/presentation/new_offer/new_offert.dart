@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
+import '../my_offers_list/my_offers_list_screen.dart';
+
 class NewOffertPage extends StatelessWidget {
   const NewOffertPage({Key? key}) : super(key: key);
 
@@ -157,7 +159,10 @@ class NewOffertPage extends StatelessWidget {
                   width: 100,
                   child: ElevatedButton(
                     onPressed: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyOffersListScreen()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
@@ -171,4 +176,5 @@ class NewOffertPage extends StatelessWidget {
       },
     );
   }
+
 }
