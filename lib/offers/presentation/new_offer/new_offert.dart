@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../my_offers_list/my_offers_list_screen.dart';
 
@@ -14,23 +13,28 @@ class NewOffertPage extends StatelessWidget {
           title: const Text('Teacher Finder'),
           leading: IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: () { },
+            onPressed: () {},
           ),
-          actions: [
-
-          ],
+          actions: [],
         ),
         body: Container(
-          padding: const EdgeInsets.only(left: 30,right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20),
-                Text("New Job Offer", style: TextStyle(fontWeight:FontWeight.w500 ,fontSize: 30,color: Colors.black)),
-
+                Text("New Job Offer",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 30,
+                        color: Colors.black)),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -39,11 +43,14 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -52,11 +59,14 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -65,11 +75,14 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -78,11 +91,14 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -91,11 +107,14 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 10),
-                Text("Job",style: TextStyle(fontWeight:FontWeight.w400 ,fontSize: 20,color: Colors.black)),
+                Text("Job",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.black)),
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
@@ -104,8 +123,7 @@ class NewOffertPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 40),
                 Center(
@@ -117,17 +135,22 @@ class NewOffertPage extends StatelessWidget {
                         OfferCreated(context);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
-                      child: const Text("Create",style: TextStyle(color: Colors.white),),
+                          backgroundColor: Color(0xFF171740),
+                          side: BorderSide.none,
+                          shape: const StadiumBorder()),
+                      child: const Text(
+                        "Create",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 )
               ],
             ),
           ),
-        )
-    );
+        ));
   }
+
   void OfferCreated(BuildContext context) {
     showDialog(
       context: context,
@@ -161,12 +184,18 @@ class NewOffertPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyOffersListScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => MyOffersListScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor:Color(0xFF171740),side: BorderSide.none, shape: const StadiumBorder()),
-                    child: const Text("OK",style: TextStyle(color: Colors.white),),
+                        backgroundColor: Color(0xFF171740),
+                        side: BorderSide.none,
+                        shape: const StadiumBorder()),
+                    child: const Text(
+                      "OK",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               )
@@ -176,5 +205,4 @@ class NewOffertPage extends StatelessWidget {
       },
     );
   }
-
 }
