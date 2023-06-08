@@ -10,7 +10,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Teacher Finder'),
+      title: const Text('Teacher Finder',
+        style:TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
+        ),),
       backgroundColor: Styles.primaryColor,
       actions: const [
         Padding(

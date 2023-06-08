@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+
 import 'package:teacher_finder/offers/presentation/new_offer/new_offert_screen.dart';
+
 
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
