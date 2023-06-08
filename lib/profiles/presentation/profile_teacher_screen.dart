@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
 import 'edit_profile_teacher_screen.dart';
@@ -22,101 +23,37 @@ class ProfileTeacherSreen extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Text("Pedrito Gonzales",
-                    style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Icon(Icons.mail),
-                    SizedBox(width: 8),
-                    Text("Email address",
-                        style: Theme.of(context).textTheme.headline6),
-                  ],
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.w500, color: Colors.black)),
+                const SizedBox(height: 30),
+                menuProfile(
+                  title: "Information Personal",
+                  icon: LineAwesomeIcons.user,
+                  onPress: () {},
                 ),
-                Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "Pedrito_Gonzales@gmail.com",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
+                const SizedBox(height: 20),
+                menuProfile(
+                    title: "Academic Information",
+                    icon:LineAwesomeIcons.book,
+                    onPress:()  { }
                 ),
-                const SizedBox(height: 15),
-                Row(
-                  children: [
-                    Icon(Icons.phone_android),
-                    SizedBox(width: 8),
-                    Text("Phone", style: Theme.of(context).textTheme.headline6),
-                  ],
+                const SizedBox(height: 20),
+                menuProfile(
+                    title: "Account",
+                    icon: LineAwesomeIcons.user_shield,
+                    onPress: () {  }
                 ),
-                Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "999-888-777",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
+                const SizedBox(height: 20),
+                menuProfile(
+                    title: "Curriculum Vitae",
+                    icon:LineAwesomeIcons.file,
+                    onPress: () {  }
                 ),
-                const SizedBox(height: 15),
-                Row(
-                  children: [
-                    Icon(Icons.book_outlined),
-                    SizedBox(width: 8),
-                    Text("Academic Degree",
-                        style: Theme.of(context).textTheme.headline6),
-                  ],
-                ),
-                Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "Magister",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  children: [
-                    Icon(Icons.account_circle),
-                    SizedBox(width: 8),
-                    Text("Phone", style: Theme.of(context).textTheme.headline6),
-                  ],
-                ),
-                Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "999-888-777",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 40),
-                SizedBox(
+
+                //BUTTON EDIT PROFILE
+               /* SizedBox(
                   height: 45,
                   width: 250,
                   child: ElevatedButton(
@@ -137,10 +74,52 @@ class ProfileTeacherSreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                )
+                )*/
               ],
             ),
           ),
         ));
+  }
+}
+
+class menuProfile extends StatelessWidget {
+  const menuProfile({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.onPress,
+    this.endIcon=true,
+    this.textColor,
+  }) : super(key: key);
+  final String title;
+  final IconData icon;
+  final VoidCallback onPress;
+  final bool endIcon;
+  final Color? textColor;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: onPress,
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Color(0xFFFBBB3F).withOpacity(0.1),
+        ),
+        child: Icon(icon, color:Colors.black),
+      ),
+      title:Text(title,style: Theme.of(context).textTheme.bodyMedium?.apply(color:textColor)),
+      trailing:endIcon? Container(
+        width: 30,
+        height: 30,
+        decoration:BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey.withOpacity(0.1),
+        ),
+        child: const Icon(LineAwesomeIcons.angle_right,size:18.0 ,color:Colors.black)):null,
+    );
   }
 }
