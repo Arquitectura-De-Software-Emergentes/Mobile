@@ -1,150 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/offers/presentation/new_offer/widgets/date_input.dart';
+import 'package:teacher_finder/offers/presentation/new_offer/widgets/text_input.dart';
 
+import '../../../common/styles/styles.dart';
 import '../my_offers_list/my_offers_list_screen.dart';
 
-class NewOfferScreen extends StatelessWidget {
+class NewOfferScreen extends StatefulWidget {
   const NewOfferScreen({Key? key}) : super(key: key);
+
+  @override
+  State<NewOfferScreen> createState() => _NewOfferScreenState();
+}
+
+class _NewOfferScreenState extends State<NewOfferScreen> {
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final salaryController = TextEditingController();
+  final maxApplicationsController = TextEditingController();
+  final endDateController = TextEditingController();
+  final initialDateController = TextEditingController();
+  final optionalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(),
-        body: Container(
-          padding: const EdgeInsets.only(left: 30, right: 30),
-          child: Form(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20),
-                Text("New Job Offer",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: Colors.black)),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 10),
-                Text("Job",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.black)),
-                TextFormField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFEFEFF0),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none,
-                      )),
-                ),
-                SizedBox(height: 40),
-                Center(
-                  child: SizedBox(
-                    height: 45,
-                    width: 150,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        OfferCreated(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF171740),
-                          side: BorderSide.none,
-                          shape: const StadiumBorder()),
-                      child: const Text(
-                        "Create",
-                        style: TextStyle(color: Colors.white),
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.8,
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: Form(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Center(
+                    child: Text("New Offer Job",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 30,
+                            color: Colors.black)),
+                  ),
+                  TextInput(controller: titleController, title: 'Title'),
+                  TextInput(
+                      controller: descriptionController, title: 'Description'),
+                  TextInput(controller: salaryController, title: 'Salary'),
+                  TextInput(
+                      controller: maxApplicationsController,
+                      title: 'Max Application'),
+                  DateInput(
+                      controller: initialDateController, title: 'Initial Date'),
+                  DateInput(controller: endDateController, title: 'End Date'),
+                  Center(
+                    child: SizedBox(
+                      height: 45,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          offerCreated(context);
+                          //print(endDateController.text);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Styles.secondaryColor,
+                            side: BorderSide.none,
+                            shape: const StadiumBorder()),
+                        child: const Text(
+                          "Create",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ));
   }
 
-  void OfferCreated(BuildContext context) {
+  void offerCreated(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -155,20 +89,20 @@ class NewOfferScreen extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.check_circle,
                 color: Colors.green,
                 size: 80.0,
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 "Offer created",
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Center(
                 child: SizedBox(
                   height: 45,
