@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
-import 'package:teacher_finder/offers/presentation/new_offer/new_offert.dart';
+
+import 'package:teacher_finder/offers/presentation/new_offer/new_offert_screen.dart';
+
 
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
@@ -73,7 +75,7 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: ((context) => const NewOffertPage())));
+                  builder: ((context) => const NewOfferScreen())));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add, color: Colors.white),
