@@ -1,150 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
 import 'edit_profile_teacher_screen.dart';
+
 class ProfileTeacherSreen extends StatelessWidget {
   const ProfileTeacherSreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Container(
-          color: Color(0xFFFBBB3F),
-          child:Column(
-            children: [
-              SizedBox(height: 100),
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text("Inicio",
-                style:TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.mode_comment),
-                title: Text("Entrevistas",
-                    style:TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.assignment),
-                title: Text("Evaluaciones",
-                    style:TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-
-              ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text("Notificaciones",
-                    style:TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text("Perfil",
-                    style:TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text("Cerrar sesión",
-                    style:TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    )),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
-                  );
-                },
-              ),
-            ],
-          )
-        ),
-      ),
-        appBar: AppBar(
-          backgroundColor: Color(0xFFFBBB3F),
-          title: const Text('Teacher Finder'),
-          actions: [
-
-          ],
-        ),
+        appBar: const CustomAppBar(),
         body: Container(
           padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Stack(
-                      children: [
-                        SizedBox(
-                          width: 160,
-                          height: 160,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(""),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                const SizedBox(
+                  width: 160,
+                  height: 160,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Text("Pedrito Gonzales",style: Theme.of(context).textTheme.headlineMedium),
+                Text("Pedrito Gonzales",
+                    style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     Icon(Icons.mail),
                     SizedBox(width: 8),
-                    Text("Email address", style: Theme.of(context).textTheme.headline6),
+                    Text("Email address",
+                        style: Theme.of(context).textTheme.headline6),
                   ],
                 ),
                 Container(
@@ -188,7 +75,8 @@ class ProfileTeacherSreen extends StatelessWidget {
                   children: [
                     Icon(Icons.book_outlined),
                     SizedBox(width: 8),
-                    Text("Academic Degree", style: Theme.of(context).textTheme.headline6),
+                    Text("Academic Degree",
+                        style: Theme.of(context).textTheme.headline6),
                   ],
                 ),
                 Container(
@@ -227,7 +115,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height:40),
+                const SizedBox(height: 40),
                 SizedBox(
                   height: 45,
                   width: 250,
@@ -235,18 +123,24 @@ class ProfileTeacherSreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => EditProfileTeacherScreen()),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const EditProfileTeacherScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
-                    child: const Text("Edit Profile",style: TextStyle(color: Colors.white),),
+                        backgroundColor: Color(0xFFFBBB3F),
+                        side: BorderSide.none,
+                        shape: const StadiumBorder()),
+                    child: const Text(
+                      "Edit Profile",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 )
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
