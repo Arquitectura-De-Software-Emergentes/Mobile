@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+
 class EditProfileTeacherScreen extends StatelessWidget {
   const EditProfileTeacherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFFFBBB3F),
-          title: const Text('Teacher Finder'),
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () { },
-          ),
-          actions: [
-
-          ],
-        ),
+        appBar: const CustomAppBar(),
         body: Container(
           padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(
@@ -41,7 +34,7 @@ class EditProfileTeacherScreen extends StatelessWidget {
                             height: 40,
                             child: FloatingActionButton(
                               backgroundColor: Color(0xFFFBBB3F),
-                              onPressed: (){},
+                              onPressed: () {},
                               child: const Icon(
                                 LineAwesomeIcons.alternate_pencil,
                                 color: Colors.black,
@@ -55,7 +48,8 @@ class EditProfileTeacherScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 50),
-                Form(child: Column(
+                Form(
+                    child: Column(
                   children: [
                     Container(
                       width: 400,
@@ -86,7 +80,6 @@ class EditProfileTeacherScreen extends StatelessWidget {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
                             borderSide: BorderSide(color: Colors.black),
-
                           ),
                         ),
                       ),
@@ -112,7 +105,7 @@ class EditProfileTeacherScreen extends StatelessWidget {
                     Container(
                       width: 400,
                       child: TextFormField(
-                        decoration:  InputDecoration(
+                        decoration: InputDecoration(
                           label: Text("Phone"),
                           prefixIcon: Icon(LineAwesomeIcons.phone),
                           border: OutlineInputBorder(
@@ -125,15 +118,20 @@ class EditProfileTeacherScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height:60),
+                    const SizedBox(height: 60),
                     SizedBox(
                       height: 45,
                       width: 250,
                       child: ElevatedButton(
-                        onPressed: () { },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                            backgroundColor:Color(0xFFFBBB3F),side: BorderSide.none, shape: const StadiumBorder()),
-                        child: const Text("Confirm",style: TextStyle(color: Colors.white),),
+                            backgroundColor: Color(0xFFFBBB3F),
+                            side: BorderSide.none,
+                            shape: const StadiumBorder()),
+                        child: const Text(
+                          "Confirm",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     )
                   ],
@@ -141,7 +139,6 @@ class EditProfileTeacherScreen extends StatelessWidget {
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }

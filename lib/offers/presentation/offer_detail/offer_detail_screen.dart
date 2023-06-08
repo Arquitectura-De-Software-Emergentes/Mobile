@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
+import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
 import '../../domain/entities/offer.dart';
 import 'widgets/offer_detail_card.dart';
@@ -10,7 +10,7 @@ class OfferDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(isHome: false),
+      appBar: const CustomAppBar(),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 25),
           child: OfferDetailCard(offer: offer)),
