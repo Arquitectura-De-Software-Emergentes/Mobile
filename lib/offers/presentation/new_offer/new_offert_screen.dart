@@ -3,8 +3,8 @@ import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
 import '../my_offers_list/my_offers_list_screen.dart';
 
-class NewOffertPage extends StatelessWidget {
-  const NewOffertPage({Key? key}) : super(key: key);
+class NewOfferScreen extends StatelessWidget {
+  const NewOfferScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
