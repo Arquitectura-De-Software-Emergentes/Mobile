@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 
 class EditProfileTeacherScreen extends StatelessWidget {
   const EditProfileTeacherScreen({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class EditProfileTeacherScreen extends StatelessWidget {
                           width: 160,
                           height: 160,
                           child: CircleAvatar(
-                            backgroundImage: AssetImage(""),
+                            backgroundColor: Colors.red,
                           ),
                         ),
                         Positioned(

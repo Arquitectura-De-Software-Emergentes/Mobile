@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 
 import 'edit_profile_teacher_screen.dart';
 
@@ -17,20 +15,12 @@ class ProfileTeacherSreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Stack(
-                      children: [
-                        SizedBox(
-                          width: 160,
-                          height: 160,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                const SizedBox(
+                  width: 160,
+                  height: 160,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text("Pedrito Gonzales",
@@ -134,7 +124,8 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EditProfileTeacherScreen()),
+                            builder: (context) =>
+                                const EditProfileTeacherScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
