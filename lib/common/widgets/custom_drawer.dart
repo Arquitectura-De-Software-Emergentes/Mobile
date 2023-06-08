@@ -19,7 +19,7 @@ class CustomDrawer extends StatelessWidget {
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 17,
           )),
       onTap: () {
         //Navigator.push(
@@ -47,6 +47,13 @@ class CustomDrawer extends StatelessWidget {
                   const ProfileTeacherSreen(), Icons.notifications),
               drawerOption(context, 'Profile', const ProfileTeacherSreen(),
                   Icons.person),
+              Divider(
+                color: Colors.white.withOpacity(0.5),
+                height: 10,
+                thickness: 1,
+                indent: 30,
+                endIndent: 30,
+              ),
               drawerOption(context, 'Sign out', const ProfileTeacherSreen(),
                   Icons.logout),
             ],
