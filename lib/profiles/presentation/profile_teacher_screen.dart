@@ -3,6 +3,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
 import 'edit_profile_teacher_screen.dart';
+import 'information_personal_teacher_screen.dart';
 
 class ProfileTeacherSreen extends StatelessWidget {
   const ProfileTeacherSreen({Key? key}) : super(key: key);
@@ -31,7 +32,14 @@ class ProfileTeacherSreen extends StatelessWidget {
                 menuProfile(
                   title: "Information Personal",
                   icon: LineAwesomeIcons.user,
-                  onPress: () {},
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const InfomationPersonalTeacherScreen()),
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
                 menuProfile(
