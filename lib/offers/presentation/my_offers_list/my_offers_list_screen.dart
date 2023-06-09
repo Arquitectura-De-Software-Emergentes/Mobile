@@ -8,7 +8,6 @@ import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
 import '../../infrastructure/repositories/offer_repository.dart';
-import '../offers_list/widgets/offer_detail.dart';
 import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatefulWidget {
