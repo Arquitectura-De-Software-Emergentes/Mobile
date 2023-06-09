@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/profiles/presentation/academic_information_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/account_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/cv_teacher_screen.dart';
 
 import 'edit_profile_teacher_screen.dart';
+import 'information_personal_teacher_screen.dart';
 
 class ProfileTeacherSreen extends StatelessWidget {
   const ProfileTeacherSreen({Key? key}) : super(key: key);
@@ -31,25 +35,53 @@ class ProfileTeacherSreen extends StatelessWidget {
                 menuProfile(
                   title: "Information Personal",
                   icon: LineAwesomeIcons.user,
-                  onPress: () {},
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const InfomationPersonalTeacherScreen()),
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Academic Information",
                     icon:LineAwesomeIcons.book,
-                    onPress:()  { }
+                    onPress:()  {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const AcademicInformationTeacher()),
+                      );
+                    }
                 ),
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Account",
                     icon: LineAwesomeIcons.user_shield,
-                    onPress: () {  }
+                    onPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const AccountTeacherScreen()),
+                      );
+                    }
                 ),
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Curriculum Vitae",
                     icon:LineAwesomeIcons.file,
-                    onPress: () {  }
+                    onPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const CvTeacher()),
+                      );
+                    }
                 ),
 
                 //BUTTON EDIT PROFILE
