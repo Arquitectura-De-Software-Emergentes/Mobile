@@ -43,7 +43,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: 'Teacher Finder',
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

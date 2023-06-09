@@ -9,7 +9,9 @@ class AccountTeacherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Profile',
+        ),
         body: Container(
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
@@ -23,40 +25,35 @@ class AccountTeacherScreen extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                 ),
-                Text("Name",textAlign:TextAlign.left, ),
-                menuInformation(
-                    title: "Cristhian Orosco",
-                    onPress:(){
-
-                    } ),
+                Text(
+                  "Name",
+                  textAlign: TextAlign.left,
+                ),
+                menuInformation(title: "Cristhian Orosco", onPress: () {}),
                 Divider(),
                 const SizedBox(height: 10),
-                Text("Name",textAlign:TextAlign.left, ),
-                menuInformation(
-                    title: "Cristhian Orosco",
-                    onPress:(){
-
-                    } ),
+                Text(
+                  "Name",
+                  textAlign: TextAlign.left,
+                ),
+                menuInformation(title: "Cristhian Orosco", onPress: () {}),
                 Divider(),
                 const SizedBox(height: 10),
-                Text("Name",textAlign:TextAlign.left, ),
-                menuInformation(
-                    title: "Cristhian Orosco",
-                    onPress:(){
-
-                    } ),
+                Text(
+                  "Name",
+                  textAlign: TextAlign.left,
+                ),
+                menuInformation(title: "Cristhian Orosco", onPress: () {}),
                 Divider(),
                 const SizedBox(height: 10),
-                Text("Name",textAlign:TextAlign.right, ),
-                menuInformation(
-                    title: "Cristhian Orosco",
-                    onPress:(){
-                    } ),
-
+                Text(
+                  "Name",
+                  textAlign: TextAlign.right,
+                ),
+                menuInformation(title: "Cristhian Orosco", onPress: () {}),
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }

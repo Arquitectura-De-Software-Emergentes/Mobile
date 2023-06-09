@@ -14,7 +14,7 @@ class ProfileTeacherSreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(title: 'Profile'),
         body: Container(
           padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(
@@ -30,7 +30,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 Text("Pedrito Gonzales",
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.w500, color: Colors.black)),
+                        fontWeight: FontWeight.w500, color: Colors.black)),
                 const SizedBox(height: 30),
                 menuProfile(
                   title: "Information Personal",
@@ -47,16 +47,15 @@ class ProfileTeacherSreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Academic Information",
-                    icon:LineAwesomeIcons.book,
-                    onPress:()  {
+                    icon: LineAwesomeIcons.book,
+                    onPress: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                            const AcademicInformationTeacher()),
+                                const AcademicInformationTeacher()),
                       );
-                    }
-                ),
+                    }),
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Account",
@@ -65,27 +64,23 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                            const AccountTeacherScreen()),
+                            builder: (context) => const AccountTeacherScreen()),
                       );
-                    }
-                ),
+                    }),
                 const SizedBox(height: 20),
                 menuProfile(
                     title: "Curriculum Vitae",
-                    icon:LineAwesomeIcons.file,
+                    icon: LineAwesomeIcons.file,
                     onPress: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                            const CvTeacher()),
+                            builder: (context) => const CvTeacher()),
                       );
-                    }
-                ),
+                    }),
 
                 //BUTTON EDIT PROFILE
-               /* SizedBox(
+                /* SizedBox(
                   height: 45,
                   width: 250,
                   child: ElevatedButton(
@@ -120,7 +115,7 @@ class menuProfile extends StatelessWidget {
     required this.title,
     required this.icon,
     required this.onPress,
-    this.endIcon=true,
+    this.endIcon = true,
     this.textColor,
   }) : super(key: key);
   final String title;
@@ -128,7 +123,6 @@ class menuProfile extends StatelessWidget {
   final VoidCallback onPress;
   final bool endIcon;
   final Color? textColor;
-
 
   @override
   Widget build(BuildContext context) {
@@ -141,17 +135,22 @@ class menuProfile extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           color: Color(0xFFFBBB3F).withOpacity(0.1),
         ),
-        child: Icon(icon, color:Colors.black),
+        child: Icon(icon, color: Colors.black),
       ),
-      title:Text(title,style: Theme.of(context).textTheme.bodyMedium?.apply(color:textColor)),
-      trailing:endIcon? Container(
-        width: 30,
-        height: 30,
-        decoration:BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.grey.withOpacity(0.1),
-        ),
-        child: const Icon(LineAwesomeIcons.angle_right,size:18.0 ,color:Colors.black)):null,
+      title: Text(title,
+          style:
+              Theme.of(context).textTheme.bodyMedium?.apply(color: textColor)),
+      trailing: endIcon
+          ? Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
+              ),
+              child: const Icon(LineAwesomeIcons.angle_right,
+                  size: 18.0, color: Colors.black))
+          : null,
     );
   }
 }
