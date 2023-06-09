@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/offers/domain/entities/offer.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/date_input.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/text_input.dart';
 
 import '../../../common/styles/styles.dart';
+import '../my_offers_list/bloc/my_offers_list_bloc.dart';
 import '../my_offers_list/my_offers_list_screen.dart';
 
 class NewOfferScreen extends StatefulWidget {
@@ -24,6 +27,9 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //final myOffersListBloc = BlocProvider.of<MyOffersListBloc>(context);
+    final myOffersListBloc = context.read<MyOffersListBloc>();
+
     return Scaffold(
         appBar: const CustomAppBar(),
         body: SingleChildScrollView(
@@ -57,8 +63,18 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       width: 150,
                       child: ElevatedButton(
                         onPressed: () {
+                          Offer offer = Offer(
+                              offerId: '10',
+                              title: 'lorem lr er dsosodosdao ',
+                              description: 'lorem lr er dsosodosdao ',
+                              initialDate: DateTime(2013 - 10 - 10),
+                              endDate: DateTime(2013 - 10 - 10),
+                              salary: '2000',
+                              maxApplications: 90,
+                              numberApplications: 30);
+                          myOffersListBloc.addNewOffer(offer);
                           offerCreated(context);
-                          //print(endDateController.text);
+                          //print(endDat1eController.text);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Styles.secondaryColor,

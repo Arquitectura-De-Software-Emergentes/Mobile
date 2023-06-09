@@ -14,12 +14,12 @@ class OffersListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<OffersListBloc>(
-      create: (BuildContext context) => OffersListBloc()..getAllOffers(),
-      child: Scaffold(
-        drawer: const CustomDrawer(),
-        appBar: const CustomAppBar(),
-        body: Column(
+    return Scaffold(
+      drawer: const CustomDrawer(),
+      appBar: const CustomAppBar(),
+      body: BlocProvider(
+        create: (context) => OffersListBloc()..getAllOffers(),
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),
