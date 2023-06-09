@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/styles/styles.dart';
 import '../../../domain/entities/offer.dart';
-import '../../offers_list/widgets/offer_detail_requirements.dart';
+import '../../../../common/widgets/offer_detail_requirements.dart';
 
 class MyOfferDetail extends StatelessWidget {
   const MyOfferDetail({super.key, required this.offer});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/offers/presentation/offers_list/widgets/offer_detail_requirements.dart';
+import 'package:teacher_finder/common/widgets/offer_detail_requirements.dart';
 
 import '../../../domain/entities/offer.dart';
 import 'apply_button.dart';
