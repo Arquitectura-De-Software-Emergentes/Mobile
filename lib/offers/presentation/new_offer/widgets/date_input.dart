@@ -44,8 +44,8 @@ class _DateInputState extends State<DateInput> {
           },
           decoration: InputDecoration(
               filled: true,
-              fillColor: Color(0xFFEFEFF0),
-              contentPadding: EdgeInsets.symmetric(vertical: 15),
+              fillColor: const Color(0xFFEFEFF0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,

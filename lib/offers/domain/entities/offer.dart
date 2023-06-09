@@ -1,16 +1,24 @@
+import 'package:teacher_finder/offers/domain/entities/enums/availability.dart';
+
+import 'position_profile.dart';
+import 'salary.dart';
 
 class Offer {
-  String offerId;
-  String title;
-  String description;
-  DateTime initialDate;
-  DateTime endDate;
-  String salary;
-  int maxApplications;
-  int numberApplications;
+  final int id;
+  final int recruiterId;
+  final String title;
+  final String description;
+  final DateTime initialDate;
+  final DateTime endDate;
+  final Salary salary;
+  final int maxApplications;
+  final int numberApplications;
+  final Availability availability;
+  final PositionProfile positionProfile;
 
   Offer({
-    required this.offerId,
+    required this.id,
+    required this.recruiterId,
     required this.title,
     required this.description,
     required this.initialDate,
@@ -18,5 +26,7 @@ class Offer {
     required this.salary,
     required this.maxApplications,
     required this.numberApplications,
+    required this.availability,
+    required this.positionProfile,
   });
 }
