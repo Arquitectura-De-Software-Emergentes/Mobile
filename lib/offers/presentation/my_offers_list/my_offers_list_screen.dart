@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
+import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+
+import 'package:teacher_finder/offers/presentation/new_offer/new_offert_screen.dart';
+
 
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
@@ -30,7 +34,8 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(isHome: true),
+      drawer: const CustomDrawer(),
+      appBar: const CustomAppBar(),
       body: Column(
         children: [
           const SizedBox(
@@ -67,7 +72,10 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Implementation for create new
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => const NewOfferScreen())));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add, color: Colors.white),

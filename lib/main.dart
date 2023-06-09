@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/injections.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
-import 'common/widgets/app_bar_custom.dart';
+import 'common/widgets/custom_app_bar.dart';
 import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
 void main() {
@@ -41,7 +42,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(isHome: true),
+      drawer: const CustomDrawer(),
+      appBar: const CustomAppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

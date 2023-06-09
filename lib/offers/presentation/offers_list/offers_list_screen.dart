@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teacher_finder/common/widgets/app_bar_custom.dart';
+import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/bloc/bloc.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/widgets/filter_button.dart';
 import '../../../common/widgets/offer_card.dart';
@@ -16,7 +17,8 @@ class OffersListScreen extends StatelessWidget {
     return BlocProvider<OffersListBloc>(
       create: (BuildContext context) => OffersListBloc()..getAllOffers(),
       child: Scaffold(
-        appBar: const AppBarCustom(isHome: true),
+        drawer: const CustomDrawer(),
+        appBar: const CustomAppBar(),
         body: Column(
           children: [
             Padding(
