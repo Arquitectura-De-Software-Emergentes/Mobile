@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/injections.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/bloc/bloc.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import 'common/widgets/custom_app_bar.dart';
@@ -13,9 +15,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,33 +42,40 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const CustomDrawer(),
-      appBar: const CustomAppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OutlinedButton(
+    return BlocProvider(
+      create: (context) => OffersListBloc(),
+      child: Scaffold(
+        drawer: const CustomDrawer(),
+        appBar: const CustomAppBar(),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OutlinedButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OffersListScreen()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OffersListScreen(),
+                    ),
+                  );
                 },
-                child: const Text('Teacher')),
-            const SizedBox(
-              height: 15,
-            ),
-            OutlinedButton(
+                child: const Text('Teacher'),
+              ),
+              const SizedBox(height: 15),
+              OutlinedButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyOffersListScreen()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyOffersListScreen(),
+                    ),
+                  );
                 },
-                child: const Text('Recruiter')),
-          ],
+                child: const Text('Recruiter'),
+              ),
+            ],
+          ),
         ),
       ),
     );
