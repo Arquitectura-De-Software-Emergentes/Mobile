@@ -10,7 +10,9 @@ class MyOfferDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: 'Home',
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 25),
         child: Card(

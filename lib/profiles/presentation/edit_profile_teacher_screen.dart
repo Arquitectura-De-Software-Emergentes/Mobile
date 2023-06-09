@@ -8,7 +8,9 @@ class EditProfileTeacherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Profile',
+        ),
         body: Container(
           padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(

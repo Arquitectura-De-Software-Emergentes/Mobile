@@ -18,7 +18,9 @@ class OffersListScreen extends StatelessWidget {
       create: (BuildContext context) => OffersListBloc()..getAllOffers(),
       child: Scaffold(
         drawer: const CustomDrawer(),
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Home',
+        ),
         body: Column(
           children: [
             Padding(

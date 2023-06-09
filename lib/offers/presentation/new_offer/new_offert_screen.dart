@@ -25,7 +25,9 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Create Offer',
+        ),
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.8,

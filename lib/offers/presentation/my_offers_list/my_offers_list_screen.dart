@@ -4,7 +4,6 @@ import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 
 import 'package:teacher_finder/offers/presentation/new_offer/new_offert_screen.dart';
 
-
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
@@ -35,7 +34,9 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomDrawer(),
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: 'Home',
+      ),
       body: Column(
         children: [
           const SizedBox(
