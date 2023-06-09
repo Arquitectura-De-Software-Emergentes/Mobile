@@ -15,11 +15,12 @@ class PositionProfileModel extends PositionProfile {
       required Experience experience,
       required Modality modality})
       : super(
-          id: id,
-          name: name,
-          course: course,
-          type: type,
-        );
+            id: id,
+            name: name,
+            course: course,
+            type: type,
+            experience: experience,
+            modality: modality);
 
   factory PositionProfileModel.fromJson(Map<String, dynamic> json) {
     return PositionProfileModel(
