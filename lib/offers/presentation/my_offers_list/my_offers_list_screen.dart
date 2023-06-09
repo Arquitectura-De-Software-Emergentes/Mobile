@@ -8,7 +8,8 @@ import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../../infrastructure/data_sources/offer_remote_data_provider.dart';
 import '../../infrastructure/repositories/offer_repository.dart';
-import '../my_offer_detail/my_offer_detail_screen.dart';
+import '../offers_list/widgets/offer_detail.dart';
+import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatefulWidget {
   const MyOffersListScreen({Key? key}) : super(key: key);
@@ -60,7 +61,24 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
                       return OfferCard(
                         offer: offer,
                         onPress: () {
-                          goToMyOfferDetail(offer);
+                          showModalBottomSheet(
+                            context: context,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(32))),
+                            isScrollControlled: true,
+                            builder: (context) => DraggableScrollableSheet(
+                              initialChildSize: 0.5,
+                              expand: false,
+                              builder: (context, scrollController) => SizedBox(
+                                child: SingleChildScrollView(
+                                  child: MyOfferDetail(
+                                    offer: offer,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
                         },
                       );
                     },
@@ -88,7 +106,7 @@ class _MyOffersListScreenState extends State<MyOffersListScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: ((context) => MyOfferDetailScreen(
+            builder: ((context) => MyOfferDetail(
                   offer: offer,
                 ))));
   }
