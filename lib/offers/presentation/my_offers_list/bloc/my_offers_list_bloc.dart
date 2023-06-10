@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
 import '../../../domain/entities/offer.dart';
+import '../../../infrastructure/models/offer_model.dart';
 import 'my_offers_list_event.dart';
 import 'my_offers_list_state.dart';
 
@@ -20,26 +21,25 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
     try {
       print('get');
       final List<Offer> offers = await offerRepository.getAllOffers();
-      emit(MyOffersListLoaded(offers)); // Emite el estado actualizado
+      emit(MyOffersListLoaded(offers));
     } catch (error) {
-      emit(MyOffersListError()); // Emite el estado de error
+      emit(MyOffersListError(error.toString()));
     }
   }
 
-  void _onAddOffer(AddMyOffer event, Emitter<MyOffersListState> emit) {
-    print('entre');
+  void _onAddOffer(AddMyOffer event, Emitter<MyOffersListState> emit) async {
     try {
-      print('entre1');
       if (state is MyOffersListLoaded) {
-        print('entr2');
         final List<Offer> currentList =
             (state as MyOffersListLoaded).myOffersList;
         final List<Offer> updatedList = List<Offer>.from(currentList);
-        updatedList.add(event.offer);
+        final Offer response =
+            await offerRepository.createOffer(currentList[0]);
+        updatedList.add(response);
         emit(MyOffersListLoaded(updatedList));
       }
     } catch (error) {
-      emit(MyOffersListError());
+      emit(MyOffersListError(error.toString()));
     }
   }
 

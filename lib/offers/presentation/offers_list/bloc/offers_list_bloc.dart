@@ -23,7 +23,7 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
       final List<Offer> offers = await offerRepository.getAllOffers();
       emit(OffersListLoaded(offers)); // Emite el estado actualizado
     } catch (error) {
-      emit(OffersListError()); // Emite el estado de error
+      emit(OffersListError(error.toString())); // Emite el estado de error
     }
   }
 

@@ -26,4 +26,10 @@ class MyOffersListLoaded extends MyOffersListState {
   List<Object?> get props => [myOffersList];
 }
 
-class MyOffersListError extends MyOffersListState {}
+class MyOffersListError extends MyOffersListState {
+  final String errorMessage;
+
+  const MyOffersListError(this.errorMessage);
+  @override
+  List<Object?> get props => [errorMessage];
+}
