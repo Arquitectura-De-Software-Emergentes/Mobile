@@ -1,7 +1,6 @@
-import 'package:teacher_finder/offers/domain/entities/enums/experience.dart';
-import 'package:teacher_finder/offers/domain/entities/enums/modality.dart';
-
 import 'course.dart';
+import 'enums/experience.dart';
+import 'enums/modality.dart';
 import 'enums/type_x.dart';
 
 class PositionProfile {

@@ -1,4 +1,4 @@
-import 'package:teacher_finder/offers/domain/entities/course.dart';
+import '../../domain/entities/course.dart';
 
 class CourseModel extends Course {
   CourseModel({required String course}) : super(course: course);
