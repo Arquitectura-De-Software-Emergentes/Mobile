@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:teacher_finder/offers/domain/entities/enums/availability.dart';
-import 'package:teacher_finder/offers/domain/entities/offer.dart';
-import 'package:teacher_finder/offers/domain/entities/position_profile.dart';
-import 'package:teacher_finder/offers/domain/entities/salary.dart';
-import 'package:teacher_finder/offers/infrastructure/models/position_profile.dart';
-import 'package:teacher_finder/offers/infrastructure/models/salary_model.dart';
+import '../../domain/entities/enums/availability.dart';
+import '../../domain/entities/offer.dart';
+import '../../domain/entities/position_profile.dart';
+import '../../domain/entities/salary.dart';
+import 'position_profile_model.dart';
+import 'salary_model.dart';
 
 class OfferModel extends Offer {
   OfferModel(
@@ -67,10 +67,10 @@ class OfferModel extends Offer {
 
   static List<OfferModel> toOfferList(String str) {
     return List<OfferModel>.from(
-        json.decode(str).map((x) => OfferModel.fromJson(x)));
+        jsonDecode(str).map((x) => OfferModel.fromJson(x)));
   }
 
   String offerToJson(List<OfferModel> data) =>
-      json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+      jsonEncode(List<dynamic>.from(data.map((x) => x.toJson())));
   Offer toOffer(String str) => OfferModel.fromJson(jsonDecode(str));
 }

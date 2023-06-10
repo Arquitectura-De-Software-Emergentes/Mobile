@@ -1,5 +1,4 @@
-import 'package:teacher_finder/offers/domain/entities/enums/availability.dart';
-
+import 'enums/availability.dart';
 import 'position_profile.dart';
 import 'salary.dart';
 
