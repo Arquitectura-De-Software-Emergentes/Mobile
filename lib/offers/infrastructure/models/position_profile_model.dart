@@ -1,10 +1,9 @@
-import 'package:teacher_finder/offers/domain/entities/enums/experience.dart';
-import 'package:teacher_finder/offers/domain/entities/enums/modality.dart';
-import 'package:teacher_finder/offers/domain/entities/position_profile.dart';
-import 'package:teacher_finder/offers/infrastructure/models/course_model.dart';
-
 import '../../domain/entities/course.dart';
+import '../../domain/entities/enums/experience.dart';
+import '../../domain/entities/enums/modality.dart';
 import '../../domain/entities/enums/type_x.dart';
+import '../../domain/entities/position_profile.dart';
+import 'course_model.dart';
 
 class PositionProfileModel extends PositionProfile {
   PositionProfileModel(
@@ -26,10 +25,10 @@ class PositionProfileModel extends PositionProfile {
     return PositionProfileModel(
         id: json['id'],
         name: json['name'],
-        course: CourseModel.fromJson(json['course']),
-        type: TypeX.parseModality(json['type']),
+        course: CourseModel.fromJson(json["course"]),
+        modality: Modality.parseModality(json['modality']),
         experience: Experience.parseExperience(json['experience']),
-        modality: Modality.parseModality(json['modality']));
+        type: TypeX.parseModality(json['type']));
   }
 
   Map<String, dynamic> toJson() {
@@ -38,8 +37,8 @@ class PositionProfileModel extends PositionProfile {
       'name': name,
       'course': (course as CourseModel).toJson(),
       'type': type.value,
-      'experience': experience?.value,
-      'modality': modality?.value
+      'experience': experience.value,
+      'modality': modality.value
     };
   }
 }
