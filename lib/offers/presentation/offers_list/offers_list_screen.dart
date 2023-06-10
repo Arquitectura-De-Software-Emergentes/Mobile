@@ -6,7 +6,7 @@ import 'package:teacher_finder/offers/presentation/offers_list/bloc/bloc.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/widgets/filter_button.dart';
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
-import '../offer_detail/offer_detail_screen.dart';
+import 'widgets/offer_detail.dart';
 import 'widgets/search_bar_custom.dart';
 
 class OffersListScreen extends StatelessWidget {
@@ -14,12 +14,14 @@ class OffersListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const CustomDrawer(),
-      appBar: const CustomAppBar(),
-      body: BlocProvider(
-        create: (context) => OffersListBloc()..getAllOffers(),
-        child: Column(
+    return BlocProvider<OffersListBloc>(
+      create: (BuildContext context) => OffersListBloc()..getAllOffers(),
+      child: Scaffold(
+        drawer: const CustomDrawer(),
+        appBar: const CustomAppBar(
+          title: 'Home',
+        ),
+        body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),
@@ -52,7 +54,26 @@ class OffersListScreen extends StatelessWidget {
                         return OfferCard(
                           offer: offer,
                           onPress: () {
-                            goToOfferDetail(context, offer);
+                            //goToOfferDetail(context, offer);
+                            showModalBottomSheet(
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(32))),
+                              isScrollControlled: true,
+                              builder: (context) => DraggableScrollableSheet(
+                                initialChildSize: 0.5,
+                                expand: false,
+                                builder: (context, scrollController) =>
+                                    SizedBox(
+                                  child: SingleChildScrollView(
+                                    child: OfferDetail(
+                                      offer: state.offersList[index],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
                           },
                         );
                       },
@@ -69,14 +90,5 @@ class OffersListScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void goToOfferDetail(BuildContext context, Offer offer) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: ((context) => OfferDetailScreen(
-                  offer: offer,
-                ))));
   }
 }

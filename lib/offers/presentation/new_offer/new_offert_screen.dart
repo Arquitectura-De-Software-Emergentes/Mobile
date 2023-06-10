@@ -31,7 +31,9 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
     final myOffersListBloc = context.read<MyOffersListBloc>();
 
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Create Offer',
+        ),
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.8,
@@ -63,16 +65,15 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       width: 150,
                       child: ElevatedButton(
                         onPressed: () {
-                          Offer offer = Offer(
-                              offerId: '10',
+                          /*Offer offer = Offer(
+                              id: 10,
                               title: 'lorem lr er dsosodosdao ',
                               description: 'lorem lr er dsosodosdao ',
                               initialDate: DateTime(2013 - 10 - 10),
                               endDate: DateTime(2013 - 10 - 10),
-                              salary: '2000',
                               maxApplications: 90,
                               numberApplications: 30);
-                          myOffersListBloc.addNewOffer(offer);
+                          myOffersListBloc.addNewOffer(offer);*/
                           offerCreated(context);
                           //print(endDat1eController.text);
                         },
@@ -128,7 +129,7 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MyOffersListScreen()),
+                            builder: (context) => const MyOffersListScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

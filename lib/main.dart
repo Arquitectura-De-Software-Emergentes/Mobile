@@ -42,40 +42,39 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OffersListBloc(),
-      child: Scaffold(
-        drawer: const CustomDrawer(),
-        appBar: const CustomAppBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OffersListScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Teacher'),
-              ),
-              const SizedBox(height: 15),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyOffersListScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Recruiter'),
-              ),
-            ],
-          ),
+    return Scaffold(
+      drawer: const CustomDrawer(),
+      appBar: const CustomAppBar(
+        title: 'Teacher Finder',
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OffersListScreen(),
+                  ),
+                );
+              },
+              child: const Text('Teacher'),
+            ),
+            const SizedBox(height: 15),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyOffersListScreen(),
+                  ),
+                );
+              },
+              child: const Text('Recruiter'),
+            ),
+          ],
         ),
       ),
     );
