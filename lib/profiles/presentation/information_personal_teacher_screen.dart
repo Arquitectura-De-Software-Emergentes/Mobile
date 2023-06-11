@@ -11,7 +11,7 @@ class InfomationPersonalTeacherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(
-          title: 'Profile',
+          title: 'Personal Information',
         ),
         body: Container(
           padding: const EdgeInsets.all(20),

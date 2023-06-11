@@ -24,7 +24,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                   width: 160,
                   height: 160,
                   child: CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.black,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -33,7 +33,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                         fontWeight: FontWeight.w500, color: Colors.black)),
                 const SizedBox(height: 30),
                 menuProfile(
-                  title: "Information Personal",
+                  title: "Personal Information",
                   icon: LineAwesomeIcons.user,
                   onPress: () {
                     Navigator.push(
@@ -58,8 +58,8 @@ class ProfileTeacherSreen extends StatelessWidget {
                     }),
                 const SizedBox(height: 20),
                 menuProfile(
-                    title: "Account",
-                    icon: LineAwesomeIcons.user_shield,
+                    title: "Contact Information",
+                    icon: LineAwesomeIcons.phone,
                     onPress: () {
                       Navigator.push(
                         context,
@@ -69,7 +69,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                     }),
                 const SizedBox(height: 20),
                 menuProfile(
-                    title: "Curriculum Vitae",
+                    title: "Job Experience",
                     icon: LineAwesomeIcons.file,
                     onPress: () {
                       Navigator.push(
