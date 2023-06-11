@@ -26,4 +26,8 @@ class OffersListLoaded extends OffersListState {
   List<Object?> get props => [offersList];
 }
 
-class OffersListError extends OffersListState {}
+class OffersListError extends OffersListState {
+  final String errorMessage;
+
+  const OffersListError(this.errorMessage);
+}
