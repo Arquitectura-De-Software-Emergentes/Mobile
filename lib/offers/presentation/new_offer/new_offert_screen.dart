@@ -201,7 +201,8 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyOffersListScreen()),
+                                    builder: (context) =>
+                                        const MyOffersListScreen()),
                               );
                             }
                           });
