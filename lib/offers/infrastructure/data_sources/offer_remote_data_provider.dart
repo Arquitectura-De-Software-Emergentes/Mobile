@@ -7,19 +7,17 @@ import '../models/offer_model.dart';
 
 class OfferRemoteDataProvider {
   String endpoint = 'job-offers';
-  //String endpoint = 'offers1';
+  //String endpoint = 'offers';
   Future<List<OfferModel>> getAllOffers() async {
     try {
       final response =
           await http.get(Uri.parse("${ApiConfig.baseUrl}/$endpoint"));
-
       if (response.statusCode == 200) {
         final List<OfferModel> listOffers =
             OfferModel.toOfferList(response.body);
+
         return listOffers;
       } else {
-        print(response.body);
-
         throw Exception(response.body);
       }
     } catch (error) {

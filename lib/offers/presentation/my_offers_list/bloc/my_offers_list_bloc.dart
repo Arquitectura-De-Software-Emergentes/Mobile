@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
 import '../../../domain/entities/offer.dart';
-import '../../../infrastructure/models/offer_model.dart';
 import 'my_offers_list_event.dart';
 import 'my_offers_list_state.dart';
 
