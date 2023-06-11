@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 class ProfileTeacherRemoveDataProvider  {
   String endpoint='api/v1/applicants/{id}/profile';
 //Enpoint GetProfileTeacherById
-Future<ProfileTeacherModel> getProfileTeacherById(int id)async {
+  Future<ProfileTeacherModel> getProfileTeacherById(int id)async {
   String url=endpoint.replaceAll('{id}', id.toString());
 
-  final response = await http.get(Uri.parse('${ApiConfig.baseUrl}/$endpoint'));
+  final response = await http.get(Uri.parse('${ApiConfig.baseUrl}/$endpoint/1/profile'));
 
   if (response.statusCode == 200) {
     return ProfileTeacherModel.toProfileTeacher(jsonDecode(response.body));
