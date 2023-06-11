@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/offers/presentation/offer_applicants/offer_applicants_screen.dart';
 
 import '../../../../common/styles/styles.dart';
 import '../../../domain/entities/offer.dart';
@@ -82,7 +83,9 @@ class MyOfferDetail extends StatelessWidget {
                 ),
                 FilledButton(
                   onPressed: () {
-                    showTeachers(offer);
+                    Navigator.of(context).pop();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: ((context) => const OfferApplicantsScreen())));
                   },
                   style: FilledButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,
@@ -99,7 +102,7 @@ class MyOfferDetail extends StatelessWidget {
                 ),
                 FilledButton(
                   onPressed: () {
-                    modifyOffer(offer);
+                    //modifyOffer(offer);
                   },
                   style: FilledButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,
@@ -119,7 +122,4 @@ class MyOfferDetail extends StatelessWidget {
     );
   }
 
-  void showTeachers(Offer offer) {}
-
-  void modifyOffer(Offer offer) {}
 }
