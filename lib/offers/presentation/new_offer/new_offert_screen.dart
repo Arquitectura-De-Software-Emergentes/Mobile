@@ -9,6 +9,7 @@ import 'package:teacher_finder/offers/domain/entities/enums/modality.dart';
 import 'package:teacher_finder/offers/domain/entities/enums/type_x.dart';
 import 'package:teacher_finder/offers/domain/entities/position_profile.dart';
 import 'package:teacher_finder/offers/domain/entities/salary.dart';
+import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/date_input.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/text_input.dart';
 
@@ -38,7 +39,7 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
   @override
   Widget build(BuildContext context) {
     //final myOffersListBloc = context.read<MyOffersListBloc>();
-
+    final myOffersListBloc = context.read<MyOffersListBloc>();
     return Scaffold(
         appBar: const CustomAppBar(
           title: 'Create Offer',
@@ -149,10 +150,8 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                                   name: 'holas',
                                   type: TypeX.fullTime));
                           //final myOffersListBloc =  BlocProvider.of<MyOffersListBloc>(context);
-                          final myOffersListBloc =
-                              context.read<MyOffersListBloc>();
-
                           myOffersListBloc.addNewOffer(offer1);
+                          //myOffersListBloc.addNewOffer(offer1);
                           offerCreated(context);
                           //print(endDat1eController.text);
                         },
@@ -208,7 +207,7 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyOffersListScreen()),
+                            builder: (context) => MyOffersListScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

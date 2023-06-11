@@ -38,10 +38,13 @@ class OfferRemoteDataProvider {
         "numberApplications": 0,
         "availability": "AVAILABLE"
       };
+      final headers = {'Content-Type': 'application/json'};
+
       final response = await http.post(
           Uri.parse("${ApiConfig.baseUrl}/$endpoint"),
-          body: jsonEncode(temp));
-      print('hata aca llegue');
+          body: jsonEncode(temp),
+          headers: headers);
+      print(response.body);
       if (response.statusCode == 200) {
         return OfferModel.toOffer(response.body);
       } else {
