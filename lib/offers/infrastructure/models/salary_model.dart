@@ -8,7 +8,7 @@ class SalaryModel extends Salary {
   factory SalaryModel.fromJson(Map<String, dynamic> json) {
     return SalaryModel(
       mount: (json['mount']),
-      currency: Currency.parseModality(json['currency']),
+      currency: Currency.parseCurrency(json['currency']),
     );
   }
 

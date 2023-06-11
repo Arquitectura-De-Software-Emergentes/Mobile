@@ -18,7 +18,6 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
       LoadAllMyOffers event, Emitter<MyOffersListState> emit) async {
     emit(MyOffersListLoading());
     try {
-      print('get');
       final List<Offer> offers = await offerRepository.getAllOffers();
       emit(MyOffersListLoaded(offers));
     } catch (error) {
@@ -31,9 +30,10 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
       if (state is MyOffersListLoaded) {
         final List<Offer> currentList =
             (state as MyOffersListLoaded).myOffersList;
+
         final List<Offer> updatedList = List<Offer>.from(currentList);
-        final Offer response =
-            await offerRepository.createOffer(currentList[0]);
+        final Offer response = await offerRepository.createOffer(event.offer);
+
         updatedList.add(response);
         emit(MyOffersListLoaded(updatedList));
       }

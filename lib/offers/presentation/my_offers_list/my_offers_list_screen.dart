@@ -14,7 +14,9 @@ import 'bloc/my_offers_list_state.dart';
 import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatelessWidget {
-  const MyOffersListScreen({super.key});
+  MyOffersListScreen({super.key});
+
+  final _myOffersListBloc = MyOffersListBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,11 @@ class MyOffersListScreen extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: ((context) => const NewOfferScreen())));
+                  builder: ((context) => BlocProvider.value(
+                        value: _myOffersListBloc..getAllMyOffers(),
+                        child: const NewOfferScreen(),
+                      )),
+                ));
           },
           tooltip: 'Increment',
           child: const Icon(Icons.add, color: Colors.white),
