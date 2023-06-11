@@ -35,16 +35,16 @@ class CustomDrawer extends StatelessWidget {
       child: Container(
           color: Styles.primaryColor,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(
                   context, 'Home', const OffersListScreen(), Icons.home),
-              drawerOption(context, 'Interviews', const ProfileTeacherSreen(),
+              /*drawerOption(context, 'Interviews', const ProfileTeacherSreen(),
                   Icons.event_available),
               drawerOption(context, 'Assesments', const ProfileTeacherSreen(),
                   Icons.book_outlined),
               drawerOption(context, 'Notifications',
-                  const ProfileTeacherSreen(), Icons.notifications),
+                  const ProfileTeacherSreen(), Icons.notifications),*/
               drawerOption(context, 'Profile', const ProfileTeacherSreen(),
                   Icons.person),
               Divider(

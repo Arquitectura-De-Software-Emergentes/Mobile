@@ -13,9 +13,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,24 +50,28 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OffersListScreen()));
-                },
-                child: const Text('Teacher')),
-            const SizedBox(
-              height: 15,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OffersListScreen(),
+                  ),
+                );
+              },
+              child: const Text('Teacher'),
             ),
+            const SizedBox(height: 15),
             OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyOffersListScreen()));
-                },
-                child: const Text('Recruiter')),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyOffersListScreen(),
+                  ),
+                );
+              },
+              child: const Text('Recruiter'),
+            ),
           ],
         ),
       ),

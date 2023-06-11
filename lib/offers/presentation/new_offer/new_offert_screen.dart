@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
+import 'package:teacher_finder/offers/domain/entities/course.dart';
+import 'package:teacher_finder/offers/domain/entities/enums/availability.dart';
+import 'package:teacher_finder/offers/domain/entities/enums/currency.dart';
+import 'package:teacher_finder/offers/domain/entities/enums/experience.dart';
+import 'package:teacher_finder/offers/domain/entities/enums/modality.dart';
+import 'package:teacher_finder/offers/domain/entities/enums/type_x.dart';
+import 'package:teacher_finder/offers/domain/entities/position_profile.dart';
+import 'package:teacher_finder/offers/domain/entities/salary.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/date_input.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/text_input.dart';
 
 import '../../../common/styles/styles.dart';
+import '../../domain/entities/offer.dart';
+import '../my_offers_list/bloc/my_offers_list_bloc.dart';
 import '../my_offers_list/my_offers_list_screen.dart';
 
 class NewOfferScreen extends StatefulWidget {
@@ -16,7 +27,9 @@ class NewOfferScreen extends StatefulWidget {
 class _NewOfferScreenState extends State<NewOfferScreen> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
-  final salaryController = TextEditingController();
+  final salaryAmountController = TextEditingController();
+  final salaryCurrencyController = TextEditingController();
+
   final maxApplicationsController = TextEditingController();
   final endDateController = TextEditingController();
   final initialDateController = TextEditingController();
@@ -24,6 +37,8 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //final myOffersListBloc = context.read<MyOffersListBloc>();
+
     return Scaffold(
         appBar: const CustomAppBar(
           title: 'Create Offer',
@@ -36,31 +51,110 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Center(
-                    child: Text("New Offer Job",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 30,
-                            color: Colors.black)),
-                  ),
                   TextInput(controller: titleController, title: 'Title'),
                   TextInput(
                       controller: descriptionController, title: 'Description'),
-                  TextInput(controller: salaryController, title: 'Salary'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: TextInput(
+                            controller: salaryAmountController,
+                            title: 'Salary Amount'),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Currency',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 20,
+                                  color: Colors.black)),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: DropdownButtonFormField<Currency>(
+                              decoration: InputDecoration(
+                                fillColor: const Color(0xFFEFEFF0),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0,
+                                    vertical: 15.0), // Espaciado interno
+                              ),
+                              value: Currency.pen,
+                              items: Currency.values
+                                  .map<DropdownMenuItem<Currency>>(
+                                      (Currency currency) {
+                                return DropdownMenuItem<Currency>(
+                                  value: currency,
+                                  child: Text(currency.value),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                salaryCurrencyController.text = value!.value;
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                   TextInput(
                       controller: maxApplicationsController,
-                      title: 'Max Application'),
-                  DateInput(
-                      controller: initialDateController, title: 'Initial Date'),
-                  DateInput(controller: endDateController, title: 'End Date'),
+                      title: 'Max Applications'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: DateInput(
+                            controller: initialDateController,
+                            title: 'Initial Date'),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: DateInput(
+                            controller: endDateController, title: 'End Date'),
+                      ),
+                    ],
+                  ),
                   Center(
                     child: SizedBox(
                       height: 45,
                       width: 150,
                       child: ElevatedButton(
                         onPressed: () {
+                          final offer1 = Offer(
+                              id: 30,
+                              recruiterId: 1,
+                              title: 'title',
+                              description: 'description',
+                              initialDate: DateTime(2023 - 02 - 02),
+                              endDate: DateTime(2023 - 02 - 02),
+                              salary:
+                                  Salary(mount: 100.0, currency: Currency.pen),
+                              maxApplications: 10,
+                              numberApplications: 1,
+                              availability:
+                                  Availability.parseAvailability('AVAILABLE'),
+                              positionProfile: PositionProfile(
+                                  course: Course(course: 'MATH'),
+                                  experience: Experience.lessThan3years,
+                                  id: 30,
+                                  modality: Modality.blended,
+                                  name: 'holas',
+                                  type: TypeX.fullTime));
+                          //final myOffersListBloc =  BlocProvider.of<MyOffersListBloc>(context);
+                          final myOffersListBloc =
+                              context.read<MyOffersListBloc>();
+
+                          myOffersListBloc.addNewOffer(offer1);
                           offerCreated(context);
-                          //print(endDateController.text);
+                          //print(endDat1eController.text);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Styles.secondaryColor,
