@@ -18,7 +18,8 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
       LoadAllMyOffers event, Emitter<MyOffersListState> emit) async {
     emit(MyOffersListLoading());
     try {
-      final List<Offer> offers = await offerRepository.getAllOffers();
+      final List<Offer> offers =
+          await offerRepository.getAllOffersByRecruiterId(1);
       emit(MyOffersListLoaded(offers));
     } catch (error) {
       emit(MyOffersListError(error.toString()));

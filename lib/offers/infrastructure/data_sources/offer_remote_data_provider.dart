@@ -26,10 +26,27 @@ class OfferRemoteDataProvider {
     }
   }
 
+  Future<List<OfferModel>> getAllOffersByRecruiterId(int id) async {
+    try {
+      final response = await http
+          .get(Uri.parse("${ApiConfig.baseUrl}/$endpoint/recruiter/2"));
+      if (response.statusCode == 200) {
+        final List<OfferModel> listOffers =
+            OfferModel.toOfferList(response.body);
+
+        return listOffers;
+      } else {
+        throw Exception(response.body);
+      }
+    } catch (error) {
+      throw Exception('Failed to fetch offers: $error');
+    }
+  }
+
   Future<Offer> createOffer(Offer offer) async {
     try {
       final temp = {
-        "recruiterId": 1,
+        "recruiterId": 2,
         "title": offer.title,
         "description": offer.description,
         "initialDate": offer.initialDate.toIso8601String(),
