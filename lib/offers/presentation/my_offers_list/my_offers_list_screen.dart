@@ -14,9 +14,7 @@ import 'bloc/my_offers_list_state.dart';
 import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatelessWidget {
-  MyOffersListScreen({super.key});
-
-  final _myOffersListBloc = MyOffersListBloc();
+  const MyOffersListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +79,8 @@ class MyOffersListScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            final _myOffersListBloc = MyOffersListBloc();
+
             Navigator.push(
                 context,
                 MaterialPageRoute(

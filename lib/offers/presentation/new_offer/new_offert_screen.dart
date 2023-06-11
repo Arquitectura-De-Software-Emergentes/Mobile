@@ -198,11 +198,11 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                               .then((SnackBarClosedReason reason) {
                             if (reason != SnackBarClosedReason.action) {
                               myOffersListBloc.addNewOffer(offer1);
-
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyOffersListScreen()),
+                                    builder: (context) =>
+                                        const MyOffersListScreen()),
                               );
                             }
                           });
