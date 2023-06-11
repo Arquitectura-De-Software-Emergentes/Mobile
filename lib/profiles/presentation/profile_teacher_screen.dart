@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/profiles/presentation/academic_information_teacher_screen.dart';
-import 'package:teacher_finder/profiles/presentation/account_teacher_screen.dart';
-import 'package:teacher_finder/profiles/presentation/cv_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/contact_information_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/job_experience_teacher_screen.dart';
 
-import 'edit_profile_teacher_screen.dart';
 import 'information_personal_teacher_screen.dart';
 
 class ProfileTeacherSreen extends StatelessWidget {
@@ -64,7 +63,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AccountTeacherScreen()),
+                            builder: (context) => const ContactInformationTeacherScreen()),
                       );
                     }),
                 const SizedBox(height: 20),
@@ -75,7 +74,7 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CvTeacher()),
+                            builder: (context) => const JobExperienceTeacherScreen()),
                       );
                     }),
 
