@@ -8,7 +8,7 @@ enum Currency {
 
   const Currency(this.value);
   final String value;
-  static Currency parseModality(String typeString) {
+  static Currency parseCurrency(String typeString) {
     if (typeString == 'PEN') {
       return Currency.pen;
     } else if (typeString == 'USD') {

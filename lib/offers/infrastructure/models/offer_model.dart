@@ -70,7 +70,9 @@ class OfferModel extends Offer {
         jsonDecode(str).map((x) => OfferModel.fromJson(x)));
   }
 
-  String offerToJson(List<OfferModel> data) =>
+  static String toOffersListJson(List<OfferModel> data) =>
       jsonEncode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+  static String toOfferJson(Offer offer) => jsonEncode(offer);
   static Offer toOffer(String str) => OfferModel.fromJson(jsonDecode(str));
 }
