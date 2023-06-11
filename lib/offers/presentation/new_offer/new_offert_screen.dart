@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/offers/domain/entities/course.dart';
 import 'package:teacher_finder/offers/domain/entities/enums/availability.dart';
@@ -9,7 +10,6 @@ import 'package:teacher_finder/offers/domain/entities/enums/modality.dart';
 import 'package:teacher_finder/offers/domain/entities/enums/type_x.dart';
 import 'package:teacher_finder/offers/domain/entities/position_profile.dart';
 import 'package:teacher_finder/offers/domain/entities/salary.dart';
-import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/date_input.dart';
 import 'package:teacher_finder/offers/presentation/new_offer/widgets/text_input.dart';
 
@@ -29,12 +29,12 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   final salaryAmountController = TextEditingController();
-  final salaryCurrencyController = TextEditingController();
-
+  final salaryCurrencyController = TextEditingController(text: 'PEN');
   final maxApplicationsController = TextEditingController();
   final endDateController = TextEditingController();
   final initialDateController = TextEditingController();
   final optionalController = TextEditingController();
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +47,26 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.8,
-            padding: const EdgeInsets.only(left: 30, right: 30),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Form(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextInput(controller: titleController, title: 'Title'),
                   TextInput(
-                      controller: descriptionController, title: 'Description'),
+                      label: 'Ejm. Teacher Matj',
+                      controller: titleController,
+                      title: 'Title'),
+                  TextInput(
+                      label: 'Ejm. Lores lore re lors..',
+                      controller: descriptionController,
+                      title: 'Description'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: TextInput(
+                            label: 'Ejm: 1000',
                             controller: salaryAmountController,
                             title: 'Salary Amount'),
                       ),
@@ -104,22 +110,28 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       ),
                     ],
                   ),
-                  TextInput(
-                      controller: maxApplicationsController,
-                      title: 'Max Applications'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          child: TextInput(
+                              label: 'Ejm. 100',
+                              controller: maxApplicationsController,
+                              title: 'Applications')),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
                         child: DateInput(
+                            label: 'yyyy-MM-DD',
                             controller: initialDateController,
                             title: 'Initial Date'),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.3,
                         child: DateInput(
-                            controller: endDateController, title: 'End Date'),
+                            label: 'yyyy-MM-DD',
+                            controller: endDateController,
+                            title: 'End Date'),
                       ),
                     ],
                   ),
@@ -130,16 +142,22 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           final offer1 = Offer(
-                              id: 30,
+                              id: 0,
                               recruiterId: 1,
-                              title: 'title',
-                              description: 'description',
-                              initialDate: DateTime(2023 - 02 - 02),
-                              endDate: DateTime(2023 - 02 - 02),
-                              salary:
-                                  Salary(mount: 100.0, currency: Currency.pen),
-                              maxApplications: 10,
-                              numberApplications: 1,
+                              title: titleController.text,
+                              description: descriptionController.text,
+                              initialDate: DateFormat('yyyy-MM-dd')
+                                  .parse((initialDateController.text)),
+                              endDate: DateFormat('yyyy-MM-dd')
+                                  .parse((endDateController.text)),
+                              salary: Salary(
+                                  mount:
+                                      double.parse(salaryAmountController.text),
+                                  currency: Currency.parseCurrency(
+                                      salaryCurrencyController.text)),
+                              maxApplications:
+                                  int.parse(maxApplicationsController.text),
+                              numberApplications: 0,
                               availability:
                                   Availability.parseAvailability('AVAILABLE'),
                               positionProfile: PositionProfile(
@@ -147,13 +165,46 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
                                   experience: Experience.lessThan3years,
                                   id: 30,
                                   modality: Modality.blended,
-                                  name: 'holas',
+                                  name: 'MATH',
                                   type: TypeX.fullTime));
-                          //final myOffersListBloc =  BlocProvider.of<MyOffersListBloc>(context);
-                          myOffersListBloc.addNewOffer(offer1);
-                          //myOffersListBloc.addNewOffer(offer1);
-                          offerCreated(context);
-                          //print(endDat1eController.text);
+                          final snackBar = SnackBar(
+                            backgroundColor: Styles.sucess,
+                            content: const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Center(child: CircularProgressIndicator()),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                    'CREATING OFFER') // Barra de progreso circular
+                              ],
+                            ),
+                            action: SnackBarAction(
+                              textColor: Styles.white,
+                              label: 'Undo',
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        backgroundColor: Styles.error,
+                                        content:
+                                            const Text('creation canceled')));
+                              },
+                            ),
+                          );
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBar)
+                              .closed
+                              .then((SnackBarClosedReason reason) {
+                            if (reason != SnackBarClosedReason.action) {
+                              myOffersListBloc.addNewOffer(offer1);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyOffersListScreen()),
+                              );
+                            }
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Styles.secondaryColor,
@@ -171,60 +222,5 @@ class _NewOfferScreenState extends State<NewOfferScreen> {
             ),
           ),
         ));
-  }
-
-  void offerCreated(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 80.0,
-              ),
-              const SizedBox(height: 16.0),
-              const Text(
-                "Offer created",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Center(
-                child: SizedBox(
-                  height: 45,
-                  width: 100,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyOffersListScreen()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF171740),
-                        side: BorderSide.none,
-                        shape: const StadiumBorder()),
-                    child: const Text(
-                      "OK",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      },
-    );
   }
 }

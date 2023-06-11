@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateInput extends StatefulWidget {
-  const DateInput({super.key, required this.controller, required this.title});
+  const DateInput(
+      {super.key,
+      required this.controller,
+      required this.title,
+      required this.label});
   final TextEditingController controller;
   final String title;
+  final String label;
   @override
   State<DateInput> createState() => _DateInputState();
 }
@@ -43,9 +48,11 @@ class _DateInputState extends State<DateInput> {
             _selectDate(context, widget.controller);
           },
           decoration: InputDecoration(
+              hintText: widget.label,
               filled: true,
               fillColor: const Color(0xFFEFEFF0),
-              contentPadding: const EdgeInsets.symmetric(vertical: 15),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,
