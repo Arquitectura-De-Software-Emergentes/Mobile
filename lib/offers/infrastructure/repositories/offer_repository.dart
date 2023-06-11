@@ -27,4 +27,16 @@ class OfferRepository extends OfferInterface {
       throw Exception('Failed to create offer: $error');
     }
   }
+
+  @override
+  Future<List<Offer>> getAllOffersByRecruiterId(int id) async {
+    try {
+      final response =
+          await offerRemoteDataProvider.getAllOffersByRecruiterId(id);
+
+      return response;
+    } catch (error) {
+      throw Exception('Failed to fetch offers: $error');
+    }
+  }
 }
