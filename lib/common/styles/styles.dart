@@ -7,6 +7,6 @@ class Styles {
   static Color white = const Color(0xFFFFFFFF);
   static Color gray = const Color(0xFF747474);
   static Color error = const Color(0xFFDB5A42);
-  static Color sucess = const Color(0xFF27ae60);
+  static Color success = const Color(0xFF27ae60);
   static String fontFamily = 'Mulish';
 }

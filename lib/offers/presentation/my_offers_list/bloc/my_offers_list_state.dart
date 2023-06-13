@@ -18,8 +18,8 @@ class MyOffersListLoaded extends MyOffersListState {
 
   const MyOffersListLoaded(this.myOffersList);
 
-  MyOffersListLoaded copyWith({List<Offer>? myoffersList}) {
-    return MyOffersListLoaded(myoffersList ?? this.myOffersList);
+  MyOffersListLoaded copyWith({List<Offer>? myOffersList}) {
+    return MyOffersListLoaded(myOffersList ?? this.myOffersList);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/profiles/presentation/profile_teacher_screen.dart';
 
@@ -39,13 +40,7 @@ class CustomDrawer extends StatelessWidget {
             children: [
               drawerOption(
                   context, 'Home', const OffersListScreen(), Icons.home),
-              /*drawerOption(context, 'Interviews', const ProfileTeacherSreen(),
-                  Icons.event_available),
-              drawerOption(context, 'Assesments', const ProfileTeacherSreen(),
-                  Icons.book_outlined),
-              drawerOption(context, 'Notifications',
-                  const ProfileTeacherSreen(), Icons.notifications),*/
-              drawerOption(context, 'Profile', const ProfileTeacherSreen(),
+              drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
               Divider(
                 color: Colors.white.withOpacity(0.5),
@@ -54,8 +49,7 @@ class CustomDrawer extends StatelessWidget {
                 indent: 30,
                 endIndent: 30,
               ),
-              drawerOption(context, 'Sign out', const ProfileTeacherSreen(),
-                  Icons.logout),
+              drawerOption(context, 'Sign out', const HomePage(), Icons.logout),
             ],
           )),
     );

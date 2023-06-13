@@ -18,12 +18,12 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
   //shot events
   void _onGetAllOffers(
       LoadAllOffers event, Emitter<OffersListState> emit) async {
-    emit(OffersListLoading()); // Emite el estado de carga inicial
+    emit(OffersListLoading());
     try {
       final List<Offer> offers = await offerRepository.getAllOffers();
-      emit(OffersListLoaded(offers)); // Emite el estado actualizado
+      emit(OffersListLoaded(offers));
     } catch (error) {
-      emit(OffersListError(error.toString())); // Emite el estado de error
+      emit(OffersListError(error.toString()));
     }
   }
 
