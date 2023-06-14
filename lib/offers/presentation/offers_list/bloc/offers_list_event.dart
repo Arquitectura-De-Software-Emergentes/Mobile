@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'offers_list_bloc.dart';
 
 abstract class OffersListEvent extends Equatable {
   const OffersListEvent();

@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-import '../../../domain/entities/offer.dart';
+part of 'offers_list_bloc.dart';
 
 abstract class OffersListState extends Equatable {
   const OffersListState();

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
-import 'package:teacher_finder/offers/presentation/offers_list/bloc/bloc.dart';
-import 'package:teacher_finder/offers/presentation/offers_list/widgets/filter_button.dart';
+
 import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
+import 'bloc/offers_list_bloc.dart';
+import 'widgets/filter_button.dart';
 import 'widgets/offer_detail.dart';
 import 'widgets/search_bar_custom.dart';
 

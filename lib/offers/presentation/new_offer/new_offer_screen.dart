@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
-import 'package:teacher_finder/offers/presentation/new_offer/bloc/new_offer_bloc.dart';
-
+import '../../../common/widgets/custom_app_bar.dart';
 import '../my_offers_list/bloc/my_offers_list_bloc.dart';
+import 'bloc/new_offer_bloc.dart';
 import 'widgets/new_offer_form.dart';
 
 class NewOfferScreen extends StatefulWidget {

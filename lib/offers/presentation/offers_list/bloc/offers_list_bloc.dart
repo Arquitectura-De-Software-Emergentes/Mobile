@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
 import '../../../domain/entities/offer.dart';
-import 'offers_list_event.dart';
-import 'offers_list_state.dart';
+part 'offers_list_event.dart';
+part 'offers_list_state.dart';
 
 class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
   final OfferRepository offerRepository;
