@@ -38,6 +38,7 @@ class NewOfferForm extends StatelessWidget {
     final applications = (newOfferBloc.state as NewOfferFormState).applications;
     final salaryAmount = (newOfferBloc.state as NewOfferFormState).salaryAmount;
     final initialDate = (newOfferBloc.state as NewOfferFormState).initialDate;
+    final endDate = (newOfferBloc.state as NewOfferFormState).endDate;
 
     final successSnackBar = SnackBar(
       backgroundColor: Styles.success,
@@ -61,6 +62,44 @@ class NewOfferForm extends StatelessWidget {
         },
       ),
     );
+
+    void creatingOffer(BuildContext context) {
+      final offer1 = Offer(
+        id: 0,
+        recruiterId: 1,
+        title: title.value,
+        description: description.value,
+        initialDate: DateFormat('yyyy-MM-dd').parse((initialDate.value)),
+        endDate: DateFormat('yyyy-MM-dd').parse((endDate.value)),
+        salary: Salary(
+            mount: double.parse(salaryAmount.value),
+            currency: Currency.parseCurrency(salaryCurrencyController.text)),
+        maxApplications: int.parse(applications.value),
+        numberApplications: 0,
+        availability: Availability.parseAvailability('AVAILABLE'),
+        positionProfile: PositionProfile(
+            course: Course(course: 'MATH'),
+            experience: Experience.lessThan3years,
+            id: 30,
+            modality: Modality.blended,
+            name: 'MATH',
+            type: TypeX.fullTime),
+      );
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(successSnackBar)
+          .closed
+          .then((SnackBarClosedReason reason) {
+        if (reason != SnackBarClosedReason.action) {
+          myOffersListBloc.addNewOffer(offer1);
+          Navigator.pop(context);
+          //MaterialPageRoute(
+          //    builder: (context) => const MyOffersListScreen()),
+          //);
+        }
+      });
+    }
+
     return Form(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -173,58 +212,13 @@ class NewOfferForm extends StatelessWidget {
             ],
           ),
           Center(
-            child: FilledButton(
-                onPressed: (newOfferBloc.state as NewOfferFormState).isValid
-                    ? () {
-                        //newOfferBloc.onSubmit()
-                      }
-                    : null,
-                child: const Text('test')),
-          ),
-          Center(
             child: SizedBox(
               height: 45,
               width: 150,
               child: ElevatedButton(
-                onPressed: () {
-                  final offer1 = Offer(
-                    id: 0,
-                    recruiterId: 1,
-                    title: title.value,
-                    description: description.value,
-                    initialDate: DateFormat('yyyy-MM-dd')
-                        .parse((initialDateController.text)),
-                    endDate: DateFormat('yyyy-MM-dd')
-                        .parse((endDateController.text)),
-                    salary: Salary(
-                        mount: double.parse(salaryAmount.value),
-                        currency: Currency.parseCurrency(
-                            salaryCurrencyController.text)),
-                    maxApplications: int.parse(applications.value),
-                    numberApplications: 0,
-                    availability: Availability.parseAvailability('AVAILABLE'),
-                    positionProfile: PositionProfile(
-                        course: Course(course: 'MATH'),
-                        experience: Experience.lessThan3years,
-                        id: 30,
-                        modality: Modality.blended,
-                        name: 'MATH',
-                        type: TypeX.fullTime),
-                  );
-
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(successSnackBar)
-                      .closed
-                      .then((SnackBarClosedReason reason) {
-                    if (reason != SnackBarClosedReason.action) {
-                      myOffersListBloc.addNewOffer(offer1);
-                      Navigator.pop(context);
-                      //MaterialPageRoute(
-                      //    builder: (context) => const MyOffersListScreen()),
-                      //);
-                    }
-                  });
-                },
+                onPressed: (newOfferBloc.state as NewOfferFormState).isValid
+                    ? () => creatingOffer(context)
+                    : null,
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,
                     side: BorderSide.none,
