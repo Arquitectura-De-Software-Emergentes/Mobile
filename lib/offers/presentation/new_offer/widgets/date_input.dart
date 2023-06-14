@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import 'package:teacher_finder/offers/presentation/new_offer/bloc/new_offer_bloc.dart';
 
 class DateInput extends StatefulWidget {
   const DateInput(
       {super.key,
-      required this.controller,
+      //  required this.controller,
       required this.title,
-      required this.label});
-  final TextEditingController controller;
+      required this.label,
+      this.onChanged,
+      required this.newOfferBloc,
+      this.errorMessage,
+      required this.dateText,
+      required this.onDateSelected});
+  //final TextEditingController controller;
   final String title;
+  final String dateText;
   final String label;
+  final NewOfferBloc newOfferBloc;
+  final Function(DateTime) onDateSelected;
+  final String? errorMessage;
+  final Function(String)? onChanged;
   @override
   State<DateInput> createState() => _DateInputState();
 }
 
 class _DateInputState extends State<DateInput> {
-  Future<void> _selectDate(
-      BuildContext context, TextEditingController controller) async {
+  Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -25,9 +35,7 @@ class _DateInputState extends State<DateInput> {
     );
 
     if (pickedDate != null) {
-      setState(() {
-        controller.text = DateFormat('yyyy-MM-dd').format(pickedDate);
-      });
+      widget.onDateSelected(pickedDate);
     }
   }
 
@@ -42,12 +50,16 @@ class _DateInputState extends State<DateInput> {
                 fontSize: 20,
                 color: Colors.black)),
         TextFormField(
-          controller: widget.controller,
+          //text: widget.controller,
+          onChanged: widget.onChanged,
+          // controller: widget.controller,
+          controller: TextEditingController(text: widget.dateText),
           readOnly: true,
           onTap: () {
-            _selectDate(context, widget.controller);
+            _selectDate(context);
           },
           decoration: InputDecoration(
+              errorText: widget.errorMessage,
               hintText: widget.label,
               filled: true,
               fillColor: const Color(0xFFEFEFF0),

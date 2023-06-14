@@ -28,3 +28,13 @@ class SalaryAmountChanged extends NewOfferEvent {
   final String salaryAmount;
   const SalaryAmountChanged(this.salaryAmount);
 }
+
+class InitialDateChanged extends NewOfferEvent {
+  final String initialDate;
+  const InitialDateChanged(this.initialDate);
+}
+
+class EndDateChanged extends NewOfferEvent {
+  final String endDate;
+  const EndDateChanged(this.endDate);
+}
