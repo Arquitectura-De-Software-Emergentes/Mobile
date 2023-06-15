@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:teacher_finder/offers/presentation/new_offer/bloc/new_offer_bloc.dart';
+import '../bloc/new_offer_bloc.dart';
 
 class DateInput extends StatefulWidget {
   const DateInput(

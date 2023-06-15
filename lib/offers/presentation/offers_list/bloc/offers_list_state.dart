@@ -1,31 +1,30 @@
 part of 'offers_list_bloc.dart';
 
-abstract class OffersListState extends Equatable {
-  const OffersListState();
+enum OffersListStatus { initial, loading, success, error }
 
-  @override
-  List<Object?> get props => [];
-}
+class OffersListState extends Equatable {
+  const OffersListState({
+    this.offerSearch = const <Offer>[],
+    this.status = OffersListStatus.initial,
+    this.offers = const <Offer>[],
+  });
 
-class OffersListInitial extends OffersListState {}
+  final OffersListStatus status;
+  final List<Offer> offers;
+  final List<Offer> offerSearch;
 
-class OffersListLoading extends OffersListState {}
-
-class OffersListLoaded extends OffersListState {
-  final List<Offer> offersList;
-
-  const OffersListLoaded(this.offersList);
-
-  OffersListLoaded copyWith({List<Offer>? offersList}) {
-    return OffersListLoaded(offersList ?? this.offersList);
+  OffersListState copyWith({
+    OffersListStatus? status,
+    List<Offer>? offers,
+    List<Offer>? offerSearch,
+  }) {
+    return OffersListState(
+      status: status ?? this.status,
+      offers: offers ?? this.offers,
+      offerSearch: offerSearch ?? this.offerSearch,
+    );
   }
 
   @override
-  List<Object?> get props => [offersList];
-}
-
-class OffersListError extends OffersListState {
-  final String errorMessage;
-
-  const OffersListError(this.errorMessage);
+  List<Object?> get props => [status, offers, offerSearch];
 }

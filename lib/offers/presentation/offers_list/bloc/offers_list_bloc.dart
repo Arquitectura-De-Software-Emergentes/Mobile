@@ -12,23 +12,58 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
 
   OffersListBloc()
       : offerRepository = GetIt.instance<OfferRepository>(),
-        super(OffersListInitial()) {
-    //handlers
+        super(const OffersListState()) {
     on<LoadAllOffers>(_onGetAllOffers);
+    on<TextChanged>(_onTextChanged);
   }
-  //shot events
+
   void _onGetAllOffers(
       LoadAllOffers event, Emitter<OffersListState> emit) async {
-    emit(OffersListLoading());
+    emit(state.copyWith(
+      status: OffersListStatus.loading,
+    ));
     try {
-      final List<Offer> offers = await offerRepository.getAllOffers();
-      emit(OffersListLoaded(offers));
-    } catch (error) {
-      emit(OffersListError(error.toString()));
+      final offers = await offerRepository.getAllOffers();
+      print(offers);
+      return emit(state.copyWith(
+        status: OffersListStatus.success,
+        offers: offers,
+        offerSearch: offers,
+      ));
+    } catch (e) {
+      emit(state.copyWith(status: OffersListStatus.error));
+    }
+  }
+
+  void _onTextChanged(TextChanged event, Emitter<OffersListState> emit) async {
+    if (event.text.isEmpty) {
+      emit(state.copyWith(
+          status: OffersListStatus.success,
+          offers: state.offers,
+          offerSearch: state.offers));
+      return;
+    }
+    emit(state.copyWith(status: OffersListStatus.loading));
+    try {
+      print(state.offers);
+      List<Offer> filteredList = state.offers.where((offer) {
+        final title = offer.title.toLowerCase();
+        final search = event.text.toLowerCase();
+        return title.contains(search);
+      }).toList();
+
+      emit(state.copyWith(
+          status: OffersListStatus.success, offerSearch: filteredList));
+    } catch (e) {
+      emit(state.copyWith(status: OffersListStatus.error));
     }
   }
 
   void getAllOffers() {
     add(LoadAllOffers());
+  }
+
+  void filterByText(String text) {
+    add(TextChanged(text: text));
   }
 }

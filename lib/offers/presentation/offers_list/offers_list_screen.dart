@@ -11,12 +11,14 @@ import 'widgets/offer_detail.dart';
 import 'widgets/search_bar_custom.dart';
 
 class OffersListScreen extends StatelessWidget {
-  const OffersListScreen({Key? key}) : super(key: key);
+  OffersListScreen({Key? key}) : super(key: key);
+
+  final bloc = OffersListBloc();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<OffersListBloc>(
-      create: (BuildContext context) => OffersListBloc()..getAllOffers(),
+      create: (BuildContext context) => bloc..getAllOffers(),
       child: Scaffold(
         drawer: const CustomDrawer(),
         appBar: const CustomAppBar(
@@ -34,7 +36,9 @@ class OffersListScreen extends StatelessWidget {
                     Flexible(
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
-                        child: const SearchBarCustom(),
+                        child: SearchBarCustom(onChanged: (text) {
+                          bloc.filterByText(text);
+                        }),
                       ),
                     ),
                     const FilterButton(),
@@ -45,22 +49,23 @@ class OffersListScreen extends StatelessWidget {
             Expanded(
               child: BlocBuilder<OffersListBloc, OffersListState>(
                 builder: (context, state) {
-                  if (state is OffersListLoading) {
+                  if (state.status == OffersListStatus.loading) {
                     return const Center(child: CircularProgressIndicator());
-                  } else if (state is OffersListLoaded) {
+                  } else if (state.status == OffersListStatus.success) {
                     return ListView.builder(
-                      itemCount: state.offersList.length,
+                      itemCount: state.offerSearch.length,
                       itemBuilder: (BuildContext context, int index) {
-                        Offer offer = state.offersList[index];
+                        Offer offer = state.offerSearch[index];
                         return OfferCard(
                           offer: offer,
                           onPress: () {
-                            //goToOfferDetail(context, offer);
                             showModalBottomSheet(
                               context: context,
                               shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(32))),
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(32),
+                                ),
+                              ),
                               isScrollControlled: true,
                               builder: (context) => DraggableScrollableSheet(
                                 initialChildSize: 0.5,
@@ -69,7 +74,7 @@ class OffersListScreen extends StatelessWidget {
                                     SizedBox(
                                   child: SingleChildScrollView(
                                     child: OfferDetail(
-                                      offer: state.offersList[index],
+                                      offer: state.offerSearch[index],
                                     ),
                                   ),
                                 ),
@@ -79,8 +84,11 @@ class OffersListScreen extends StatelessWidget {
                         );
                       },
                     );
-                  } else if (state is OffersListError) {
-                    return Center(child: Text(state.errorMessage));
+                  } else if (state.status == OffersListStatus.error) {
+                    //if (state is OffersListError) {
+                    return const Center(
+                        child:
+                            Text('Error')); //(child: Text(state.errorMessage));
                   }
 
                   return Container();
