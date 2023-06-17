@@ -92,10 +92,7 @@ class NewOfferForm extends StatelessWidget {
           .then((SnackBarClosedReason reason) {
         if (reason != SnackBarClosedReason.action) {
           myOffersListBloc.addNewOffer(offer1);
-          Navigator.pop(context);
-          //MaterialPageRoute(
-          //    builder: (context) => const MyOffersListScreen()),
-          //);
+          Navigator.pop(context); //,
         }
       });
     }
@@ -105,7 +102,7 @@ class NewOfferForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextInput(
-            label: 'Ejm. Teacher Matj',
+            label: 'Ejm. Teacher Math',
             title: 'Title',
             onChanged: (value) => newOfferBloc.titleChanged(value),
             errorMessage: title.errorMessage,
