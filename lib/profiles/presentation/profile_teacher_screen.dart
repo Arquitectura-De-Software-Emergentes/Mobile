@@ -7,8 +7,8 @@ import 'package:teacher_finder/profiles/presentation/job_experience_teacher_scre
 
 import 'information_personal_teacher_screen.dart';
 
-class ProfileTeacherSreen extends StatelessWidget {
-  const ProfileTeacherSreen({Key? key}) : super(key: key);
+class ProfileTeacherScreen extends StatelessWidget {
+  const ProfileTeacherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,8 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ContactInformationTeacherScreen()),
+                            builder: (context) =>
+                                const ContactInformationTeacherScreen()),
                       );
                     }),
                 const SizedBox(height: 20),
@@ -74,7 +75,8 @@ class ProfileTeacherSreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const JobExperienceTeacherScreen()),
+                            builder: (context) =>
+                                const JobExperienceTeacherScreen()),
                       );
                     }),
 

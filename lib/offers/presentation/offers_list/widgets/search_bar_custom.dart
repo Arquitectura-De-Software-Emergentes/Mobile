@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../../common/styles/styles.dart';
 
 class SearchBarCustom extends StatelessWidget {
-  const SearchBarCustom({super.key});
-
+  const SearchBarCustom({super.key, this.onChanged});
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
