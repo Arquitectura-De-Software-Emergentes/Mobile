@@ -6,19 +6,16 @@ import '../my_offers_list/bloc/my_offers_list_bloc.dart';
 import 'bloc/new_offer_bloc.dart';
 import 'widgets/new_offer_form.dart';
 
-class NewOfferScreen extends StatefulWidget {
-  const NewOfferScreen({Key? key}) : super(key: key);
-
-  @override
-  State<NewOfferScreen> createState() => _NewOfferScreenState();
-}
-
-class _NewOfferScreenState extends State<NewOfferScreen> {
+class NewOfferScreen extends StatelessWidget {
+  NewOfferScreen({
+    Key? key,
+    required this.myOffersListBloc,
+  }) : super(key: key);
+  final MyOffersListBloc myOffersListBloc;
   final salaryCurrencyController = TextEditingController(text: 'PEN');
 
   @override
   Widget build(BuildContext context) {
-    final myOffersListBloc = context.read<MyOffersListBloc>();
     return Scaffold(
         appBar: const CustomAppBar(
           title: 'Create Offer',

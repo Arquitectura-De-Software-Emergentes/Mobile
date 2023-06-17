@@ -2,34 +2,30 @@ import 'package:equatable/equatable.dart';
 
 import '../../../domain/entities/offer.dart';
 
-abstract class MyOffersListState extends Equatable {
-  const MyOffersListState();
+enum MyOffersListStatus { initial, loading, success, error }
 
-  @override
-  List<Object?> get props => [];
-}
+class MyOffersListState extends Equatable {
+  const MyOffersListState({
+    this.myOffersList = const <Offer>[],
+    this.status = MyOffersListStatus.initial,
+    this.errorMessage = 'error',
+  });
 
-class MyOffersListInitial extends MyOffersListState {}
-
-class MyOffersListLoading extends MyOffersListState {}
-
-class MyOffersListLoaded extends MyOffersListState {
   final List<Offer> myOffersList;
+  final MyOffersListStatus status;
+  final String errorMessage;
 
-  const MyOffersListLoaded(this.myOffersList);
-
-  MyOffersListLoaded copyWith({List<Offer>? myOffersList}) {
-    return MyOffersListLoaded(myOffersList ?? this.myOffersList);
+  MyOffersListState copyWith({
+    List<Offer>? myOffersList,
+    MyOffersListStatus? status,
+    String? errorMessage,
+  }) {
+    return MyOffersListState(
+        myOffersList: myOffersList ?? this.myOffersList,
+        status: status ?? this.status,
+        errorMessage: errorMessage ?? this.errorMessage);
   }
 
   @override
-  List<Object?> get props => [myOffersList];
-}
-
-class MyOffersListError extends MyOffersListState {
-  final String errorMessage;
-
-  const MyOffersListError(this.errorMessage);
-  @override
-  List<Object?> get props => [errorMessage];
+  List<Object?> get props => [myOffersList, status, errorMessage];
 }

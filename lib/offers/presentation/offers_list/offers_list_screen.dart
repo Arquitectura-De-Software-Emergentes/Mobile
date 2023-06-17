@@ -85,10 +85,7 @@ class OffersListScreen extends StatelessWidget {
                       },
                     );
                   } else if (state.status == OffersListStatus.error) {
-                    //if (state is OffersListError) {
-                    return const Center(
-                        child:
-                            Text('Error')); //(child: Text(state.errorMessage));
+                    return Center(child: Text('Error: ${state.errorMessage}'));
                   }
 
                   return Container();

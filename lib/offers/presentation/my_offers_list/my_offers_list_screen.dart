@@ -11,86 +11,94 @@ import 'bloc/my_offers_list_state.dart';
 import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatelessWidget {
-  const MyOffersListScreen({super.key});
-
+  MyOffersListScreen({super.key});
+  final MyOffersListBloc myOffersListBloc = MyOffersListBloc();
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MyOffersListBloc>(
-      create: (context) => MyOffersListBloc()..getAllMyOffers(),
+      create: (context) => myOffersListBloc,
       child: Scaffold(
         drawer: const CustomDrawer(),
         appBar: const CustomAppBar(
           title: 'Home',
         ),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: BlocBuilder<MyOffersListBloc, MyOffersListState>(
-                builder: (context, state) {
-                  if (state is MyOffersListLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is MyOffersListLoaded) {
-                    return ListView.builder(
-                      itemCount: state.myOffersList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Offer offer = state.myOffersList[index];
-                        return OfferCard(
-                          offer: offer,
-                          onPress: () {
-                            //goToOfferDetail(context, offer);
-                            showModalBottomSheet(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(32))),
-                              isScrollControlled: true,
-                              builder: (context) => DraggableScrollableSheet(
-                                initialChildSize: 0.5,
-                                expand: false,
-                                builder: (context, scrollController) =>
-                                    SizedBox(
-                                  child: SingleChildScrollView(
-                                    child: MyOfferDetail(
-                                      offer: state.myOffersList[index],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  } else if (state is MyOffersListError) {
-                    return Center(child: Text(state.errorMessage));
-                  }
-
-                  return Container();
-                },
-              ),
-            ),
-          ],
-        ),
+        body: const MyOffersList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            final _myOffersListBloc = MyOffersListBloc();
-
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: ((context) => BlocProvider.value(
-                        value: _myOffersListBloc..getAllMyOffers(),
-                        child: const NewOfferScreen(),
-                      )),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    NewOfferScreen(myOffersListBloc: myOffersListBloc),
+              ),
+            );
           },
           tooltip: 'Increment',
           child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
+    );
+  }
+}
+
+class MyOffersList extends StatelessWidget {
+  const MyOffersList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    context.read<MyOffersListBloc>().getAllMyOffers();
+    return Column(
+      children: [
+        const SizedBox(
+          height: 15,
+        ),
+        Expanded(
+          child: BlocBuilder<MyOffersListBloc, MyOffersListState>(
+            builder: (context, state) {
+              if (state.status == MyOffersListStatus.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.status == MyOffersListStatus.success) {
+                return ListView.builder(
+                  itemCount: state.myOffersList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Offer offer = state.myOffersList[index];
+                    return OfferCard(
+                      offer: offer,
+                      onPress: () {
+                        showModalBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(32)),
+                          ),
+                          isScrollControlled: true,
+                          builder: (context) => DraggableScrollableSheet(
+                            initialChildSize: 0.5,
+                            expand: false,
+                            builder: (context, scrollController) => SizedBox(
+                              child: SingleChildScrollView(
+                                child: MyOfferDetail(
+                                  offer: state.myOffersList[index],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              } else if (state.status == MyOffersListStatus.error) {
+                return Center(child: Text(state.errorMessage));
+              }
+
+              return Container();
+            },
+          ),
+        ),
+      ],
     );
   }
 }

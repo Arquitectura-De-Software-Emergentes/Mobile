@@ -24,14 +24,15 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
     ));
     try {
       final offers = await offerRepository.getAllOffers();
-      print(offers);
+
       return emit(state.copyWith(
         status: OffersListStatus.success,
         offers: offers,
         offerSearch: offers,
       ));
-    } catch (e) {
-      emit(state.copyWith(status: OffersListStatus.error));
+    } catch (error) {
+      emit(state.copyWith(
+          status: OffersListStatus.error, errorMessage: error.toString()));
     }
   }
 
@@ -45,7 +46,6 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
     }
     emit(state.copyWith(status: OffersListStatus.loading));
     try {
-      print(state.offers);
       List<Offer> filteredList = state.offers.where((offer) {
         final title = offer.title.toLowerCase();
         final search = event.text.toLowerCase();
@@ -54,8 +54,9 @@ class OffersListBloc extends Bloc<OffersListEvent, OffersListState> {
 
       emit(state.copyWith(
           status: OffersListStatus.success, offerSearch: filteredList));
-    } catch (e) {
-      emit(state.copyWith(status: OffersListStatus.error));
+    } catch (error) {
+      emit(state.copyWith(
+          status: OffersListStatus.error, errorMessage: error.toString()));
     }
   }
 
