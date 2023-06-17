@@ -106,7 +106,7 @@ class MyOfferDetail extends StatelessWidget {
                     minimumSize: Size(MediaQuery.of(context).size.width, 40),
                   ),
                   child: Text(
-                    'Modify',
+                    'Create Test',
                     style: TextStyle(
                         color: Styles.white, fontWeight: FontWeight.bold),
                   ),

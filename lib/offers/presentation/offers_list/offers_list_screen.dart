@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 
-import '../../../common/widgets/offer_card.dart';
+import 'widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import 'bloc/offers_list_bloc.dart';
 import 'widgets/filter_button.dart';
@@ -56,9 +56,8 @@ class OffersListScreen extends StatelessWidget {
                       itemCount: state.offerSearch.length,
                       itemBuilder: (BuildContext context, int index) {
                         Offer offer = state.offerSearch[index];
-                        return OfferCard(
-                          offer: offer,
-                          onPress: () {
+                        return GestureDetector(
+                          onTap: () {
                             showModalBottomSheet(
                               context: context,
                               shape: const RoundedRectangleBorder(
@@ -81,6 +80,9 @@ class OffersListScreen extends StatelessWidget {
                               ),
                             );
                           },
+                          child: OfferCard(
+                            offer: offer,
+                          ),
                         );
                       },
                     );

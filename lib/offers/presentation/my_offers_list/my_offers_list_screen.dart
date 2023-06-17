@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
 import '../../../common/widgets/custom_drawer.dart';
-import '../../../common/widgets/offer_card.dart';
 import '../../domain/entities/offer.dart';
 import '../new_offer/new_offer_screen.dart';
 import 'bloc/my_offers_list_bloc.dart';
 import 'bloc/my_offers_list_state.dart';
+import 'widgets/my_offer_card.dart';
 import 'widgets/my_offer_detail_screen.dart';
 
 class MyOffersListScreen extends StatelessWidget {
@@ -64,9 +64,8 @@ class MyOffersList extends StatelessWidget {
                   itemCount: state.myOffersList.length,
                   itemBuilder: (BuildContext context, int index) {
                     Offer offer = state.myOffersList[index];
-                    return OfferCard(
-                      offer: offer,
-                      onPress: () {
+                    return GestureDetector(
+                      onTap: () {
                         showModalBottomSheet(
                           context: context,
                           shape: const RoundedRectangleBorder(
@@ -75,7 +74,8 @@ class MyOffersList extends StatelessWidget {
                           ),
                           isScrollControlled: true,
                           builder: (context) => DraggableScrollableSheet(
-                            initialChildSize: 0.5,
+                            initialChildSize: 0.6,
+                            maxChildSize: 0.6,
                             expand: false,
                             builder: (context, scrollController) => SizedBox(
                               child: SingleChildScrollView(
@@ -87,6 +87,9 @@ class MyOffersList extends StatelessWidget {
                           ),
                         );
                       },
+                      child: MyOfferCard(
+                        offer: offer,
+                      ),
                     );
                   },
                 );
