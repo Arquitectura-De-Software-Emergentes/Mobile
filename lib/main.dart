@@ -3,13 +3,25 @@ import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/injections.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
-
+import 'dart:io';
 import 'common/widgets/custom_app_bar.dart';
 import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
 void main() {
   offerDependencies();
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
+}
+
+// certificates
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
 
 class MyApp extends StatelessWidget {
