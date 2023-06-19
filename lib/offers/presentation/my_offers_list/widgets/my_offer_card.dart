@@ -76,9 +76,10 @@ class MyOfferCard extends StatelessWidget {
                         children: [
                           IconButton(
                               onPressed: () {},
-                              icon: const Icon(Icons.edit_note)),
+                              icon: const Icon(Icons.edit_note_outlined)),
                           IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.delete)),
+                              onPressed: () {},
+                              icon: const Icon(Icons.delete_outline)),
                         ],
                       )
                     ],

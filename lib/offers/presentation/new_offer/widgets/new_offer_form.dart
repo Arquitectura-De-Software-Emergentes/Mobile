@@ -15,7 +15,7 @@ import '../../../domain/entities/salary.dart';
 import '../../my_offers_list/bloc/my_offers_list_bloc.dart';
 import '../bloc/new_offer_bloc.dart';
 import 'date_input.dart';
-import 'text_input.dart';
+import '../../../../common/widgets/text_input.dart';
 
 class NewOfferForm extends StatelessWidget {
   NewOfferForm({

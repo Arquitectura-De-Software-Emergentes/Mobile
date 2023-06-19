@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/assessment/presentation/crete_test_screen/create_test_screen.dart';
 
 import '../../../../common/styles/styles.dart';
 import '../../../domain/entities/offer.dart';
@@ -99,7 +100,12 @@ class MyOfferDetail extends StatelessWidget {
                 ),
                 FilledButton(
                   onPressed: () {
-                    modifyOffer(offer);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CreateTestScreen(),
+                      ),
+                    );
                   },
                   style: FilledButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,

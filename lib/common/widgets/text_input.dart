@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/styles/styles.dart';
+import '../styles/styles.dart';
 
 class TextInput extends StatelessWidget {
   TextInput(
@@ -9,9 +9,11 @@ class TextInput extends StatelessWidget {
       required this.label,
       this.errorMessage,
       this.onChanged,
-      this.validator});
+      this.validator,
+      this.maxLines});
   final String title;
   final String label;
+  final int? maxLines;
   final String? errorMessage;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -31,6 +33,7 @@ class TextInput extends StatelessWidget {
               fontWeight: FontWeight.w400, fontSize: 20, color: Colors.black),
         ),
         TextFormField(
+          maxLines: maxLines,
           onChanged: onChanged,
           validator: validator,
           decoration: InputDecoration(
