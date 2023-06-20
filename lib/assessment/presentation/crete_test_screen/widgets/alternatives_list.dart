@@ -12,6 +12,13 @@ class AlternativesList extends StatelessWidget {
     const Color(0xFF030d4f),
     const Color.fromARGB(255, 201, 37, 160),
   ];
+  final List<Color> colors1 = [
+    const Color(0xFF030d4f),
+    const Color(0xFF030d4f),
+    const Color(0xFF030d4f),
+    const Color(0xFF030d4f),
+    const Color(0xFF030d4f),
+  ];
   final List<String> keys = ['A', 'B', 'C', 'D', 'E'];
 
   @override
@@ -27,7 +34,7 @@ class AlternativesList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: colors[index],
               ),
-              height: MediaQuery.of(context).size.height / 8,
+              height: MediaQuery.of(context).size.height / 10,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
