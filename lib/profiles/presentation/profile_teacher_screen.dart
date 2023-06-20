@@ -4,11 +4,16 @@ import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/profiles/presentation/academic_information_teacher_screen.dart';
 import 'package:teacher_finder/profiles/presentation/contact_information_teacher_screen.dart';
 import 'package:teacher_finder/profiles/presentation/job_experience_teacher_screen.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '../infrastucture/data_sources/profile_teacher_remove_data_provider.dart';
+import '../infrastucture/models/profile_teacher_model.dart';
 import 'information_personal_teacher_screen.dart';
 
 class ProfileTeacherScreen extends StatelessWidget {
-  const ProfileTeacherScreen({Key? key}) : super(key: key);
+  final String? name;
+  final String? lastname;
+  const ProfileTeacherScreen({Key? key, this.name, this.lastname}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class ProfileTeacherScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text("Pedrito Gonzales",
+                Text('${name ?? ''} ${lastname ?? ''}',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w500, color: Colors.black)),
                 const SizedBox(height: 30),
@@ -155,3 +160,31 @@ class menuProfile extends StatelessWidget {
     );
   }
 }
+
+class ProfileTeacherWidget extends StatelessWidget {
+  const ProfileTeacherWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<ProfileTeacherModel>(
+      future: ProfileTeacherRemoveDataProvider().getProfileTeacherById(1),
+      builder: (BuildContext context, AsyncSnapshot<ProfileTeacherModel> snapshot) {
+        if (snapshot.hasData) {
+          final profileData = snapshot.data!;
+          final name = profileData.personalInformation.name;
+          final lastname = profileData.personalInformation.lastname;
+
+          return ProfileTeacherScreen(
+            name: name,
+            lastname: lastname,
+          );
+        } else if (snapshot.hasError) {
+          return Text('Error al cargar el perfil del docente');
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+}
+

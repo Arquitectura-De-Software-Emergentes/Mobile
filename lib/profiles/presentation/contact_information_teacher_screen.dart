@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import '../../common/widgets/custom_app_bar.dart';
+import '../infrastucture/data_sources/profile_teacher_remove_data_provider.dart';
+import '../infrastucture/models/profile_teacher_model.dart';
 import 'menu_information_screen.dart';
 
 class ContactInformationTeacherScreen extends StatelessWidget {
-  const ContactInformationTeacherScreen({Key? key}) : super(key: key);
+  final String? phone;
+  final String? email;
+  final String? mobilePhone;
+  const ContactInformationTeacherScreen({Key? key, this.phone, this.email, this.mobilePhone}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,5 +53,35 @@ class ContactInformationTeacherScreen extends StatelessWidget {
                 ]
             )
         ));
+  }
+}
+
+class ProfileTeacherWidget extends StatelessWidget {
+  const ProfileTeacherWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<ProfileTeacherModel>(
+      future: ProfileTeacherRemoveDataProvider().getProfileTeacherById(1),
+      builder: (BuildContext context, AsyncSnapshot<ProfileTeacherModel> snapshot) {
+        if (snapshot.hasData) {
+          final profileData = snapshot.data!;
+          final phone= profileData.contactInformation.phone;
+          final email= profileData.contactInformation.email;
+          final mobilePhone= profileData.contactInformation.mobilePhone;
+
+
+          return ContactInformationTeacherScreen(
+            phone: phone,
+            email: email,
+            mobilePhone: mobilePhone,
+          );
+        } else if (snapshot.hasError) {
+          return Text('Error al cargar el perfil del docente');
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
   }
 }
