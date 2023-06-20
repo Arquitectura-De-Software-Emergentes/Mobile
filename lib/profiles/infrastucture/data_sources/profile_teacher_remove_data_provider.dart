@@ -16,4 +16,18 @@ class ProfileTeacherRemoveDataProvider {
       throw Exception('Failed to load profile_teacher');
     }
   }
+  Future<ProfileTeacherModel> updateProfileTeacherById(int id, ProfileTeacherModel updatedProfileTeacher) async {
+    String url = endpoint.replaceAll('{id}', id.toString());
+
+    final response = await http.put(Uri.parse('${ApiConfig.baseUrl}/$url'),
+       body: updatedProfileTeacher.toJson(),
+    headers: {
+      'Content-Type': 'application/json',},
+    );
+    if (response.statusCode == 200) {
+      return ProfileTeacherModel.toProfileTeacher(response.body);
+    } else {
+      throw Exception('Failed to update profile_teacher');
+    }
+  }
 }

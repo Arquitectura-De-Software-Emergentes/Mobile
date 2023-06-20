@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
-import '../../common/widgets/custom_app_bar.dart';
-import 'menu_information_screen.dart';
+import '../../../../common/widgets/custom_app_bar.dart';
 
 class JobExperienceTeacherScreen extends StatelessWidget {
   const JobExperienceTeacherScreen({Key? key}) : super(key: key);
