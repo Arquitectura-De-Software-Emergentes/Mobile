@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/assessment/presentation/crete_test_screen/bloc/create_test_bloc.dart';
 
 import '../../../../common/widgets/text_input.dart';
 
@@ -15,6 +17,11 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final generalInformationBloc = context.watch<CreateTestBloc>();
+    final title = (generalInformationBloc.state as GeneralInformation).title;
+    final description =
+        (generalInformationBloc.state as GeneralInformation).description;
+
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
@@ -40,9 +47,18 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
               children: [
-                TextInput(title: 'Title', label: 'Enter test title...'),
                 TextInput(
-                    title: 'Description', label: 'Enter test description...'),
+                  title: 'Title',
+                  label: 'Enter test title...',
+                  onChanged: (value) =>
+                      generalInformationBloc.testTitleChanged(value),
+                ),
+                TextInput(
+                  title: 'Description',
+                  label: 'Enter test description...',
+                  onChanged: (value) =>
+                      generalInformationBloc.testDescriptionChanged(value),
+                ),
                 OutlinedButton(
                     onPressed: () {
                       setState(() {
