@@ -33,12 +33,18 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
           canTapOnHeader: true,
           isExpanded: isExpanded,
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return const ListTile(
+            return ListTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('General information'),
-                  Icon(Icons.check_circle_outline)
+                  const Text('General information'),
+                  Icon(
+                    Icons.check_circle_rounded,
+                    color: (generalInformationBloc.state as GeneralInformation)
+                            .isValid
+                        ? Colors.green
+                        : Colors.grey,
+                  )
                 ],
               ),
             );
@@ -52,20 +58,31 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
                   label: 'Enter test title...',
                   onChanged: (value) =>
                       generalInformationBloc.testTitleChanged(value),
+                  errorMessage: title.errorMessage,
                 ),
                 TextInput(
                   title: 'Description',
                   label: 'Enter test description...',
                   onChanged: (value) =>
                       generalInformationBloc.testDescriptionChanged(value),
+                  errorMessage: description.errorMessage,
                 ),
                 OutlinedButton(
-                    onPressed: () {
+                    onPressed:
+                        (generalInformationBloc.state as GeneralInformation)
+                                .isValid
+                            ? () => {
+                                  setState(() {
+                                    isExpanded = false;
+                                  })
+                                }
+                            : null,
+                    /*{
                       setState(() {
                         isExpanded = false;
                       });
-                    },
-                    child: const Text('ok'))
+                    }*/
+                    child: const Text('OK'))
               ],
             ),
           ),
