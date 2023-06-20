@@ -1,39 +1,40 @@
 part of 'create_test_bloc.dart';
 
-abstract class CreateTestState extends Equatable {
-  const CreateTestState();
-}
-
-class CreateTestInitial extends CreateTestState {
-  @override
-  List<Object> get props => [];
-}
-
-class GeneralInformation extends CreateTestState {
-  final bool isValid;
+class CreateTestState extends Equatable {
+  final bool isValidGeneralInformation;
   final TestTitle title;
   final TestDescription description;
+  final TestQuestion question;
+  final bool isValidQuestion;
 
-  const GeneralInformation({
-    this.isValid = false,
+  const CreateTestState({
+    this.isValidQuestion = false,
+    this.question = const TestQuestion.pure(),
+    this.isValidGeneralInformation = false,
     this.title = const TestTitle.pure(),
     this.description = const TestDescription.pure(),
   });
 
-  GeneralInformation copyWith({
-    bool? isValid,
+  CreateTestState copyWith({
+    bool? isValidQuestion,
+    bool? isValidGeneralInformation,
     TestTitle? title,
     TestDescription? description,
+    TestQuestion? question,
   }) =>
-      GeneralInformation(
-          isValid: isValid ?? this.isValid,
+      CreateTestState(
+          isValidQuestion: isValidQuestion ?? this.isValidQuestion,
+          isValidGeneralInformation:
+              isValidGeneralInformation ?? this.isValidGeneralInformation,
           title: title ?? this.title,
-          description: description ?? this.description);
+          description: description ?? this.description,
+          question: question ?? this.question);
 
   @override
   List<Object> get props => [
-        isValid,
-        title,
+        isValidGeneralInformation,
+        isValidQuestion,
         description,
+        question,
       ];
 }

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
+import '../../../infrastructure/inputs/question.dart';
 import '../../../infrastructure/inputs/test_description.dart';
 import '../../../infrastructure/inputs/test_title.dart';
 
@@ -9,20 +10,21 @@ part 'create_test_event.dart';
 part 'create_test_state.dart';
 
 class CreateTestBloc extends Bloc<CreateTestEvent, CreateTestState> {
-  CreateTestBloc() : super(GeneralInformation()) {
+  CreateTestBloc() : super(const CreateTestState()) {
     on<TestTitleChanged>(_testTitleChanged);
     on<TestDescriptionChanged>(_testDescriptionChanged);
+    on<TestQuestionChanged>(_testQuestionChanged);
   }
   void _testTitleChanged(
       TestTitleChanged event, Emitter<CreateTestState> emit) async {
     final title = TestTitle.dirty(event.title);
 
     emit(
-      (state as GeneralInformation).copyWith(
+      state.copyWith(
         title: title,
-        isValid: Formz.validate([
+        isValidGeneralInformation: Formz.validate([
           title,
-          (state as GeneralInformation).description,
+          state.description,
         ]),
       ),
     );
@@ -33,11 +35,23 @@ class CreateTestBloc extends Bloc<CreateTestEvent, CreateTestState> {
     final description = TestDescription.dirty(event.description);
 
     emit(
-      (state as GeneralInformation).copyWith(
+      state.copyWith(
         description: description,
-        isValid: Formz.validate([
-          (state as GeneralInformation).title,
+        isValidGeneralInformation: Formz.validate([
+          state.title,
+          description,
         ]),
+      ),
+    );
+  }
+
+  void _testQuestionChanged(
+      TestQuestionChanged event, Emitter<CreateTestState> emit) async {
+    final question = TestQuestion.dirty(event.question);
+    emit(
+      state.copyWith(
+        question: question,
+        isValidQuestion: Formz.validate([question]),
       ),
     );
   }
@@ -48,5 +62,9 @@ class CreateTestBloc extends Bloc<CreateTestEvent, CreateTestState> {
 
   void testDescriptionChanged(String description) {
     add(TestDescriptionChanged(description));
+  }
+
+  void testQuestionChanged(String question) {
+    add(TestQuestionChanged(question));
   }
 }

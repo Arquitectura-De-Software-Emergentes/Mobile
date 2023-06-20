@@ -17,11 +17,9 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
 
   @override
   Widget build(BuildContext context) {
-    final generalInformationBloc = context.watch<CreateTestBloc>();
-    final title = (generalInformationBloc.state as GeneralInformation).title;
-    final description =
-        (generalInformationBloc.state as GeneralInformation).description;
-
+    final createTestBloc = context.watch<CreateTestBloc>();
+    final title = createTestBloc.state.title;
+    final description = createTestBloc.state.description;
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
@@ -40,8 +38,7 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
                   const Text('General information'),
                   Icon(
                     Icons.check_circle_rounded,
-                    color: (generalInformationBloc.state as GeneralInformation)
-                            .isValid
+                    color: createTestBloc.state.isValidGeneralInformation
                         ? Colors.green
                         : Colors.grey,
                   )
@@ -56,32 +53,24 @@ class _GeneralInformationPanelState extends State<GeneralInformationPanel> {
                 TextInput(
                   title: 'Title',
                   label: 'Enter test title...',
-                  onChanged: (value) =>
-                      generalInformationBloc.testTitleChanged(value),
+                  onChanged: (value) => createTestBloc.testTitleChanged(value),
                   errorMessage: title.errorMessage,
                 ),
                 TextInput(
                   title: 'Description',
                   label: 'Enter test description...',
                   onChanged: (value) =>
-                      generalInformationBloc.testDescriptionChanged(value),
+                      createTestBloc.testDescriptionChanged(value),
                   errorMessage: description.errorMessage,
                 ),
                 OutlinedButton(
-                    onPressed:
-                        (generalInformationBloc.state as GeneralInformation)
-                                .isValid
-                            ? () => {
-                                  setState(() {
-                                    isExpanded = false;
-                                  })
-                                }
-                            : null,
-                    /*{
-                      setState(() {
-                        isExpanded = false;
-                      });
-                    }*/
+                    onPressed: createTestBloc.state.isValidGeneralInformation
+                        ? () => {
+                              setState(() {
+                                isExpanded = false;
+                              })
+                            }
+                        : null,
                     child: const Text('OK'))
               ],
             ),
