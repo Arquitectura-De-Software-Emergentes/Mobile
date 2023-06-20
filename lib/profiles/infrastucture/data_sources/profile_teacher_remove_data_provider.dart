@@ -10,7 +10,6 @@ class ProfileTeacherRemoveDataProvider {
     String url = endpoint.replaceAll('{id}', id.toString());
 
     final response = await http.get(Uri.parse('${ApiConfig.baseUrl}/$url'));
-
     if (response.statusCode == 200) {
       return ProfileTeacherModel.toProfileTeacher(response.body);
     } else {

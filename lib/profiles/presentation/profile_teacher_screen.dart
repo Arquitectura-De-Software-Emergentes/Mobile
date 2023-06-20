@@ -13,7 +13,8 @@ import 'information_personal_teacher_screen.dart';
 class ProfileTeacherScreen extends StatelessWidget {
   final String? name;
   final String? lastname;
-  const ProfileTeacherScreen({Key? key, this.name, this.lastname}) : super(key: key);
+  const ProfileTeacherScreen({Key? key, this.name, this.lastname})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +169,8 @@ class ProfileTeacherWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder<ProfileTeacherModel>(
       future: ProfileTeacherRemoveDataProvider().getProfileTeacherById(1),
-      builder: (BuildContext context, AsyncSnapshot<ProfileTeacherModel> snapshot) {
+      builder:
+          (BuildContext context, AsyncSnapshot<ProfileTeacherModel> snapshot) {
         if (snapshot.hasData) {
           final profileData = snapshot.data!;
           final name = profileData.personalInformation.name;
@@ -187,4 +189,3 @@ class ProfileTeacherWidget extends StatelessWidget {
     );
   }
 }
-
