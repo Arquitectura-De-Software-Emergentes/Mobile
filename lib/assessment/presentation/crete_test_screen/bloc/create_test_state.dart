@@ -36,5 +36,6 @@ class CreateTestState extends Equatable {
         isValidQuestion,
         description,
         question,
+      title,
       ];
 }

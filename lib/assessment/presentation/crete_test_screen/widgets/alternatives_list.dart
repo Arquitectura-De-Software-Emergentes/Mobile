@@ -5,25 +5,26 @@ class AlternativesList extends StatelessWidget {
     super.key,
   });
 
-  final List<Color> colors = [
+  final List<Color> colors1 = [
     const Color.fromARGB(255, 35, 60, 224),
     const Color(0xFFffc52c),
     const Color(0xFFfb0c06),
     const Color(0xFF030d4f),
     const Color.fromARGB(255, 201, 37, 160),
   ];
-  final List<Color> colors1 = [
-    const Color(0xFF030d4f),
-    const Color(0xFF030d4f),
-    const Color(0xFF030d4f),
-    const Color(0xFF030d4f),
-    const Color(0xFF030d4f),
+  final List<Color> colors = [
+    const Color(0xFF171740),
+    const Color(0xFF171740),
+    const Color(0xFF171740),
+    const Color(0xFF171740),
+    const Color(0xFF171740),
   ];
   final List<String> keys = ['A', 'B', 'C', 'D', 'E'];
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height*0.5,
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (_, index) {
@@ -34,7 +35,7 @@ class AlternativesList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: colors[index],
               ),
-              height: MediaQuery.of(context).size.height / 10,
+              height: MediaQuery.of(context).size.height *0.07,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

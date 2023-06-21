@@ -167,7 +167,7 @@ class NewOfferForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.28,
                 child: TextInput(
                   label: 'Ejm. 100',
                   title: 'Applications',
