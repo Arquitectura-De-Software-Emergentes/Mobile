@@ -1,34 +1,55 @@
 import 'package:flutter/material.dart';
 
-class TextInput extends StatefulWidget {
-  const TextInput({super.key, required this.title, required this.controller});
-  final String title;
-  final TextEditingController controller;
-  @override
-  State<TextInput> createState() => _TextInputState();
-}
+import '../../../../common/styles/styles.dart';
 
-class _TextInputState extends State<TextInput> {
+class TextInput extends StatelessWidget {
+  TextInput(
+      {super.key,
+      required this.title,
+      required this.label,
+      this.errorMessage,
+      this.onChanged,
+      this.validator});
+  final String title;
+  final String label;
+  final String? errorMessage;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final border = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(40),
+    borderSide: BorderSide.none,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.title,
-            style: const TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 20,
-                color: Colors.black)),
+        Text(
+          title,
+          style: const TextStyle(
+              fontWeight: FontWeight.w400, fontSize: 20, color: Colors.black),
+        ),
         TextFormField(
-          controller: widget.controller,
+          onChanged: onChanged,
+          validator: validator,
           decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xFFEFEFF0),
-              contentPadding: const EdgeInsets.symmetric(vertical: 15),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide.none,
-              )),
+            hintText: label,
+            filled: true,
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+            enabledBorder: border,
+            focusedBorder: border.copyWith(
+              borderSide: BorderSide(color: Styles.primaryColor),
+            ),
+            errorBorder: border.copyWith(
+              borderSide: BorderSide(color: Styles.error),
+            ),
+            focusedErrorBorder: border.copyWith(
+              borderSide: BorderSide(color: Styles.error),
+            ),
+            errorText: errorMessage,
+          ),
         ),
       ],
     );

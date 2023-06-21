@@ -9,23 +9,23 @@ class OfferRepository extends OfferInterface {
 
   @override
   Future<List<Offer>> getAllOffers() async {
-    try {
-      final response = await offerRemoteDataProvider.getAllOffers();
+    final response = await offerRemoteDataProvider.getAllOffers();
 
-      return response;
-    } catch (error) {
-      throw Exception('Failed to fetch offers: $error');
-    }
+    return response;
   }
 
   @override
   Future<Offer> createOffer(Offer offer) async {
-    try {
-      final response = await offerRemoteDataProvider.createOffer(offer);
-      return response;
-    } catch (error) {
-      throw Exception('Failed to create offer: $error');
-    }
+    final response = await offerRemoteDataProvider.createOffer(offer);
+    return response;
+  }
+
+  @override
+  Future<List<Offer>> getAllOffersByRecruiterId(int id) async {
+    final response =
+        await offerRemoteDataProvider.getAllOffersByRecruiterId(id);
+
+    return response;
   }
 
   @override

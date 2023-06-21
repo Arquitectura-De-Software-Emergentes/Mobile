@@ -10,35 +10,45 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
   final OfferRepository offerRepository;
   MyOffersListBloc()
       : offerRepository = GetIt.instance<OfferRepository>(),
-        super(MyOffersListInitial()) {
+        super(const MyOffersListState()) {
     on<LoadAllMyOffers>(_onGetAllMyOffers);
     on<AddMyOffer>(_onAddOffer);
   }
   void _onGetAllMyOffers(
       LoadAllMyOffers event, Emitter<MyOffersListState> emit) async {
-    emit(MyOffersListLoading());
+    emit(state.copyWith(status: MyOffersListStatus.loading));
     try {
-      print('get');
-      final List<Offer> offers = await offerRepository.getAllOffers();
-      emit(MyOffersListLoaded(offers));
+      final List<Offer> offers =
+          await offerRepository.getAllOffersByRecruiterId(1);
+      emit(state.copyWith(
+          status: MyOffersListStatus.success, myOffersList: offers));
     } catch (error) {
-      emit(MyOffersListError(error.toString()));
+      emit(state.copyWith(
+          status: MyOffersListStatus.error, errorMessage: error.toString()));
     }
   }
 
   void _onAddOffer(AddMyOffer event, Emitter<MyOffersListState> emit) async {
     try {
-      if (state is MyOffersListLoaded) {
-        final List<Offer> currentList =
-            (state as MyOffersListLoaded).myOffersList;
-        final List<Offer> updatedList = List<Offer>.from(currentList);
-        final Offer response =
-            await offerRepository.createOffer(currentList[0]);
-        updatedList.add(response);
-        emit(MyOffersListLoaded(updatedList));
-      }
+      emit(state.copyWith(
+        status: MyOffersListStatus.loading,
+        myOffersList: state.myOffersList,
+      ));
+      final List<Offer> currentList = state.myOffersList;
+      final List<Offer> updatedList = List<Offer>.from(currentList);
+      final Offer response = await offerRepository.createOffer(event.offer);
+
+      updatedList.add(response);
+
+      emit(state.copyWith(
+        status: MyOffersListStatus.success,
+        myOffersList: updatedList,
+      ));
     } catch (error) {
-      emit(MyOffersListError(error.toString()));
+      emit(state.copyWith(
+        status: MyOffersListStatus.error,
+        errorMessage: error.toString(),
+      ));
     }
   }
 

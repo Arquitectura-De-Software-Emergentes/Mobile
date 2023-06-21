@@ -1,33 +1,34 @@
-import 'package:equatable/equatable.dart';
+part of 'offers_list_bloc.dart';
 
-import '../../../domain/entities/offer.dart';
+enum OffersListStatus { initial, loading, success, error }
 
-abstract class OffersListState extends Equatable {
-  const OffersListState();
+class OffersListState extends Equatable {
+  const OffersListState({
+    this.offerSearch = const <Offer>[],
+    this.status = OffersListStatus.initial,
+    this.offers = const <Offer>[],
+    this.errorMessage = 'error',
+  });
 
-  @override
-  List<Object?> get props => [];
-}
+  final OffersListStatus status;
+  final List<Offer> offers;
+  final List<Offer> offerSearch;
+  final String errorMessage;
 
-class OffersListInitial extends OffersListState {}
-
-class OffersListLoading extends OffersListState {}
-
-class OffersListLoaded extends OffersListState {
-  final List<Offer> offersList;
-
-  const OffersListLoaded(this.offersList);
-
-  OffersListLoaded copyWith({List<Offer>? offersList}) {
-    return OffersListLoaded(offersList ?? this.offersList);
+  OffersListState copyWith({
+    OffersListStatus? status,
+    List<Offer>? offers,
+    List<Offer>? offerSearch,
+    String? errorMessage,
+  }) {
+    return OffersListState(
+      status: status ?? this.status,
+      offers: offers ?? this.offers,
+      offerSearch: offerSearch ?? this.offerSearch,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
   }
 
   @override
-  List<Object?> get props => [offersList];
-}
-
-class OffersListError extends OffersListState {
-  final String errorMessage;
-
-  const OffersListError(this.errorMessage);
+  List<Object?> get props => [status, offers, offerSearch, errorMessage];
 }

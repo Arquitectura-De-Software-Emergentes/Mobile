@@ -14,7 +14,7 @@ class OfferDetailRequirements extends StatelessWidget {
             style: TextStyle(fontSize: 16.0),
           ),
         ),
-        Text(requirement),
+        Text('  $requirement'),
       ],
     );
   }

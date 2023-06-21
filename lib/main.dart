@@ -10,7 +10,19 @@ import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   offerDependencies();
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
+}
+
+// certificates
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
 
 class MyApp extends StatelessWidget {
