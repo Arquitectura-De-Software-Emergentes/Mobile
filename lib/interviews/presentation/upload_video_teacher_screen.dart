@@ -16,8 +16,19 @@ class _UploadVideoTeacherScreenState extends State<UploadVideoTeacherScreen> {
         title: 'Upload Video',
       ),
       body: Center(
-        child: Text('Upload Video'),
-      ),
+        child: Container(
+          child:Column(
+            children: [
+              Icon(Icons.add_circle_rounded, size: 100,),
+              SizedBox(height: 20,),
+              ElevatedButton(onPressed: ()
+                    { },
+                    child: Text('Upload Video')
+                  )
+            ],
+          )
+        )
+        ),
       );
   }
 }

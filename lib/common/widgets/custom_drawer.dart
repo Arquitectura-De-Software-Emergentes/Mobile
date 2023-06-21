@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/interviews/presentation/upload_video_teacher_screen.dart';
 import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
@@ -41,6 +42,7 @@ class CustomDrawer extends StatelessWidget {
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
               drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
+              drawerOption(context, 'Video', UploadVideoTeacherScreen(), Icons.video_call),
               Divider(
                 color: Colors.white.withOpacity(0.5),
                 height: 10,
