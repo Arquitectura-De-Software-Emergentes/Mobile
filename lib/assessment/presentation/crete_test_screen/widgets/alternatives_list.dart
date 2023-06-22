@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class AlternativesList extends StatelessWidget {
+import '../../../../common/styles/styles.dart';
+enum CorrectAlternative {A,B,C,D,E}
+class AlternativesList extends StatefulWidget {
   AlternativesList({
     super.key,
   });
 
+  @override
+  State<AlternativesList> createState() => _AlternativesListState();
+}
+
+class _AlternativesListState extends State<AlternativesList> {
   final List<Color> colors1 = [
     const Color.fromARGB(255, 35, 60, 224),
     const Color(0xFFffc52c),
@@ -12,6 +19,7 @@ class AlternativesList extends StatelessWidget {
     const Color(0xFF030d4f),
     const Color.fromARGB(255, 201, 37, 160),
   ];
+
   final List<Color> colors = [
     const Color(0xFF171740),
     const Color(0xFF171740),
@@ -19,7 +27,11 @@ class AlternativesList extends StatelessWidget {
     const Color(0xFF171740),
     const Color(0xFF171740),
   ];
+
   final List<String> keys = ['A', 'B', 'C', 'D', 'E'];
+
+     CorrectAlternative? _alternative = CorrectAlternative.A;
+List<CorrectAlternative> listCorrectAlternative = CorrectAlternative.values;
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +80,15 @@ class AlternativesList extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: Transform.scale(
                       scale: 2,
-                      child: Checkbox(
-                        fillColor: MaterialStateColor.resolveWith((states) {
-                          if (states.contains(MaterialState.disabled)) {
-                            return Colors.white;
-                          }
-                          if (states.contains(MaterialState.selected)) {
-                            return Colors.green;
-                          }
-                          return Colors.white;
-                        }),
+                      child: Radio<CorrectAlternative>(
                         activeColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0)),
-                        value: false,
-                        onChanged: (value) {},
+                    value: listCorrectAlternative[index],
+                    groupValue: _alternative,
+                    onChanged: (CorrectAlternative? value) {
+                      setState(() {
+                        _alternative = value;
+                      });
+                    },
                       ),
                     ),
                   ),

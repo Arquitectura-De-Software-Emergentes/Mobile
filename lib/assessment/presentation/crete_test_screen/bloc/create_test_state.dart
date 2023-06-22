@@ -4,12 +4,16 @@ class CreateTestState extends Equatable {
   final bool isValidGeneralInformation;
   final TestTitle title;
   final TestDescription description;
-  final TestQuestion question;
+  final TestQuestion testQuestion;
   final bool isValidQuestion;
+  final List<Question> questions;
+  final bool isCorrect;
 
   const CreateTestState({
+    this.isCorrect = false,
+    this.questions = const <Question>[],
     this.isValidQuestion = false,
-    this.question = const TestQuestion.pure(),
+    this.testQuestion = const TestQuestion.pure(),
     this.isValidGeneralInformation = false,
     this.title = const TestTitle.pure(),
     this.description = const TestDescription.pure(),
@@ -20,7 +24,8 @@ class CreateTestState extends Equatable {
     bool? isValidGeneralInformation,
     TestTitle? title,
     TestDescription? description,
-    TestQuestion? question,
+    TestQuestion? testQuestion,
+    List<Question>? questions,
   }) =>
       CreateTestState(
           isValidQuestion: isValidQuestion ?? this.isValidQuestion,
@@ -28,14 +33,16 @@ class CreateTestState extends Equatable {
               isValidGeneralInformation ?? this.isValidGeneralInformation,
           title: title ?? this.title,
           description: description ?? this.description,
-          question: question ?? this.question);
+          testQuestion: testQuestion ?? this.testQuestion,
+          questions: questions ?? this.questions);
 
   @override
   List<Object> get props => [
         isValidGeneralInformation,
         isValidQuestion,
         description,
-        question,
+        questions,
+        testQuestion,
       title,
       ];
 }

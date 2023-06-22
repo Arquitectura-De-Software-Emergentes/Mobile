@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/assessment/infrastructure/inputs/test_question.dart';
 import 'package:teacher_finder/assessment/presentation/crete_test_screen/bloc/create_test_bloc.dart';
 
 import '../../../../common/widgets/custom_app_bar.dart';
@@ -24,7 +25,7 @@ class CreateTestForm extends StatelessWidget {
              child: SizedBox(
               height: MediaQuery.of(context).size.height*1,
               child:  Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
 
                   children: [
                     TextInput(
@@ -35,7 +36,9 @@ class CreateTestForm extends StatelessWidget {
                       //errorMessage: question.errorMessage,
                     ),
                     AlternativesList(),
-                    ElevatedButton(onPressed: (){}, child: const Text('Add Question'))
+                    ElevatedButton(onPressed: (){
+                   
+                    }, child: const Text('Add Question'))
                   ],
                 ),
 

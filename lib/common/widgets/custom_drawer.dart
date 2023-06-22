@@ -39,7 +39,9 @@ class CustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
+              drawerOption(context, 'Test', OffersListScreen(), Icons.list),
               drawerOption(context, 'Profile', const ProfileTeacherScreen(),
+              
                   Icons.person),
               Divider(
                 color: Colors.white.withOpacity(0.5),

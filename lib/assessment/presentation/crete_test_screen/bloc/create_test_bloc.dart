@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
-import '../../../infrastructure/inputs/question.dart';
+import '../../../domain/entities/question.dart';
+import '../../../infrastructure/inputs/test_question.dart';
 import '../../../infrastructure/inputs/test_description.dart';
 import '../../../infrastructure/inputs/test_title.dart';
 
@@ -47,11 +48,11 @@ class CreateTestBloc extends Bloc<CreateTestEvent, CreateTestState> {
 
   void _testQuestionChanged(
       TestQuestionChanged event, Emitter<CreateTestState> emit) async {
-    final question = TestQuestion.dirty(event.question);
+    final testQuestion = TestQuestion.dirty(event.testQuestion);
     emit(
       state.copyWith(
-        question: question,
-        isValidQuestion: Formz.validate([question]),
+        testQuestion: testQuestion,
+        isValidQuestion: Formz.validate([testQuestion]),
       ),
     );
   }

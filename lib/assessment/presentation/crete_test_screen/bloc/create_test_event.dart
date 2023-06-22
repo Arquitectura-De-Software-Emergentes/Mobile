@@ -20,7 +20,7 @@ class TestDescriptionChanged extends CreateTestEvent {
 }
 
 class TestQuestionChanged extends CreateTestEvent {
-  final String question;
+  final String testQuestion;
 
-  const TestQuestionChanged(this.question);
+  const TestQuestionChanged(this.testQuestion);
 }
