@@ -27,7 +27,7 @@ class ProfileTeacherScreen extends StatelessWidget {
                 text: snapshot.data?.personalInformation.lastname.toString());
 
             return Container(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.all(25),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
