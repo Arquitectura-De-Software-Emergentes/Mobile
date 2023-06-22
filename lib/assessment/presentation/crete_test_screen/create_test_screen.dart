@@ -36,32 +36,33 @@ class _CreateTestScreenState extends State<CreateTestScreen>
     return BlocProvider(
       create: (context) => CreateTestBloc(),
       child: Scaffold(
-          appBar: const CustomAppBar(
-            title: 'Crear Test',
-          ),
-          body: SizedBox(
-            height: MediaQuery.of(context).size.height*0.8,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const GeneralInformationPanel(),
-                const Center(child: Text('No questions'),),
-                ElevatedButton(onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          CreateTestForm(),
-                    ),
-                  );
-                }, child: Text('Add Question'))
-              ],
-            ),
-          )
-          //bottomNavigationBar: QuestionsList(),
+        appBar: const CustomAppBar(
+          title: 'Create Test',
         ),
-
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const GeneralInformationPanel(),
+              const Center(
+                child: Text('No questions'),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CreateTestForm(),
+                      ),
+                    );
+                  },
+                  child: const Text('Add Question'))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
