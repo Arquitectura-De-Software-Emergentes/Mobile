@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/security/presentation%20/login_screen.dart';
 
 import 'main.dart';
 
@@ -13,11 +14,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
-    Future.delayed(const Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 1),(){
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => const HomePage(),
+              builder: (context) => const LoginScreen(),
           ),
     );
     });
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Icon(Icons.tag_faces, size: 250),
             SizedBox(height: 40),
             CircularProgressIndicator(
-              color: Colors.white,
+              color: Styles.secondaryColor,
             ),
           ],
         ),
