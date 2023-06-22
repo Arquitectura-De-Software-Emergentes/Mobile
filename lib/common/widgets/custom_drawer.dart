@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
-import 'package:teacher_finder/profiles/presentation/profile_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
 
 import '../styles/styles.dart';
 
