@@ -20,15 +20,15 @@ class _UploadVideoTeacherScreenState extends State<UploadVideoTeacherScreen> {
           child:Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add_circle_rounded, size: 250),
+              Icon(Icons.add_circle_rounded, size: 200),
               SizedBox(height: 20,),
               Container(
-                constraints: BoxConstraints.tightFor(width: 200, height: 30),
+                constraints: BoxConstraints.tightFor(width: 220, height: 40),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary:Color(0xFF171740),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
                   onPressed: () {
