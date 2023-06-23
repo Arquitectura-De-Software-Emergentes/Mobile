@@ -6,8 +6,9 @@ import '../../domain/entities/test.dart';
 
 class AssessmentModel extends Assessment {
   AssessmentModel(
+    int id,
     Test test,
     Interview interview,
     VideoPresentation videoPresentation,
-  ) : super(test, interview, videoPresentation);
+  ) : super(id, test, interview, videoPresentation);
 }

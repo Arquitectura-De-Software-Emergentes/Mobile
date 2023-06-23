@@ -1,13 +1,17 @@
+import 'package:teacher_finder/assessment/domain/entities/question.dart';
+
 import '../../domain/entities/test.dart';
 
 class TestModel extends Test {
   TestModel({
-    required DateTime initialDate,
-    required DateTime endDate,
+    required int id,
     required int minScore,
+    required int numQuestions,
+    required List<Question> questions,
   }) : super(
+          id: id,
           minScore: minScore,
-          initialDate: initialDate,
-          endDate: endDate,
+          numQuestions: numQuestions,
+          questions: questions,
         );
 }
