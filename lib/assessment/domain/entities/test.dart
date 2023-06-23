@@ -1,11 +1,17 @@
+import 'package:teacher_finder/assessment/domain/entities/assessment.dart';
+
+import 'question.dart';
+
 class Test {
+  int id;
   int minScore;
-  DateTime initialDate;
-  DateTime endDate;
+  int numQuestions;
+  List<Question> questions;
 
   Test({
+    required this.id,
     required this.minScore,
-    required this.initialDate,
-    required this.endDate,
+    required this.numQuestions,
+    required this.questions,
   });
 }
