@@ -13,3 +13,9 @@ class AddQuestion extends QuestionsListEvent {
   final Question question;
   const AddQuestion(this.question);
 }
+
+class DeleteQuestion extends QuestionsListEvent {
+  final Question question;
+
+  const DeleteQuestion(this.question);
+}

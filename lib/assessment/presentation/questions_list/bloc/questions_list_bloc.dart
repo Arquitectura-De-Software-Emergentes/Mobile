@@ -13,22 +13,59 @@ class QuestionsListBloc extends Bloc<QuestionsListEvent, QuestionsListState> {
   QuestionsListBloc()
       : assessmentRepository = GetIt.instance<AssessmentRepository>(),
         super(const QuestionsListState()) {
-    on<QuestionsListEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<AddQuestion>(_onCreateQuestions);
+    on<DeleteQuestion>(_onDeleteQuestion);
   }
 
-  void _onGetAllMyQuestions(
-      LoadAllQuestions event, Emitter<QuestionsListState> emit) async {
+  void _onCreateQuestions(
+      AddQuestion event, Emitter<QuestionsListState> emit) async {
     emit(state.copyWith(status: QuestionsListStatus.loading));
     try {
-      final List<Question> questions =
-          await assessmentRepository.getAllQuestionsByTestId(1);
+      final List<Question> currentList = state.questions;
+      final List<Question> updatedList = List<Question>.from(currentList);
+
+      updatedList.add(event.question);
+      emit(state.copyWith(
+        status: QuestionsListStatus.success,
+        questions: updatedList,
+      ));
     } catch (error) {
       emit(state.copyWith(
         errorMessage: error.toString(),
         status: QuestionsListStatus.error,
       ));
     }
+  }
+
+  void _onDeleteQuestion(
+    DeleteQuestion event,
+    Emitter<QuestionsListState> emit,
+  ) async {
+    emit(state.copyWith(status: QuestionsListStatus.loading));
+    try {
+      final List<Question> currentList = state.questions;
+      final List<Question> updatedList = List<Question>.from(currentList);
+
+      // Buscar y eliminar la pregunta de la lista
+      updatedList.remove(event.question);
+
+      emit(state.copyWith(
+        status: QuestionsListStatus.success,
+        questions: updatedList,
+      ));
+    } catch (error) {
+      emit(state.copyWith(
+        errorMessage: error.toString(),
+        status: QuestionsListStatus.error,
+      ));
+    }
+  }
+
+  void addQuestion(Question question) {
+    add(AddQuestion(question));
+  }
+
+  void deleteQuestion(Question question) {
+    add(DeleteQuestion(question));
   }
 }

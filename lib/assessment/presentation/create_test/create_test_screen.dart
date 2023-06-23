@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/assessment/presentation/create_test/bloc/create_test_bloc.dart';
 import 'package:teacher_finder/assessment/presentation/create_test/widgets/general_information_panel.dart';
+import 'package:teacher_finder/assessment/presentation/questions_list/questions_list.dart';
 import 'package:teacher_finder/assessment/presentation/tests_list/bloc/tests_list_bloc.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
 import '../create_question/create_question_screen.dart';
+import '../questions_list/bloc/questions_list_bloc.dart';
 
 class CreateTestScreen extends StatefulWidget {
   const CreateTestScreen({super.key, required this.testsListBloc});
@@ -18,6 +20,8 @@ class CreateTestScreen extends StatefulWidget {
 class _CreateTestScreenState extends State<CreateTestScreen>
     with TickerProviderStateMixin {
   late final TabController _tabController;
+
+  final QuestionsListBloc questionsListBloc = QuestionsListBloc();
 
   @override
   void initState() {
@@ -33,28 +37,41 @@ class _CreateTestScreenState extends State<CreateTestScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateTestBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CreateTestBloc(),
+        ),
+        BlocProvider(
+          create: (context) => questionsListBloc,
+        ),
+      ],
       child: Scaffold(
         appBar: const CustomAppBar(
           title: 'Create Test',
         ),
         body: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.8,
+          height: MediaQuery.of(context).size.height * 0.9,
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const GeneralInformationPanel(),
-              const Center(
-                child: Text('No questions'),
+              BlocBuilder<QuestionsListBloc, QuestionsListState>(
+                builder: (context, state) {
+                  return state.questions.isEmpty
+                      ? const Center(child: Text('No questions'))
+                      : const QuestionList();
+                },
               ),
               ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CreateQuestionScreen(),
+                        builder: (context) => CreateQuestionScreen(
+                          questionsListBloc: questionsListBloc,
+                        ),
                       ),
                     );
                   },

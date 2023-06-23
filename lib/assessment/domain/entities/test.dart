@@ -1,5 +1,3 @@
-import 'package:teacher_finder/assessment/domain/entities/assessment.dart';
-
 import 'question.dart';
 
 class Test {
