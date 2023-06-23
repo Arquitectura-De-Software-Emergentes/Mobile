@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/styles/styles.dart';
-enum CorrectAlternative {A,B,C,D,E}
+enum CorrectAlternative { A, B, C, D, E }
+
 class AlternativesList extends StatefulWidget {
-  AlternativesList({
+  const AlternativesList({
     super.key,
   });
 
@@ -30,13 +30,13 @@ class _AlternativesListState extends State<AlternativesList> {
 
   final List<String> keys = ['A', 'B', 'C', 'D', 'E'];
 
-     CorrectAlternative? _alternative = CorrectAlternative.A;
-List<CorrectAlternative> listCorrectAlternative = CorrectAlternative.values;
+  CorrectAlternative? _alternative = CorrectAlternative.A;
+  List<CorrectAlternative> listCorrectAlternative = CorrectAlternative.values;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*0.5,
+      height: MediaQuery.of(context).size.height * 0.5,
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (_, index) {
@@ -47,7 +47,7 @@ List<CorrectAlternative> listCorrectAlternative = CorrectAlternative.values;
                 borderRadius: BorderRadius.circular(20),
                 color: colors[index],
               ),
-              height: MediaQuery.of(context).size.height *0.07,
+              height: MediaQuery.of(context).size.height * 0.07,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -82,13 +82,13 @@ List<CorrectAlternative> listCorrectAlternative = CorrectAlternative.values;
                       scale: 2,
                       child: Radio<CorrectAlternative>(
                         activeColor: Colors.green,
-                    value: listCorrectAlternative[index],
-                    groupValue: _alternative,
-                    onChanged: (CorrectAlternative? value) {
-                      setState(() {
-                        _alternative = value;
-                      });
-                    },
+                        value: listCorrectAlternative[index],
+                        groupValue: _alternative,
+                        onChanged: (CorrectAlternative? value) {
+                          setState(() {
+                            _alternative = value;
+                          });
+                        },
                       ),
                     ),
                   ),

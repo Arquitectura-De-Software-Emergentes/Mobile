@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teacher_finder/assessment/presentation/crete_test_screen/bloc/create_test_bloc.dart';
-import 'package:teacher_finder/assessment/presentation/crete_test_screen/widgets/general_information_panel.dart';
-import 'package:teacher_finder/common/widgets/text_input.dart';
+import 'package:teacher_finder/assessment/presentation/create_test/bloc/create_test_bloc.dart';
+import 'package:teacher_finder/assessment/presentation/create_test/widgets/general_information_panel.dart';
+import 'package:teacher_finder/assessment/presentation/tests_list/bloc/tests_list_bloc.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
-import 'widgets/create_test_form.dart';
-import 'widgets/questions_list.dart';
+import '../create_question/create_question_screen.dart';
 
 class CreateTestScreen extends StatefulWidget {
-  const CreateTestScreen({super.key});
+  const CreateTestScreen({super.key, required this.testsListBloc});
 
+  final TestsListBloc testsListBloc;
   @override
   State<CreateTestScreen> createState() => _CreateTestScreenState();
 }
@@ -54,7 +54,7 @@ class _CreateTestScreenState extends State<CreateTestScreen>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CreateTestForm(),
+                        builder: (context) => const CreateQuestionScreen(),
                       ),
                     );
                   },
