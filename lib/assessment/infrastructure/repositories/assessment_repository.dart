@@ -9,8 +9,9 @@ class AssessmentRepository extends AssessmentInterface {
 
   @override
   Future<List<Test>> getAllTestsByRecruiterId(int recruiterId) {
-    // TODO: implement getAllTests
-    throw UnimplementedError();
+    final response =
+        assessmentRemoteDataProvider.getAllTestsByRecruiterId(recruiterId);
+    return response;
   }
 
   @override

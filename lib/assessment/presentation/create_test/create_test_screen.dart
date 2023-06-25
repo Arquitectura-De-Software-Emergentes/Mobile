@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/assessment/domain/entities/test.dart';
 import 'package:teacher_finder/assessment/presentation/create_test/bloc/create_test_bloc.dart';
 import 'package:teacher_finder/assessment/presentation/create_test/widgets/general_information_panel.dart';
-import 'package:teacher_finder/assessment/presentation/questions_list/questions_list.dart';
+import 'package:teacher_finder/assessment/presentation/questions_list/questions_list_screen.dart';
 import 'package:teacher_finder/assessment/presentation/tests_list/bloc/tests_list_bloc.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
@@ -57,25 +58,15 @@ class _CreateTestScreenState extends State<CreateTestScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const GeneralInformationPanel(),
-              BlocBuilder<QuestionsListBloc, QuestionsListState>(
-                builder: (context, state) {
-                  return state.questions.isEmpty
-                      ? const Center(child: Text('No questions'))
-                      : const QuestionList();
-                },
-              ),
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CreateQuestionScreen(
-                          questionsListBloc: questionsListBloc,
-                        ),
-                      ),
-                    );
-                  },
-                  child: const Text('Add Question'))
+                onPressed: () {
+                  final Test test = Test(
+                      id: 1, title: 'test 7', numQuestions: 20, minScore: 13);
+                  widget.testsListBloc.addTest(test);
+                  Navigator.pop(context);
+                },
+                child: const Text('Borrame'),
+              )
             ],
           ),
         ),

@@ -39,12 +39,13 @@ class CreateQuestionScreen extends StatelessWidget {
                     onPressed: () {
                       final Question question = Question(
                           id: 1,
-                          testId: 2,
-                          statement: 'asdasdad',
+                          statement: 'hola?',
                           options: [
-                            Option(id: 1, response: 'as', isCorrect: true)
+                            Option(id: 1, response: 'aads', isCorrect: true),
+                            Option(id: 2, response: 'as', isCorrect: false),
                           ],
-                          points: 2);
+                          points: 2,
+                          responseId: 1);
                       questionsListBloc.addQuestion(question);
                       Navigator.pop(context);
                     },
