@@ -8,3 +8,9 @@ abstract class TestsListEvent extends Equatable {
 }
 
 class LoadAllTests extends TestsListEvent {}
+
+class AddTest extends TestsListEvent {
+  final Test test;
+
+  const AddTest(this.test);
+}

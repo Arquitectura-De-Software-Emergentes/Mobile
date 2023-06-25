@@ -2,14 +2,14 @@ import 'question.dart';
 
 class Test {
   int id;
-  int minScore;
+  String title;
   int numQuestions;
-  List<Question> questions;
+  int minScore;
 
   Test({
     required this.id,
-    required this.minScore,
+    required this.title,
     required this.numQuestions,
-    required this.questions,
+    required this.minScore,
   });
 }

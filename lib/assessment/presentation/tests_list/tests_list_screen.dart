@@ -4,35 +4,41 @@ import 'package:teacher_finder/assessment/presentation/create_test/create_test_s
 import 'package:teacher_finder/assessment/presentation/tests_list/bloc/tests_list_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
+import '../../../common/styles/styles.dart';
 import '../../domain/entities/test.dart';
+import '../create_question/create_question_screen.dart';
+import '../create_test/widgets/general_information_panel.dart';
+import '../questions_list/bloc/questions_list_bloc.dart';
+import '../questions_list/bloc/questions_list_bloc.dart';
+import '../questions_list/questions_list_screen.dart';
 
 class TestsListScreen extends StatelessWidget {
   TestsListScreen({super.key});
   final TestsListBloc testsListBloc = TestsListBloc();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => testsListBloc,
-      child: Scaffold(
-        appBar: const CustomAppBar(title: 'Test'),
-        body: const TestsList(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    CreateTestScreen(testsListBloc: testsListBloc),
-              ),
-            );
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
+        create: (context) => testsListBloc,
+        child: Scaffold(
+          appBar: const CustomAppBar(title: 'Test'),
+          body: const TestsList(),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CreateTestScreen(testsListBloc: testsListBloc),
+                ),
+              );
+            },
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -44,6 +50,7 @@ class TestsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<TestsListBloc>().getAllTests();
+
     return Column(children: [
       const SizedBox(
         height: 15,
@@ -54,7 +61,7 @@ class TestsList extends StatelessWidget {
             if (state.status == TestsListStatus.loading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state.status == TestsListStatus.success) {
-              return state.tests == 0
+              return state.tests.isEmpty
                   ? const Center(
                       child: Text('NO TESTS'),
                     )
@@ -64,26 +71,35 @@ class TestsList extends StatelessWidget {
                         Test test = state.tests[index];
                         return GestureDetector(
                           onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(32)),
-                              ),
-                              isScrollControlled: true,
-                              builder: (context) => DraggableScrollableSheet(
-                                initialChildSize: 0.6,
-                                maxChildSize: 0.6,
-                                expand: false,
-                                builder: (context, scrollController) =>
-                                    SizedBox(
-                                  child: SingleChildScrollView(
-                                      child: Text('detail')),
-                                ),
-                              ),
-                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => QuestionListScreen(
+                                          test: test,
+                                        )));
                           },
-                          child: Text('card'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              tileColor: Colors.green,
+                              leading: Text(
+                                test.title,
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              title: Column(
+                                children: [
+                                  Text(
+                                      '${test.numQuestions.toString()} questions'),
+                                  Text('${test.minScore.toString()} min score'),
+                                ],
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
                         );
                       },
                     );
