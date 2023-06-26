@@ -89,8 +89,6 @@ class TestsList extends StatelessWidget {
                               ),
                               title: Column(
                                 children: [
-                                  Text(
-                                      '${test.numQuestions.toString()} questions'),
                                   Text('${test.minScore.toString()} min score'),
                                 ],
                               ),

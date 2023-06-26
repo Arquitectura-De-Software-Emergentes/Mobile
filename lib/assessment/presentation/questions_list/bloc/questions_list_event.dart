@@ -7,11 +7,15 @@ abstract class QuestionsListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadAllQuestions extends QuestionsListEvent {}
+class LoadAllQuestions extends QuestionsListEvent {
+  final int testId;
+  const LoadAllQuestions(this.testId);
+}
 
 class AddQuestion extends QuestionsListEvent {
   final Question question;
-  const AddQuestion(this.question);
+  final int testId;
+  const AddQuestion(this.question, this.testId);
 }
 
 class DeleteQuestion extends QuestionsListEvent {
