@@ -21,14 +21,14 @@ class AssessmentRepository extends AssessmentInterface {
   }
 
   @override
-  Future<List<Question>> getAllQuestionsByTestId(int testId) {
-    // TODO: implement getAllQuestionsByTestId
-    throw UnimplementedError();
+  Future<Test> getAllQuestionsByTestId(int testId) async {
+    final response =
+        await assessmentRemoteDataProvider.getAllQuestionsByTestId(testId);
+    return response;
   }
 
   @override
-  Future<Test> createQuestion(Question question) {
-    // TODO: implement createQuestion
-    throw UnimplementedError();
+  Future<void> createQuestion(Question question, int testId) async {
+    await assessmentRemoteDataProvider.createQuestion(question, testId);
   }
 }
