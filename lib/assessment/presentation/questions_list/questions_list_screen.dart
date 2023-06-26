@@ -9,6 +9,7 @@ import '../create_question/create_question_screen.dart';
 class QuestionListScreen extends StatelessWidget {
   QuestionListScreen({super.key, required this.test});
   final Test test;
+
   final QuestionsListBloc questionsListBloc = QuestionsListBloc();
   @override
   Widget build(BuildContext context) {
@@ -24,47 +25,14 @@ class QuestionListScreen extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('${test.numQuestions.toString()} questions'),
                 Text('${test.minScore.toString()} min score'),
               ],
             ),
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: BlocBuilder<QuestionsListBloc, QuestionsListState>(
-                builder: (context, state) {
-                  return state.questions.isEmpty
-                      ? const Center(
-                          child: Text(
-                            'No questions',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        )
-                      : const QuestionList();
-                },
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CreateQuestionScreen(
-                      questionsListBloc: questionsListBloc,
-                    ),
-                  ),
-                );
-              },
-              child: const Text('Add Question'),
-            ),
-            const Expanded(
-              child: QuestionList(),
-            ),
-          ],
+        body: QuestionList(
+          questionsListBloc: questionsListBloc,
+          test: test,
         ),
       ),
     );
@@ -74,55 +42,93 @@ class QuestionListScreen extends StatelessWidget {
 class QuestionList extends StatelessWidget {
   const QuestionList({
     super.key,
+    required this.questionsListBloc,
+    required this.test,
   });
+  final QuestionsListBloc questionsListBloc;
+  final Test test;
 
   @override
   Widget build(BuildContext context) {
-    final questionsListBloc = context.watch<QuestionsListBloc>();
-
-    return BlocBuilder<QuestionsListBloc, QuestionsListState>(
-      builder: (context, state) {
-        if (state.status == QuestionsListStatus.loading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state.status == QuestionsListStatus.success) {
-          return ListView.builder(
-            itemCount: state.questions.length,
-            itemBuilder: (BuildContext context, int index) {
-              Question question = state.questions[index];
-              return GestureDetector(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    title: Text(
-                        '${question.statement} (${question.points.toString()})'),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(question.options[0].response),
-                        Text(question.options[0].response),
-                        Text(question.options[0].response),
-                        Text(question.options[0].response),
-                        Text(question.options[0].response),
-                      ],
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        questionsListBloc.deleteQuestion(question);
+    context.read<QuestionsListBloc>().getAllQuestions(test.id);
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: BlocBuilder<QuestionsListBloc, QuestionsListState>(
+            builder: (context, state) {
+              print(state.questions.length);
+              return state.questions.isEmpty
+                  ? Center(
+                      child: state.status == QuestionsListStatus.loading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Text(
+                              'No questions',
+                              style: TextStyle(fontSize: 24),
+                            ),
+                    )
+                  : ListView.builder(
+                      itemCount: state.questions.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Question question = state.questions[index];
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(
+                                  '${question.statement} (${question.points.toString()})'),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(question.options[0].response),
+                                  Text(question.options[1].response),
+                                  Text(question.options[2].response),
+                                  Text(question.options[3].response),
+                                  Text(question.options[4].response),
+                                ],
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  // questionsListBloc.deleteQuestion(question);
+                                },
+                                icon: const Icon(Icons.remove_circle_outline),
+                              ),
+                            ),
+                          ),
+                        );
                       },
-                      icon: const Icon(Icons.remove_circle_outline),
-                    ),
+                    );
+            },
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(32),
+                  ),
+                ),
+                isScrollControlled: true,
+                builder: (context) => DraggableScrollableSheet(
+                  initialChildSize: 0.9,
+                  expand: false,
+                  builder: (context, scrollController) => SizedBox(
+                    child: SingleChildScrollView(
+                        child: CreateQuestionScreen(
+                      questionsListBloc: questionsListBloc,
+                      test: test,
+                    )),
                   ),
                 ),
               );
             },
-          );
-        } else if (state.status == QuestionsListStatus.error) {
-          return Center(child: Text(state.errorMessage));
-        }
-
-        return Container();
-      },
+            child: const Text('add'))
+      ],
     );
   }
 }

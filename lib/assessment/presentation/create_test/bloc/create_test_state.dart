@@ -3,43 +3,42 @@ part of 'create_test_bloc.dart';
 class CreateTestState extends Equatable {
   final bool isValidGeneralInformation;
   final TestTitle title;
-  final TestDescription description;
   final TestQuestion testQuestion;
   final bool isValidQuestion;
   final bool isCorrect;
+  final TestMinScore minScore;
 
   const CreateTestState({
+    this.minScore = const TestMinScore.pure(),
     this.isCorrect = false,
     this.isValidQuestion = false,
     this.testQuestion = const TestQuestion.pure(),
     this.isValidGeneralInformation = false,
     this.title = const TestTitle.pure(),
-    this.description = const TestDescription.pure(),
   });
 
   CreateTestState copyWith({
     bool? isValidQuestion,
     bool? isValidGeneralInformation,
     TestTitle? title,
-    TestDescription? description,
     TestQuestion? testQuestion,
     List<Question>? questions,
+    TestMinScore? minScore,
   }) =>
       CreateTestState(
-        isValidQuestion: isValidQuestion ?? this.isValidQuestion,
-        isValidGeneralInformation:
-            isValidGeneralInformation ?? this.isValidGeneralInformation,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        testQuestion: testQuestion ?? this.testQuestion,
-      );
+          isValidQuestion: isValidQuestion ?? this.isValidQuestion,
+          isValidGeneralInformation:
+              isValidGeneralInformation ?? this.isValidGeneralInformation,
+          title: title ?? this.title,
+          testQuestion: testQuestion ?? this.testQuestion,
+          minScore: minScore ?? this.minScore);
 
   @override
   List<Object> get props => [
         isValidGeneralInformation,
         isValidQuestion,
-        description,
         testQuestion,
         title,
+        minScore,
       ];
 }

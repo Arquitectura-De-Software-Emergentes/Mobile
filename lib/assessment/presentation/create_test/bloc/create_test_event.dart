@@ -13,14 +13,14 @@ class TestTitleChanged extends CreateTestEvent {
   const TestTitleChanged(this.title);
 }
 
-class TestDescriptionChanged extends CreateTestEvent {
-  final String description;
-
-  const TestDescriptionChanged(this.description);
-}
-
 class TestQuestionChanged extends CreateTestEvent {
   final String testQuestion;
 
   const TestQuestionChanged(this.testQuestion);
+}
+
+class TestMinScoreChanged extends CreateTestEvent {
+  final String minScore;
+
+  const TestMinScoreChanged(this.minScore);
 }

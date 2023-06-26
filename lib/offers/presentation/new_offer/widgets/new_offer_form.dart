@@ -102,7 +102,7 @@ class NewOfferForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextInput(
-            label: 'Ejm. Teacher Math',
+            label: 'Ejm. Math Teacher',
             title: 'Title',
             onChanged: (value) => newOfferBloc.titleChanged(value),
             errorMessage: title.errorMessage,

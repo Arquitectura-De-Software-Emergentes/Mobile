@@ -10,13 +10,15 @@ class TextInput extends StatelessWidget {
       this.errorMessage,
       this.onChanged,
       this.validator,
-      this.maxLines});
+      this.maxLines,
+      this.controller});
   final String title;
   final String label;
   final int? maxLines;
   final String? errorMessage;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
   final border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(40),
     borderSide: BorderSide.none,
@@ -33,6 +35,7 @@ class TextInput extends StatelessWidget {
               fontWeight: FontWeight.w400, fontSize: 20, color: Colors.black),
         ),
         TextFormField(
+          controller: controller,
           maxLines: maxLines,
           onChanged: onChanged,
           validator: validator,

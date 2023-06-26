@@ -55,13 +55,20 @@ class _CreateTestScreenState extends State<CreateTestScreen>
           height: MediaQuery.of(context).size.height * 0.9,
           width: MediaQuery.of(context).size.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const GeneralInformationPanel(),
+              GeneralInformationPanel(
+                testsListBloc: widget.testsListBloc,
+              ),
               ElevatedButton(
                 onPressed: () {
                   final Test test = Test(
-                      id: 1, title: 'test 7', numQuestions: 20, minScore: 13);
+                      id: 1,
+                      title: 'test 7',
+                      numQuestions: 20,
+                      minScore: 13,
+                      questions: []);
                   widget.testsListBloc.addTest(test);
                   Navigator.pop(context);
                 },
