@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/security/presentation/register/register_recruiter/new_register_recruiter_screen.dart';
 import 'package:teacher_finder/security/presentation/register/register_teacher/new_register_teacher.dart';
 import '../../../common/styles/styles.dart';
 
@@ -35,13 +36,11 @@ class NewTypeRegister extends StatelessWidget {
                   ),
                   fixedSize: Size(160, 50),
                 ),
-
                 onPressed: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => NewRegisterTeacher()),
                   );
-
               },
                   child: Text('Applicant',style: TextStyle(
                     color: Colors.white,
@@ -62,6 +61,10 @@ class NewTypeRegister extends StatelessWidget {
                   fixedSize: Size(160, 50),
                 ),
                 onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewRegisterRecruiter()),
+                  );
 
               },
                 child: Text('Recruiter',

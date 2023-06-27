@@ -11,6 +11,8 @@ class NewRegisterTeacher extends StatefulWidget {
 }
 
 class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
+  bool _obsureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,7 +69,7 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Email',
+                              'Username',
                               style: TextStyle(
                                 color: Styles.secondaryColor,
                                 fontSize: 16,
@@ -102,7 +104,7 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                           cursorColor: Styles.secondaryColor,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       Padding(
                         padding:
                         EdgeInsets.symmetric(horizontal: 35),
@@ -120,6 +122,61 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(vertical: 0,horizontal: 30),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(20),
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(
+                                color: Styles.secondaryColor,
+                              ),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _obsureText = !_obsureText;
+                                });
+                              },
+                              icon: Icon(
+                                _obsureText ? Icons.visibility : Icons.visibility_off,
+                                color: Styles.secondaryColor,
+                              ),
+                            ),
+                          ),
+                          cursorColor: Styles.secondaryColor,
+                          obscureText: _obsureText,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'CV',
+                              style: TextStyle(
+                                color: Styles.secondaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
                       Padding(
                         padding:
                         EdgeInsets.symmetric(vertical: 0,horizontal: 30),
