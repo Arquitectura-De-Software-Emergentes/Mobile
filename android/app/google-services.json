@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688913906347",
+    "project_id": "teacher-finder-6e1e2",
+    "storage_bucket": "teacher-finder-6e1e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688913906347:android:8a739f0f255ef77a4455ee",
+        "android_client_info": {
+          "package_name": "com.techtitans.teacher_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688913906347-vk1cv6vh2qmkvep514tedfco8f4cs9o9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP_fySpvgbAa4Qfl74PmXVuZCgqi6CAvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688913906347-vk1cv6vh2qmkvep514tedfco8f4cs9o9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
