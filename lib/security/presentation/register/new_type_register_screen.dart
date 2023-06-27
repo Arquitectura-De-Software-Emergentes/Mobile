@@ -31,9 +31,9 @@ class NewTypeRegister extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Styles.secondaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  fixedSize: Size(150, 45),
+                  fixedSize: Size(160, 50),
                 ),
 
                 onPressed: (){
@@ -43,7 +43,7 @@ class NewTypeRegister extends StatelessWidget {
                   );
 
               },
-                  child: Text('Teacher',style: TextStyle(
+                  child: Text('Applicant',style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -57,9 +57,9 @@ class NewTypeRegister extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Styles.secondaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  fixedSize: Size(150, 45),
+                  fixedSize: Size(160, 50),
                 ),
                 onPressed: (){
 

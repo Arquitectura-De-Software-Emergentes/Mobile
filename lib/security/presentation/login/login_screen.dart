@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             EdgeInsets.symmetric(vertical: 0, horizontal: 30),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'email',
+                            hintText: 'Username',
                             prefixIcon: Icon(
                               Icons.person,
                               color: Styles.secondaryColor,
