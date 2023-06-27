@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/security/presentation%20/login_screen.dart';
 import 'package:teacher_finder/splash_screen.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
