@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:teacher_finder/common/api_config/api_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 
 import '../../domain/entities/offer.dart';
 import '../models/offer_model.dart';
@@ -35,6 +36,23 @@ class OfferRemoteDataProvider {
         final List<OfferModel> listOffers =
             OfferModel.toOfferList(response.body);
 
+        return listOffers;
+      } else {
+        throw Exception(response.body);
+      }
+    } catch (error) {
+      throw Exception('Failed to fetch offers: $error');
+    }
+  }
+
+  Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
+      String id) async {
+    try {
+      String url = "${ApiConfig.baseUrl}/applications/applicants/2";
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final List<AppliedOfferModel> listOffers =
+            AppliedOfferModel.toAppliedOfferList(response.body);
         return listOffers;
       } else {
         throw Exception(response.body);

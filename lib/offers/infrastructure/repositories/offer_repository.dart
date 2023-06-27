@@ -1,4 +1,5 @@
 import 'package:teacher_finder/offers/domain/interfaces/offer_interface.dart';
+import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 import '../../domain/entities/offer.dart';
 import '../data_sources/offer_remote_data_provider.dart';
 
@@ -24,6 +25,11 @@ class OfferRepository extends OfferInterface {
     final response =
         await offerRemoteDataProvider.getAllOffersByRecruiterId(id);
 
+    return response;
+  }
+
+  Future<List<AppliedOfferModel>> getAllAppliedOffers(String id) async {
+    final response = await offerRemoteDataProvider.getAllAppliedOffersByApplicantId(id);
     return response;
   }
 }
