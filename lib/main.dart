@@ -11,6 +11,7 @@ import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
 void main() {
   offerDependencies();
+  assessmentDependencies();
   HttpOverrides.global = MyHttpOverrides();
 
   runApp(const MyApp());

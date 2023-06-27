@@ -4,6 +4,7 @@ import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
 
+import '../../assessment/presentation/tests_list/tests_list_screen.dart';
 import '../styles/styles.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -40,6 +41,7 @@ class CustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
+              drawerOption(context, 'Test', TestsListScreen(), Icons.list),
               drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
               drawerOption(context, 'Video', UploadVideoTeacherScreen(), Icons.video_call),
