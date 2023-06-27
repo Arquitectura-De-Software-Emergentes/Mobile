@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:teacher_finder/assessment/domain/entities/question.dart';
-import 'package:teacher_finder/assessment/infrastructure/models/question_model.dart';
 import 'package:teacher_finder/assessment/infrastructure/models/test_model.dart';
 import 'package:teacher_finder/common/api_config/api_config.dart';
 
@@ -92,6 +91,24 @@ class AssessmentRemoteDataProvider {
     try {
       final response = await http.get(Uri.parse(
           '${ApiConfig.baseUrl}/$endpoint/tests/$testId?testId=$testId'));
+
+      if (response.statusCode == 200) {
+        final Test test = TestModel.toTest(response.body);
+        return test;
+      } else {
+        print(response.body);
+        throw Exception(response.body);
+      }
+    } catch (error) {
+      print(error);
+      throw Exception(error);
+    }
+  }
+
+  Future<Test> getTestByOfferId(int offerId) async {
+    try {
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$offerId/tests?assessmentId=$offerId'));
 
       if (response.statusCode == 200) {
         final Test test = TestModel.toTest(response.body);

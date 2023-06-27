@@ -22,7 +22,7 @@ class MyAppliedOffersListScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),
             ),
             Expanded(
@@ -64,13 +64,58 @@ class MyAppliedOffersListScreen extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18),
                                             ),
+
+
                                           ],
                                         ),
+
                                         SizedBox(
                                           width: 10,
                                           child: Text(
                                             offer.description,
                                           ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            SizedBox(
+                                              height: 30,
+                                              width: 80,
+                                              child: ElevatedButton(
+                                                onPressed: ( ){
+
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor: Styles.secondaryColor,
+                                                    side: BorderSide.none,
+                                                    shape: const StadiumBorder()),
+                                                child: const Text(
+                                                  "TEST",
+                                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              width: 80,
+
+                                              child: ElevatedButton(
+                                                onPressed: ( ){},
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor: Styles.secondaryColor,
+                                                    side: BorderSide.none,
+                                                    shape: const StadiumBorder()),
+                                                child: const Text(
+                                                  "VIDEO",
+                                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+
+                                          ],
                                         ),
                                       ],
                                     ),
