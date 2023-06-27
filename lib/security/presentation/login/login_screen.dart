@@ -11,6 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,8 +112,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Styles.secondaryColor,
                               ),
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Styles.secondaryColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
                           ),
                           cursorColor: Styles.secondaryColor,
+                          obscureText: _obscureText,
                         ),
                       ),
                       Padding(
