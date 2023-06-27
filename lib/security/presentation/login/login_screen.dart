@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/security/presentation/login/forgot_password_screen.dart';
 import 'package:teacher_finder/security/presentation/register/new_type_register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -133,7 +134,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: EdgeInsets.only(left: 120),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ForgotPasswordScreen(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
