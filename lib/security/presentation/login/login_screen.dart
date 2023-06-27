@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/security/presentation/register/new_type_register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -166,7 +167,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text('Dont have an account?'),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const NewTypeRegister(),
+                                  ),
+                                );
+                              },
                               child: Text(
                                 'Sign Up',
                                 style: TextStyle(
@@ -183,6 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-        ));
+        )
+    );
   }
 }
