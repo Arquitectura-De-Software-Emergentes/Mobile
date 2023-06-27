@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/security/presentation/register/register_teacher/new_register_teacher.dart';
 import '../../../common/styles/styles.dart';
 
 class NewTypeRegister extends StatelessWidget {
@@ -16,19 +17,19 @@ class NewTypeRegister extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Register',
+              /*Text('Type of Register',
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Styles.secondaryColor,
                 ),
-              ),
-              SizedBox(height: 60),
-              Icon(Icons.account_box_sharp, size: 100),
-              SizedBox(height: 20),
+              ),*/
+              SizedBox(height: 50),
+              Icon(Icons.account_box_sharp, size: 150),
+              SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Styles.primaryColor,
+                  backgroundColor: Styles.secondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -36,6 +37,10 @@ class NewTypeRegister extends StatelessWidget {
                 ),
 
                 onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewRegisterTeacher()),
+                  );
 
               },
                   child: Text('Teacher',style: TextStyle(
@@ -45,9 +50,9 @@ class NewTypeRegister extends StatelessWidget {
                   ),),
 
               ),
-              SizedBox(height: 60),
-              Icon(Icons.account_circle_sharp, size: 100),
-              SizedBox(height: 20),
+              SizedBox(height: 80),
+              Icon(Icons.account_circle_sharp, size: 150),
+              SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Styles.secondaryColor,
