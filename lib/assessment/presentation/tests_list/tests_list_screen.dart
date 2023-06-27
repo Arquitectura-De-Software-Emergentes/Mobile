@@ -80,22 +80,35 @@ class TestsList extends StatelessWidget {
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: ListTile(
-                              tileColor: Colors.green,
-                              leading: Text(
-                                test.title,
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              title: Column(
-                                children: [
-                                  Text('${test.minScore.toString()} min score'),
-                                ],
-                              ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: () {},
-                              ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    ListTile(
+                                      leading: Text(
+                                        test.title,
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      title: Column(
+                                        children: [
+                                          Text(
+                                              '${test.minScore.toString()} min score'),
+                                        ],
+                                      ),
+                                      trailing: IconButton(
+                                        icon: const Icon(Icons.add),
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 10,
+                                  color: Colors.black,
+                                )
+                              ],
                             ),
                           ),
                         );
