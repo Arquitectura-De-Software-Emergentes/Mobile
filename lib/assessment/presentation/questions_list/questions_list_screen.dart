@@ -80,15 +80,16 @@ class QuestionList extends StatelessWidget {
                             child: ListTile(
                               title: Text(
                                   '${question.statement} (${question.points.toString()})'),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(question.options[0].response),
-                                  Text(question.options[1].response),
-                                  Text(question.options[2].response),
-                                  Text(question.options[3].response),
-                                  Text(question.options[4].response),
-                                ],
+                              subtitle: SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  itemCount: question.options.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final option = question.options[index];
+                                    return Text(option.response);
+                                  },
+                                ),
                               ),
                               trailing: IconButton(
                                 onPressed: () {
