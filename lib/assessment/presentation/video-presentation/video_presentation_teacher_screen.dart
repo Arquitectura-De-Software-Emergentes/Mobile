@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/assessment/infrastructure/services/video_presentation_service.dart';
+import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_result.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
 
@@ -70,10 +71,24 @@ class _VideoPresentationTeacherScreenState
                     VideoPresentationService();
                 if (selectedVideoFile != null) {
                   //videoPresentationService.extractText(selectedVideoFile!);
-                  print(await videoPresentationService
-                      .extractText(selectedVideoFile!));
+                  //print(await videoPresentationService
+                  // .extractText(selectedVideoFile!));
+                  print('sent');
+                  print(await videoPresentationService.recommendations1(
+                      await videoPresentationService
+                          .extractText(selectedVideoFile!)));
+                  String result = await videoPresentationService
+                      .recommendations1(await videoPresentationService
+                          .extractText(selectedVideoFile!));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VideoPresentationResult(
+                        result: result,
+                      ),
+                    ),
+                  );
                 } else {
-                  // Manejar la situación cuando no hay un video seleccionado
                   ScaffoldMessenger.of(context)
                       .showSnackBar(successSnackBar)
                       .closed
@@ -83,7 +98,7 @@ class _VideoPresentationTeacherScreenState
                 }
               },
               child: Text(
-                'SEND',
+                'SUBMIT',
                 style: TextStyle(
                     color: Styles.secondaryColor,
                     fontWeight: FontWeight.bold,
