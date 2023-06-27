@@ -1,0 +1,9 @@
+{
+    "conventionalCommits.scopes": [
+        "common",
+        "teacher finder",
+        "offers",
+        "profiles",
+        "assessment"
+    ]
+}

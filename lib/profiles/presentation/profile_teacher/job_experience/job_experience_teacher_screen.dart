@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import '../../common/widgets/custom_app_bar.dart';
-import 'menu_information_screen.dart';
+import '../../../../common/widgets/custom_app_bar.dart';
 
-class ContactInformationTeacherScreen extends StatelessWidget {
-  const ContactInformationTeacherScreen({Key? key}) : super(key: key);
+class JobExperienceTeacherScreen extends StatelessWidget {
+  const JobExperienceTeacherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(
-          title: 'Contact Information',
+          title: 'Job Experience',
         ),
         body: Container(
             padding: const EdgeInsets.all(25),
@@ -18,7 +16,7 @@ class ContactInformationTeacherScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:[
                   ListTile(
-                    title:Text("Phone",style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black)),
+                    title:Text("Company",style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black)),
                     subtitle: TextFormField(
                       initialValue: "Pedrito",
                       style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black),
@@ -27,7 +25,7 @@ class ContactInformationTeacherScreen extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title:Text("Email",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    title:Text("Position",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w500, color: Colors.black)),
                     subtitle: TextFormField(
                       initialValue: "Gonzales",
@@ -37,7 +35,7 @@ class ContactInformationTeacherScreen extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title:Text("Mobile Phone",style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black)),
+                    title:Text("Time",style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black)),
                     subtitle: TextFormField(
                       initialValue: "736658",
                       style: Theme.of(context).textTheme.bodyMedium?.apply(color:Colors.black),
