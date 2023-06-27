@@ -102,7 +102,12 @@ class MyOfferDetail extends StatelessWidget {
                 ),
                 FilledButton(
                   onPressed: () {
-                    //modifyOffer(offer);
+                    // Navigator.push(
+                    // context,
+                    //MaterialPageRoute(
+                    // builder: (context) => CreateTestScreen(),
+                    // ),
+                    //);
                   },
                   style: FilledButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,

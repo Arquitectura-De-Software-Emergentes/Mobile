@@ -7,7 +7,7 @@ import '../../domain/entities/offer.dart';
 import '../models/offer_model.dart';
 
 class OfferRemoteDataProvider {
-  String endpoint = 'job-offers'; //*URL API
+  String endpoint = 'job-offers';
 
   Future<List<OfferModel>> getAllOffers() async {
     try {

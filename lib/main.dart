@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/splash_screen.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/injections.dart';
@@ -10,6 +11,7 @@ import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   offerDependencies();
+  assessmentDependencies();
   HttpOverrides.global = MyHttpOverrides();
 
   runApp(const MyApp());
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: Styles.fontFamily,
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

@@ -3,7 +3,6 @@ import '../../domain/entities/offer.dart';
 import '../data_sources/offer_remote_data_provider.dart';
 
 class OfferRepository extends OfferInterface {
-  String endpoint = 'offers';
   OfferRepository({required this.offerRemoteDataProvider});
   final OfferRemoteDataProvider offerRemoteDataProvider;
 
