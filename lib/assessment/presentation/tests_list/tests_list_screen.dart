@@ -4,16 +4,11 @@ import 'package:teacher_finder/assessment/presentation/create_test/create_test_s
 import 'package:teacher_finder/assessment/presentation/tests_list/bloc/tests_list_bloc.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 
-import '../../../common/styles/styles.dart';
 import '../../domain/entities/test.dart';
-import '../create_question/create_question_screen.dart';
-import '../create_test/widgets/general_information_panel.dart';
-import '../questions_list/bloc/questions_list_bloc.dart';
-import '../questions_list/bloc/questions_list_bloc.dart';
 import '../questions_list/questions_list_screen.dart';
 
 class TestsListScreen extends StatelessWidget {
-  TestsListScreen({super.key});
+  TestsListScreen({Key? key}) : super(key: key);
   final TestsListBloc testsListBloc = TestsListBloc();
 
   @override
@@ -43,9 +38,7 @@ class TestsListScreen extends StatelessWidget {
 }
 
 class TestsList extends StatelessWidget {
-  const TestsList({
-    super.key,
-  });
+  const TestsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +65,13 @@ class TestsList extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => QuestionListScreen(
-                                          test: test,
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => QuestionListScreen(
+                                  test: test,
+                                ),
+                              ),
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -88,13 +83,15 @@ class TestsList extends StatelessWidget {
                                       leading: Text(
                                         test.title,
                                         style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       title: Column(
                                         children: [
                                           Text(
-                                              '${test.minScore.toString()} min score'),
+                                            '${test.minScore.toString()} min score',
+                                          ),
                                         ],
                                       ),
                                       trailing: IconButton(
@@ -104,10 +101,10 @@ class TestsList extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 10,
                                   color: Colors.black,
-                                )
+                                ),
                               ],
                             ),
                           ),

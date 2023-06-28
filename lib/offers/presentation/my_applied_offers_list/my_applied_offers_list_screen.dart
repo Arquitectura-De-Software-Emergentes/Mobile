@@ -1,15 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
+import 'package:teacher_finder/assessment/presentation/test/test_screen.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+import 'package:teacher_finder/offers/domain/entities/offer.dart';
 import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 import 'package:teacher_finder/offers/presentation/my_applied_offers_list/bloc/bloc.dart';
 import '../../../common/styles/styles.dart';
 
-class MyAppliedOffersListScreen extends StatelessWidget {
-  MyAppliedOffersListScreen({Key? key}) : super(key: key);
+class MyAppliedOffersListScreen extends StatefulWidget {
+  const MyAppliedOffersListScreen({Key? key}) : super(key: key);
 
+  @override
+  State<MyAppliedOffersListScreen> createState() =>
+      _MyAppliedOffersListScreenState();
+}
+
+class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
   final bloc = AppliedOffersListBloc();
+
+  Future<void> _showDialog(
+      BuildContext context, int testId, int jobOfferId) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: const Text('Are you sure ?'),
+          actions: [
+            SizedBox(
+              height: 30,
+              width: 90,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TestScreen(
+                                testId: testId,
+                                jobOfferId: jobOfferId,
+                              )));
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.secondaryColor,
+                    side: BorderSide.none,
+                    shape: const StadiumBorder()),
+                child: const Text(
+                  "OK",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+              width: 90,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.secondaryColor,
+                    side: BorderSide.none,
+                    shape: const StadiumBorder()),
+                child: const Text(
+                  "CANCEL",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showDialogError(BuildContext context, String text) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Center(child: Text('There is no $text')),
+          actions: [
+            SizedBox(
+              height: 30,
+              width: 90,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Styles.secondaryColor,
+                    side: BorderSide.none,
+                    shape: const StadiumBorder()),
+                child: const Text(
+                  "OK",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +160,8 @@ class MyAppliedOffersListScreen extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18),
                                             ),
-
-
                                           ],
                                         ),
-
                                         SizedBox(
                                           width: 10,
                                           child: Text(
@@ -76,22 +169,43 @@ class MyAppliedOffersListScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             SizedBox(
                                               height: 30,
                                               width: 80,
                                               child: ElevatedButton(
-                                                onPressed: ( ){
-
+                                                onPressed: () async {
+                                                  final assessmentRemoteDataProvider =
+                                                      AssessmentRemoteDataProvider();
+                                                  final object =
+                                                      await assessmentRemoteDataProvider
+                                                          .getTestByOfferId(
+                                                              offer.jobOfferId);
+                                                  if (object['testId'] != 0) {
+                                                    //mostrar snackbar
+                                                    _showDialog(
+                                                        context,
+                                                        object['testId'],
+                                                        offer.jobOfferId);
+                                                  } else {
+                                                    _showDialogError(
+                                                        context, 'exam');
+                                                  }
                                                 },
                                                 style: ElevatedButton.styleFrom(
-                                                    backgroundColor: Styles.secondaryColor,
+                                                    backgroundColor:
+                                                        Styles.secondaryColor,
                                                     side: BorderSide.none,
-                                                    shape: const StadiumBorder()),
+                                                    shape:
+                                                        const StadiumBorder()),
                                                 child: const Text(
                                                   "TEST",
-                                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                               ),
                                             ),
@@ -101,20 +215,23 @@ class MyAppliedOffersListScreen extends StatelessWidget {
                                             SizedBox(
                                               height: 30,
                                               width: 80,
-
                                               child: ElevatedButton(
-                                                onPressed: ( ){},
+                                                onPressed: () {},
                                                 style: ElevatedButton.styleFrom(
-                                                    backgroundColor: Styles.secondaryColor,
+                                                    backgroundColor:
+                                                        Styles.secondaryColor,
                                                     side: BorderSide.none,
-                                                    shape: const StadiumBorder()),
+                                                    shape:
+                                                        const StadiumBorder()),
                                                 child: const Text(
                                                   "VIDEO",
-                                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ],

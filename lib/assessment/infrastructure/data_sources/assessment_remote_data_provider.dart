@@ -13,7 +13,7 @@ class AssessmentRemoteDataProvider {
   Future<List<Test>> getAllTestsByRecruiterId(int recruiterId) async {
     try {
       final response = await http.get(Uri.parse(
-          '${ApiConfig.baseUrl}/$endpoint/recuiter/$recruiterId/tests?recuiterId=$recruiterId'));
+          '${ApiConfig.baseUrl}/$endpoint/recruiter/$recruiterId/tests?recruiterId=$recruiterId'));
       if (response.statusCode == 200) {
         final List<TestModel> tests = TestModel.toTestList(response.body);
         return tests;
@@ -105,20 +105,56 @@ class AssessmentRemoteDataProvider {
     }
   }
 
-  Future<Test> getTestByOfferId(int offerId) async {
+  Future<Map<String, dynamic>> getTestByOfferId(int offerId) async {
     try {
+      //http://teacher-finder.up.railway.app/api/v1/assessments/1?jobOfferId=1
       final response = await http.get(Uri.parse(
-          '${ApiConfig.baseUrl}/$endpoint/$offerId/tests?assessmentId=$offerId'));
+          '${ApiConfig.baseUrl}/$endpoint/$offerId?jobOfferId=$offerId'));
 
       if (response.statusCode == 200) {
-        final Test test = TestModel.toTest(response.body);
-        return test;
+        final assessmentInfo = jsonDecode(response.body);
+        return assessmentInfo;
       } else {
         print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
       print(error);
+      throw Exception(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> submitTest(
+      List<Question> questions, int jobOfferId, int applicantId) async {
+//  'http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/tests/applicant/{applicantId}/submit?jobOfferId=1&applicantId=1' \
+
+    try {
+      final headers = {'Content-Type': 'application/json'};
+      List<Map<String, dynamic>> requestBody = questions.map((question) {
+        return {
+          "id": question.id,
+          "statement": question.statement,
+          "options": question.options.map((option) {
+            return {
+              "id": option.id,
+              "response": option.response,
+            };
+          }).toList(),
+          "responseId": question.responseId,
+          "points": question.points,
+        };
+      }).toList();
+
+      final response = await http.post(
+        Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/tests/applicant/$applicantId/submit?jobOfferId=$jobOfferId&applicantId=$applicantId',
+        ),
+        headers: headers,
+        body: json.encode(requestBody), // Convertir el cuerpo a JSON
+      );
+      print(response.body);
+      return jsonDecode(response.body);
+    } catch (error) {
       throw Exception(error);
     }
   }
