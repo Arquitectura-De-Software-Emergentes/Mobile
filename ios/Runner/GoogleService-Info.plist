@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>688913906347-mrofhdvurho1dnsos5gt7s1vr6kfdn0t.apps.googleusercontent.com</string>
+	<string>688913906347-ethrskm7uopn9523iljjorm4hcb2g0cv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.688913906347-mrofhdvurho1dnsos5gt7s1vr6kfdn0t</string>
+	<string>com.googleusercontent.apps.688913906347-ethrskm7uopn9523iljjorm4hcb2g0cv</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBrjeqWoLJc228hxAahUYuQfOT4WGtNdhQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.techtitans.teacherfinder</string>
+	<string>com.yadux.teacher-finder</string>
 	<key>PROJECT_ID</key>
 	<string>teacher-finder-6e1e2</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:688913906347:ios:abd971a10ca363214455ee</string>
+	<string>1:688913906347:ios:c87badbd335716284455ee</string>
 </dict>
 </plist>
