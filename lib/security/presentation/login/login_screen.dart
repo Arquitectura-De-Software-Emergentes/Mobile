@@ -28,7 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.people_rounded, size: 100),
+                  Container(
+                    width: 200,
+                    height: 120,
+                    child: Image(
+                      image:AssetImage('assets/icon/iconTF.png'),
+                      fit:BoxFit.contain,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 20),
