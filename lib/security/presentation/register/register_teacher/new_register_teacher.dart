@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/security/presentation/login/login_screen.dart';
 
 class NewRegisterTeacher extends StatefulWidget {
   const NewRegisterTeacher({super.key});
@@ -9,6 +11,8 @@ class NewRegisterTeacher extends StatefulWidget {
 }
 
 class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
+  bool _obsureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,7 +69,7 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Email',
+                              'Username',
                               style: TextStyle(
                                 color: Styles.secondaryColor,
                                 fontSize: 16,
@@ -99,9 +103,160 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                           ),
                           cursorColor: Styles.secondaryColor,
                         ),
-
-
-                      )
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Password',
+                              style: TextStyle(
+                                color: Styles.secondaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(vertical: 0,horizontal: 30),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(20),
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(
+                                color: Styles.secondaryColor,
+                              ),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _obsureText = !_obsureText;
+                                });
+                              },
+                              icon: Icon(
+                                _obsureText ? Icons.visibility : Icons.visibility_off,
+                                color: Styles.secondaryColor,
+                              ),
+                            ),
+                          ),
+                          cursorColor: Styles.secondaryColor,
+                          obscureText: _obsureText,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'CV',
+                              style: TextStyle(
+                                color: Styles.secondaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding:
+                        EdgeInsets.symmetric(vertical: 0,horizontal: 30),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(20),
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(
+                                color: Styles.secondaryColor,
+                              ),
+                            ),
+                          ),
+                          cursorColor: Styles.secondaryColor,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Styles.secondaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+                        ),
+                        child: Container(
+                          width: 200,
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Already have an account?'),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Styles.primaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ])
 
                     ],
                   ),
