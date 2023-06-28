@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/interviews/presentation/upload_video_teacher_screen.dart';
+import 'package:teacher_finder/assessment/presentation/test/test_screen.dart';
+import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_teacher_screen.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/offers/presentation/my_applied_offers_list/my_applied_offers_list_screen.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
 import 'package:teacher_finder/security/presentation/login/login_screen.dart';
@@ -42,10 +44,16 @@ class CustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
-              drawerOption(context, 'Test', TestsListScreen(), Icons.border_color),
+
+              drawerOption(context, 'Applied Offers', MyAppliedOffersListScreen(), Icons.home),
+              drawerOption(context, 'Test', TestsListScreen(), Icons.list),
+              drawerOption(
+                  context, 'Test(teacher)', TestScreen(), Icons.library_add),
+
               drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
-              drawerOption(context, 'Video', UploadVideoTeacherScreen(), Icons.video_call),
+              drawerOption(context, 'Video',
+                  const VideoPresentationTeacherScreen(), Icons.video_call),
               Divider(
                 color: Colors.white.withOpacity(0.5),
                 height: 10,

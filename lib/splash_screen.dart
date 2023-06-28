@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 
-import 'main.dart';
 import 'security/presentation/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
