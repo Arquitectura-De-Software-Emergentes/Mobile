@@ -32,7 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.tag_faces, size: 250),
+              Container(
+                width: 300,
+                height: 300,
+                  child: Image(image: AssetImage('assets/icon/iconTF.png'))),
               SizedBox(height: 40),
               CircularProgressIndicator(
                 color: Styles.secondaryColor,
