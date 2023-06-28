@@ -40,7 +40,7 @@ class QuestionsListBloc extends Bloc<QuestionsListEvent, QuestionsListState> {
     try {
       final List<Question> currentList = state.questions;
       final List<Question> updatedList = List<Question>.from(currentList);
-
+      print('testIdddd: ${event.testId}');
       await assessmentRepository.createQuestion(event.question, event.testId);
       updatedList.add(event.question);
       emit(state.copyWith(

@@ -31,4 +31,8 @@ class AssessmentRepository extends AssessmentInterface {
   Future<void> createQuestion(Question question, int testId) async {
     await assessmentRemoteDataProvider.createQuestion(question, testId);
   }
+
+  Future<Object> getTestByOfferId(int offerId) async {
+    return await assessmentRemoteDataProvider.getTestByOfferId(offerId);
+  }
 }

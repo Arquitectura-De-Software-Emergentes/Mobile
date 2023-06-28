@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/assessment/domain/entities/option.dart';
@@ -83,6 +85,7 @@ class _CreateQuestionFormState extends State<CreateQuestionForm> {
               maxLines: 3,
             ),
             AlternativesList(
+              createQuestionBloc: createQuestionBloc,
               onCorrectAlternativeSelected: handleCorrectAlternativeSelected,
             ),
             ElevatedButton(
@@ -121,14 +124,7 @@ class _CreateQuestionFormState extends State<CreateQuestionForm> {
                   responseId: 1,
                 );
 
-                print(question);
-                print('Selected Correct Alternative: $correctAlternative');
-                print('Question Statement: ${question.statement}');
-                print('Options:');
-                for (var option in question.options) {
-                  print(
-                      'Response: ${option.response}, Is Correct: ${option.isCorrect}');
-                }
+                print((question.options[0].isCorrect));
                 widget.questionsListBloc.addQuestion(question, widget.test.id);
                 Navigator.pop(context);
               },

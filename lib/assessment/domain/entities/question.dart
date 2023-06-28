@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:teacher_finder/assessment/infrastructure/models/question_model.dart';
-
 import 'option.dart';
 
 class Question {
