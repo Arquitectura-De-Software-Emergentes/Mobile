@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/security/presentation/login/forgot_password_screen.dart';
 import 'package:teacher_finder/security/presentation/register/new_type_register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             EdgeInsets.symmetric(vertical: 0, horizontal: 30),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'email',
+                            hintText: 'Username',
                             prefixIcon: Icon(
                               Icons.person,
                               color: Styles.secondaryColor,
@@ -110,14 +113,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Styles.secondaryColor,
                               ),
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Styles.secondaryColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
                           ),
                           cursorColor: Styles.secondaryColor,
+                          obscureText: _obscureText,
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 120),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ForgotPasswordScreen(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
