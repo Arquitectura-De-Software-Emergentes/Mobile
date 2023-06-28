@@ -4,8 +4,10 @@ import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/security/presentation/login/forgot_password_screen.dart';
 import 'package:teacher_finder/security/presentation/register/new_type_register_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth.dart';
+import '../../application/auth_service.dart';
+import '../../domain/entities/enums/user_role.dart';
 import 'bloc/login_screen_bloc.dart';
+import 'bloc/login_screen_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -265,14 +267,29 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final currentState = _loginBloc.state;
       if (currentState is AuthenticatedState) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomePage(),
-          ),
-        );
+        var user = currentState.user;
+        switch (user.role) {
+          case UserType.applicant:
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            );
+          case UserType.recruiter:
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            );
+        }
       } else if (currentState is UnauthenticatedState) {
-        // setup alert
+        const snackBar = SnackBar(
+          content: Text('Please check your credentials and try again'),
+          backgroundColor: Colors.redAccent,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
   }
