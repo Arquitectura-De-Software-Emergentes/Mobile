@@ -79,26 +79,51 @@ class TestsList extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    ListTile(
-                                      leading: Text(
-                                        test.title,
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      title: Column(
-                                        children: [
-                                          Text(
-                                            '${test.minScore.toString()} min score',
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionListScreen(
+                                              test: test,
+                                            ),
                                           ),
-                                        ],
+                                        );
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Icon(Icons.list_alt),
+                                              Text(
+                                                test.title,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            QuestionListScreen(
+                                                          test: test,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Text('ADD QUESTIONS'))
+                                            ]),
                                       ),
-                                      trailing: IconButton(
-                                        icon: const Icon(Icons.add),
-                                        onPressed: () {},
-                                      ),
-                                    ),
+                                    )
                                   ],
                                 ),
                                 const Divider(

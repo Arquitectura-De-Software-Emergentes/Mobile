@@ -56,33 +56,33 @@ class AssessmentRemoteDataProvider {
   Future<void> createQuestion(Question question, int testId) async {
     try {
       final headers = {'Content-Type': 'application/json'};
-      final temp = {
+      final body = {
         "statement": question.statement,
-        "options": [
-          {"response": question.options[0].response, "isCorrect": false},
-          {"response": question.options[1].response, "isCorrect": false},
-          {"response": question.options[2].response, "isCorrect": false},
-          {"response": question.options[3].response, "isCorrect": true},
-          {"response": question.options[4].response, "isCorrect": false}
-        ],
-        "points": 2
+        "options": question.options.map((option) {
+          return {
+            "response": option.response,
+            "isCorrect": option.isCorrect,
+          };
+        }).toList(),
+        "points": question.points,
       };
-      //'http://teacher-finder.up.railway.app/api/v1/assessments/tests/{testId}/questions?testId=1' \
-
+      print(body);
+//https://teacher-finder.up.railway.app/api/v1/assessments/tests/3/questions?testId=3
       final response = await http.post(
         Uri.parse(
             '${ApiConfig.baseUrl}/$endpoint/tests/$testId/questions?testId=$testId'),
         headers: headers,
-        body: jsonEncode(temp),
+        body: jsonEncode(body),
       );
+
       if (response.statusCode == 200) {
-        print('success');
+        print('Success');
       } else {
         print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
-      print('error:$error');
+      print('Error: $error');
       throw Exception(error);
     }
   }
