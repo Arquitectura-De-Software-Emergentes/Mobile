@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:teacher_finder/security/domain/applicant_model.dart';
-import 'package:teacher_finder/security/infrastucture/models/applicant/register_applicant_cv_model.dart';
+import 'package:teacher_finder/security/infrastructure/models/register_applicant_cv_model.dart';
 
 
 class RegisterApplicantModel extends Applicant{

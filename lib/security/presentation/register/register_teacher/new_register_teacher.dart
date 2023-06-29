@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
-import 'package:teacher_finder/security/infrastucture/data_sources/register_applicant_remove_data_provider.dart';
-import 'package:teacher_finder/security/infrastucture/models/applicant/register_applicant_model.dart';
+import 'package:teacher_finder/security/infrastructure/data_sources/register_applicant_remove_data_provider.dart';
+import 'package:teacher_finder/security/infrastructure/models/register_applicant_model.dart';
 import 'package:teacher_finder/security/presentation/login/login_screen.dart';
 
-import '../../../infrastucture/models/applicant/register_applicant_cv_model.dart';
+import '../../../infrastructure/models/register_applicant_cv_model.dart';
 
 class NewRegisterTeacher extends StatefulWidget {
   final String? username;
@@ -26,16 +26,6 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _cvController = TextEditingController();
 
-  Future<RegisterApplicantModel> postRegisterApplicant() async {
-    final registerApplicantModel = RegisterApplicantModel(
-      username: _usernameController.text,
-      password: _passwordController.text,
-      cv: ApplicantCvModel(cv: _cvController.text),
-      role: "APPLICANT",
-    );
-
-    return RegisterApplicantRemoveDataProvider().postRegisterApplicant(registerApplicantModel);
-  }
   @override
   void initState() {
     super.initState();
@@ -250,8 +240,10 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                         SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () async {
-                            final result= await postRegisterApplicant();
-                            print(result);
+                            final registerApplicantRemoveDataProvider=RegisterApplicantRemoveDataProvider();
+                            registerApplicantRemoveDataProvider.postRegisterApplicant(_usernameController.text,_passwordController.text);
+                            //final result= await postRegisterApplicant();
+                            //print(result);
 
                             Navigator.push(
                               context,
