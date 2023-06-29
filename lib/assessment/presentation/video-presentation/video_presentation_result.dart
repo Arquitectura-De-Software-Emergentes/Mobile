@@ -86,40 +86,6 @@ class _VideoPresentationResultState extends State<VideoPresentationResult> {
           const SizedBox(
             height: 10,
           ),
-          Container(
-            constraints: const BoxConstraints.tightFor(width: 230, height: 40),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Styles.secondaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-              onPressed: () async {},
-              child: const Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.home,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      'Submit a new video',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );

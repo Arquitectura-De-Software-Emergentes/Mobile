@@ -19,85 +19,87 @@ class ProfileTeacherScreen extends StatelessWidget {
     return Scaffold(
         appBar: const CustomAppBar(title: 'Profile'),
         body: FutureBuilder<ProfileTeacherModel>(
-          future: ProfileTeacherRemoveDataProvider().getProfileTeacherById(1),
-          builder: (context,snapshot){
-            final nameController = TextEditingController(
-                text: snapshot.data?.personalInformation.name.toString());
-            final lastNameController = TextEditingController(
-                text: snapshot.data?.personalInformation.lastname.toString());
+            future: ProfileTeacherRemoveDataProvider().getProfileTeacherById(1),
+            builder: (context, snapshot) {
+              final nameController = TextEditingController(
+                  text: snapshot.data?.personalInformation.name.toString());
+              final lastNameController = TextEditingController(
+                  text: snapshot.data?.personalInformation.lastname.toString());
 
-            return Container(
-              padding: const EdgeInsets.all(25),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
+              return Container(
+                padding: const EdgeInsets.all(25),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        width: 160,
+                        height: 160,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.black,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(nameController.text + " " + lastNameController.text,
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.w600, color: Colors.black)),
-                    const SizedBox(height: 40),
-                    menuProfile(
-                      title: "Personal Information",
-                      icon: LineAwesomeIcons.user,
-                      onPress: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const InfomationPersonalTeacherScreen()),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 15),
-                    menuProfile(
-                        title: "Academic Information",
-                        icon: LineAwesomeIcons.book,
+                      const SizedBox(height: 20),
+                      Text(nameController.text + " " + lastNameController.text,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black)),
+                      const SizedBox(height: 40),
+                      menuProfile(
+                        title: "Personal Information",
+                        icon: LineAwesomeIcons.user,
                         onPress: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const AcademicInformationTeacher()),
+                                    const InfomationPersonalTeacherScreen()),
                           );
-                        }),
-                    const SizedBox(height: 15),
-                    menuProfile(
-                        title: "Contact Information",
-                        icon: LineAwesomeIcons.phone,
-                        onPress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ContactInformationTeacherScreen()),
-                          );
-                        }),
-                    const SizedBox(height: 15),
-                    menuProfile(
-                        title: "Job Experience",
-                        icon: LineAwesomeIcons.file,
-                        onPress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const JobExperienceTeacherScreen()),
-                          );
-                        }),
-
-                  ],
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      menuProfile(
+                          title: "Academic Information",
+                          icon: LineAwesomeIcons.book,
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AcademicInformationTeacher()),
+                            );
+                          }),
+                      const SizedBox(height: 15),
+                      menuProfile(
+                          title: "Contact Information",
+                          icon: LineAwesomeIcons.phone,
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ContactInformationTeacherScreen()),
+                            );
+                          }),
+                      const SizedBox(height: 15),
+                      menuProfile(
+                          title: "Job Experience",
+                          icon: LineAwesomeIcons.file,
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const JobExperienceTeacherScreen()),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }
-        ));
+              );
+            }));
   }
 }
 
@@ -146,5 +148,3 @@ class menuProfile extends StatelessWidget {
     );
   }
 }
-
-

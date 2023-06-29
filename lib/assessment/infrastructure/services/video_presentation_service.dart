@@ -4,7 +4,7 @@ import 'package:dart_openai/dart_openai.dart';
 import 'package:http/http.dart' as http;
 
 class VideoPresentationService {
-  final apiKey = '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';
+  final apiKey = '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';
 
   Future<String> extractText(File file) async {
     const apiUrl = 'https://api.openai.com/v1/audio/transcriptions';

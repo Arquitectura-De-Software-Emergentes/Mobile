@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/common/widgets/error_handler.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
-import '../../../common/widgets/custom_drawer.dart';
+import '../../../common/widgets/recruiter_custom_drawer.dart';
 import '../../domain/entities/offer.dart';
 import '../new_offer/new_offer_screen.dart';
 import 'bloc/my_offers_list_bloc.dart';
@@ -18,7 +19,7 @@ class MyOffersListScreen extends StatelessWidget {
     return BlocProvider<MyOffersListBloc>(
       create: (context) => myOffersListBloc,
       child: Scaffold(
-        drawer: const CustomDrawer(),
+        drawer: const RecruiterCustomDrawer(),
         appBar: const CustomAppBar(
           title: 'Home',
         ),
@@ -97,7 +98,7 @@ class MyOffersList extends StatelessWidget {
                   },
                 );
               } else if (state.status == MyOffersListStatus.error) {
-                return Center(child: Text(state.errorMessage));
+                return ErrorHandler(errorMessage: state.errorMessage);
               }
 
               return Container();
