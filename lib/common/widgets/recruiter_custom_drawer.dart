@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/profiles/presentation/profile_recruiter/profile_recruiter_screen.dart';
 
 import '../../assessment/presentation/tests_list/tests_list_screen.dart';
 import '../../offers/presentation/my_offers_list/my_offers_list_screen.dart';
@@ -40,7 +41,7 @@ class RecruiterCustomDrawer extends StatelessWidget {
             children: [
               drawerOption(context, 'Home', MyOffersListScreen(), Icons.home),
               drawerOption(context, 'Test', TestsListScreen(), Icons.list),
-              drawerOption(context, 'Profile', const ProfileTeacherScreen(),
+              drawerOption(context, 'Profile', ProfileRecruiterScreen(),
                   Icons.person),
               Divider(
                 color: Colors.white.withOpacity(0.5),
