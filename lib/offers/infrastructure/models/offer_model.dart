@@ -13,7 +13,7 @@ class OfferModel extends Offer {
       required int recruiterId,
       required String title,
       required String description,
-      required DateTime initialDate,
+      DateTime? initialDate,
       required DateTime endDate,
       required Salary salary,
       required int maxApplications,
@@ -35,18 +35,20 @@ class OfferModel extends Offer {
 
   factory OfferModel.fromJson(Map<String, dynamic> json) {
     return OfferModel(
-        id: json['id'],
-        recruiterId: json['recruiterId'],
-        title: json['title'],
-        description: json['description'],
-        initialDate: DateTime.parse(json['initialDate']),
-        endDate: DateTime.parse(json['endDate']),
-        salary: SalaryModel.fromJson(json['salary']),
-        maxApplications: json['maxApplications'] ?? 0,
-        numberApplications: json['numberApplications'],
-        availability: Availability.parseAvailability(json['availability']),
-        positionProfile:
-            PositionProfileModel.fromJson(json['positionProfile']));
+      id: json['id'],
+      recruiterId: json['recruiterId'],
+      title: json['title'],
+      description: json['description'],
+      initialDate: json['initialDate'] != null
+          ? DateTime.parse(json['initialDate'])
+          : null,
+      endDate: DateTime.parse(json['endDate']),
+      salary: SalaryModel.fromJson(json['salary']),
+      maxApplications: json['maxApplications'] ?? 0,
+      numberApplications: json['numberApplications'],
+      availability: Availability.parseAvailability(json['availability']),
+      positionProfile: PositionProfileModel.fromJson(json['positionProfile']),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -55,7 +57,7 @@ class OfferModel extends Offer {
       'recruiterId': recruiterId,
       'title': title,
       'description': description,
-      'initialDate': initialDate.toIso8601String(),
+      'initialDate': initialDate?.toIso8601String(),
       'endDate': endDate.toIso8601String(),
       'salary': salary,
       'maxApplications': maxApplications,

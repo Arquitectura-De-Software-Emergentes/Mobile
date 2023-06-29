@@ -7,7 +7,7 @@ class Offer {
   final int recruiterId;
   final String title;
   final String description;
-  final DateTime initialDate;
+  final DateTime? initialDate;
   final DateTime endDate;
   final Salary salary;
   final int maxApplications;
@@ -20,7 +20,7 @@ class Offer {
     required this.recruiterId,
     required this.title,
     required this.description,
-    required this.initialDate,
+    this.initialDate,
     required this.endDate,
     required this.salary,
     required this.maxApplications,

@@ -63,7 +63,7 @@ class MyOfferCard extends StatelessWidget {
                                   color: Colors.grey,
                                 ),
                                 Text(
-                                  'From: ${offer.initialDate.day}/${offer.initialDate.month}/${offer.initialDate.year} to ${offer.endDate.day}/${offer.endDate.month}/${offer.endDate.year}',
+                                  'From: ${offer.initialDate?.day}/${offer.initialDate?.month}/${offer.initialDate?.year} to ${offer.endDate.day}/${offer.endDate.month}/${offer.endDate.year}',
                                   style: const TextStyle(
                                       fontSize: 15, color: Colors.grey),
                                 ),

@@ -22,7 +22,7 @@ class AppliedOffersListBloc
       status: OffersListStatus.loading,
     ));
     try {
-      final offers = await offerRepository.getAllAppliedOffers('2');
+      final offers = await offerRepository.getAllAppliedOffers('6');
 
       return emit(state.copyWith(
         status: OffersListStatus.success,
