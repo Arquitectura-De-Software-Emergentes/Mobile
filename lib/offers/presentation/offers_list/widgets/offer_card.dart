@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/offers/domain/entities/offer.dart';
-
 import '../../../../../../common/styles/styles.dart';
 
 class OfferCard extends StatelessWidget {
@@ -69,12 +68,12 @@ class OfferCard extends StatelessWidget {
                       Text(
                         hoursOrDays(),
                         style:
-                            const TextStyle(fontSize: 15, color: Colors.grey),
+                            const TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       Text(
-                        'Only ${offer.maxApplications - offer.numberApplications} applications available',
+                        '${offer.maxApplications - offer.numberApplications} applications available',
                         style:
-                            const TextStyle(fontSize: 15, color: Colors.grey),
+                            const TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                     ],
                   ),
