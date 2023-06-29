@@ -61,19 +61,6 @@ class _CreateTestScreenState extends State<CreateTestScreen>
               GeneralInformationPanel(
                 testsListBloc: widget.testsListBloc,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  final Test test = Test(
-                      id: 1,
-                      title: 'test 7',
-                      numQuestions: 20,
-                      minScore: 13,
-                      questions: []);
-                  widget.testsListBloc.addTest(test);
-                  Navigator.pop(context);
-                },
-                child: const Text('Borrame'),
-              )
             ],
           ),
         ),
