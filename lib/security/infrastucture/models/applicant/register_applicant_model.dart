@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:teacher_finder/security/domain/applicant_model.dart';
 import 'package:teacher_finder/security/infrastucture/models/applicant/register_applicant_cv_model.dart';
@@ -7,13 +6,15 @@ import 'package:teacher_finder/security/infrastucture/models/applicant/register_
 
 class RegisterApplicantModel extends Applicant{
   RegisterApplicantModel({
-    required int userId,
+     int? userId,
+    required String password,
     required String username,
     required ApplicantCvModel cv,
     required String role,
   }) : super(
-          userId: userId,
+          userId: userId ?? 0,
           username: username,
+          password: password,
           cv: cv,
           role: role,
         );
@@ -21,6 +22,7 @@ class RegisterApplicantModel extends Applicant{
   factory RegisterApplicantModel.fromJson(Map<String, dynamic> json) {
     return RegisterApplicantModel(
       userId: json['userId'],
+      password: json['password'],
       username: json['username'],
       cv: ApplicantCvModel.fromJson(json['cv']),
       role: json['role'],
@@ -31,7 +33,8 @@ class RegisterApplicantModel extends Applicant{
     return {
       'userId': userId,
       'username': username,
-      'cv': cv,
+      'password': password,
+      'cv': cv.toJson(),
       'role': role,
     };
   }

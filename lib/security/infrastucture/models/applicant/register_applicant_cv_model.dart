@@ -12,4 +12,8 @@ class ApplicantCvModel extends Cv{
       cv: json['cv'],
     );
   }
+  @override
+  Map<String,dynamic> toJson(){
+    return super.toJson();
+  }
 }
