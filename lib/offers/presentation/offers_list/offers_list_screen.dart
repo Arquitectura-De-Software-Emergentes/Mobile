@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/common/widgets/error_handler.dart';
@@ -21,7 +22,7 @@ class OffersListScreen extends StatelessWidget {
     return BlocProvider<OffersListBloc>(
       create: (BuildContext context) => bloc..getAllOffers(),
       child: Scaffold(
-        drawer: const CustomDrawer(),
+        drawer: const ApplicantCustomDrawer(),
         appBar: const CustomAppBar(
           title: 'Home',
         ),
