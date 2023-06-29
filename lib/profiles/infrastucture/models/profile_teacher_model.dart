@@ -11,21 +11,27 @@ class ProfileTeacherModel extends ProfileTeacher {
     required AcademicInformationTeacherModel academicInformation,
     required ContactInformationTeacherModel contactInformation,
     required PersonalInformationTeacherModel personalInformation,
-    required List<JobExperienceInformationTeacherModel> jobExperienceInformations,
+    required List<JobExperienceInformationTeacherModel>
+        jobExperienceInformations,
   }) : super(
-    academicInformation: academicInformation,
-    contactInformation: contactInformation,
-    personalInformation: personalInformation,
-    jobExperienceInformations: jobExperienceInformations,
-  );
+          academicInformation: academicInformation,
+          contactInformation: contactInformation,
+          personalInformation: personalInformation,
+          jobExperienceInformations: jobExperienceInformations,
+        );
 
   factory ProfileTeacherModel.fromJson(Map<String, dynamic> json) {
     return ProfileTeacherModel(
-      academicInformation: AcademicInformationTeacherModel.fromJson(json['academicInformation']),
-      contactInformation: ContactInformationTeacherModel.fromJson(json['contactInformation']),
-      personalInformation: PersonalInformationTeacherModel.fromJson(json['personalInformation']),
-      jobExperienceInformations: List<JobExperienceInformationTeacherModel>.from(
-        json['jobExperienceInformations'].map((e) => JobExperienceInformationTeacherModel.fromJson(e)),
+      academicInformation:
+          AcademicInformationTeacherModel.fromJson(json['academicInformation']),
+      contactInformation:
+          ContactInformationTeacherModel.fromJson(json['contactInformation']),
+      personalInformation:
+          PersonalInformationTeacherModel.fromJson(json['personalInformation']),
+      jobExperienceInformations:
+          List<JobExperienceInformationTeacherModel>.from(
+        json['jobExperienceInformations']
+            .map((e) => JobExperienceInformationTeacherModel.fromJson(e)),
       ),
     );
   }
@@ -35,7 +41,8 @@ class ProfileTeacherModel extends ProfileTeacher {
       'academicInformation': academicInformation,
       'contactInformation': contactInformation,
       'personalInformation': personalInformation,
-      'jobExperienceInformations': jobExperienceInformations.map((e) => e).toList(),
+      'jobExperienceInformations':
+          jobExperienceInformations.map((e) => e).toList(),
     };
   }
 

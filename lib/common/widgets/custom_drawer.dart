@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_teacher_screen.dart';
+import 'package:teacher_finder/offers/presentation/my_applied_offers_list/my_applied_offers_list_screen.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
-import 'package:teacher_finder/profiles/presentation/profile_teacher_screen.dart';
+import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
+import 'package:teacher_finder/security/presentation/login/login_screen.dart';
 
+import '../../assessment/presentation/tests_list/tests_list_screen.dart';
 import '../styles/styles.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -14,10 +18,10 @@ class CustomDrawer extends StatelessWidget {
   Widget drawerOption(
       BuildContext context, String title, Widget widget, IconData icon) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(icon, color: Styles.secondaryColor),
       title: Text(title,
           style: const TextStyle(
-            color: Colors.black,
+            color: const Color(0xFF171740),
             fontWeight: FontWeight.bold,
             fontSize: 17,
           )),
@@ -37,16 +41,14 @@ class CustomDrawer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              drawerOption(
-                  context, 'Home', const OffersListScreen(), Icons.home),
-              /*drawerOption(context, 'Interviews', const ProfileTeacherSreen(),
-                  Icons.event_available),
-              drawerOption(context, 'Assesments', const ProfileTeacherSreen(),
-                  Icons.book_outlined),
-              drawerOption(context, 'Notifications',
-                  const ProfileTeacherSreen(), Icons.notifications),*/
-              drawerOption(context, 'Profile', const ProfileTeacherSreen(),
+              drawerOption(context, 'Home', OffersListScreen(), Icons.home),
+              drawerOption(context, 'Applied Offers',
+                  MyAppliedOffersListScreen(), Icons.home),
+              drawerOption(context, 'Test', TestsListScreen(), Icons.list),
+              drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
+              drawerOption(context, 'Video',
+                  const VideoPresentationTeacherScreen(), Icons.video_call),
               Divider(
                 color: Colors.white.withOpacity(0.5),
                 height: 10,
@@ -54,8 +56,8 @@ class CustomDrawer extends StatelessWidget {
                 indent: 30,
                 endIndent: 30,
               ),
-              drawerOption(context, 'Sign out', const ProfileTeacherSreen(),
-                  Icons.logout),
+              drawerOption(
+                  context, 'Sign out', const LoginScreen(), Icons.logout),
             ],
           )),
     );

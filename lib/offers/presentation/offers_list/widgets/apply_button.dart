@@ -9,42 +9,14 @@ class ApplyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FilledButton(
       onPressed: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Align(
-                  alignment: Alignment.center, child: Text('Are you sure?')),
-              actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FilledButton(
-                      style:
-                          FilledButton.styleFrom(backgroundColor: Styles.error),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child:
-                          Text('Cancel', style: TextStyle(color: Styles.white)),
-                    ),
-                    FilledButton(
-                      style: FilledButton.styleFrom(
-                          backgroundColor: Styles.secondaryColor),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(color: Styles.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
+        Navigator.pop(context);
+        const snackBar = SnackBar(
+          content: Text(
+            'You\'ve successfully applied to this job.',
+          ),
+          backgroundColor: Colors.green,
         );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
       style: FilledButton.styleFrom(
         backgroundColor: Styles.secondaryColor,

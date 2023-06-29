@@ -16,3 +16,5 @@ class AddMyOffer extends MyOffersListEvent {
 
   const AddMyOffer(this.offer);
 }
+
+class LoadAllTestAvailable extends MyOffersListEvent {}
