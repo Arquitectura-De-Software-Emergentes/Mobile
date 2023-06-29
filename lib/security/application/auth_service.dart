@@ -41,8 +41,7 @@ class AuthImplementation extends BaseAuth {
         var decodedJson = json.decode(response.body).cast<String, dynamic>();
         var user = LoginModel.fromJson(decodedJson);
         var loginManager = SharedPreferenceService();
-        loginManager.saveUserInfo(user.userId, user.username, user.role);
-        var haha = await loginManager.getUserInfo();
+        await loginManager.saveUserInfo(user.userId, user.username, user.role);
         return true;
       } else {
         return false;

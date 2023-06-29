@@ -15,7 +15,7 @@ class SharedPreferenceService {
     var _prefs = await SharedPreferences.getInstance();
     await _prefs?.setInt('id', id);
     await _prefs?.setString('username', name);
-    await _prefs?.setString('role', name);
+    await _prefs?.setString('role', role);
     await _prefs.setBool('logged', true);
     return true;
   }
