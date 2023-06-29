@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/offers/presentation/my_offers_list/my_offers_list_screen.dart';
 import 'package:teacher_finder/security/infrastructure/data_sources/register_recruiter_remove_data_provider.dart';
 import 'package:teacher_finder/security/infrastructure/models/register_recruiter_model.dart';
 
@@ -224,7 +225,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => MyOffersListScreen(),
                           ),
                         );
                       },

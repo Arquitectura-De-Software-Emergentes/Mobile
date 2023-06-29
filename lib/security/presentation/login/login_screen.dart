@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/offers/presentation/my_offers_list/my_offers_list_screen.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/security/presentation/login/forgot_password_screen.dart';
 import 'package:teacher_finder/security/presentation/register/new_type_register_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -268,14 +270,15 @@ class _LoginScreenState extends State<LoginScreen> {
       final currentState = _loginBloc.state;
       if (currentState is AuthenticatedState) {
         var user = currentState.user;
+        print(user.role);
         switch (user.role) {
           case UserType.applicant:
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (context) => const HomePage(),
+              builder: (context) => OffersListScreen(),
             ), (route) => false);
           case UserType.recruiter:
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (context) => const HomePage(),
+              builder: (context) => MyOffersListScreen(),
             ), (route) => false);
         }
       } else if (currentState is UnauthenticatedState) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
+import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/security/infrastructure/data_sources/register_applicant_remove_data_provider.dart';
 import 'package:teacher_finder/security/infrastructure/models/register_applicant_model.dart';
 import 'package:teacher_finder/security/presentation/login/login_screen.dart';
@@ -248,7 +249,7 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                                builder: (context) => OffersListScreen(),
                               ),
                             );
                           },
