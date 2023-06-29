@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/profiles/infrastucture/data_sources/profile_recruiter_remove_data_provider.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
 
@@ -12,6 +13,14 @@ class ProfileRecruiterScreen extends StatefulWidget {
 
 class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
   bool isEditing= false;
+  final _profileDataProvider= ProfileRecruiterRemoveDataProvider();
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController webPageController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +71,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   ],
                 ),
                 child: TextField(
+                 controller: nameController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -101,6 +111,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   ],
                 ),
                 child: TextField(
+                  controller: descriptionController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -139,6 +150,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   ],
                 ),
                 child: TextField(
+                  controller: webPageController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -177,6 +189,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   ],
                 ),
                 child: TextField(
+                  controller: phoneNumberController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -215,6 +228,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   ],
                 ),
                 child: TextField(
+                  controller: addressController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -230,10 +244,30 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
               Container(
                 width: 150,
                 height: 50,
-                child: ElevatedButton(onPressed:(){
+                child: ElevatedButton(onPressed:() async {
                   setState(() {
                     isEditing = !isEditing;
                   });
+                  if (!isEditing) {
+                    try {
+                      //verificar que datos se envian 
+                      print('Name: ${nameController.text}');
+                      print('Description: ${descriptionController.text}');
+                      print('Web Page: ${webPageController.text}');
+                      print('Phone Number: ${phoneNumberController.text}');
+                      print('Address: ${addressController.text}');
+
+                      await _profileDataProvider.updateRecruiterProfile(2, {
+                        'name': nameController.text,
+                        'description': descriptionController.text,
+                        'urlWebPage': webPageController.text,
+                        'phoneNumber': phoneNumberController.text,
+                        'address': addressController.text,
+                      });
+                    } catch (e) {
+                      print('Error: $e');
+                    }
+                  }
 
                 },
                   style: ElevatedButton.styleFrom(
