@@ -49,6 +49,8 @@ class MyOffersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<MyOffersListBloc>().getAllMyOffers();
+    context.read<MyOffersListBloc>().getAllTest();
+
     return Column(
       children: [
         const SizedBox(
@@ -81,6 +83,7 @@ class MyOffersList extends StatelessWidget {
                               child: SingleChildScrollView(
                                 child: MyOfferDetail(
                                   offer: state.myOffersList[index],
+                                  tests: state.availableTest,
                                 ),
                               ),
                             ),
