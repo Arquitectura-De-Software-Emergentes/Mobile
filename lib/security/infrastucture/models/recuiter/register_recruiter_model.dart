@@ -2,22 +2,25 @@ import 'dart:convert';
 
 import '../../../domain/recruiter_model.dart';
 
-class RecruiterModel extends Recruiter{
-  RecruiterModel({
-    required int userId,
+class RegisterRecruiterModel extends Recruiter{
+  RegisterRecruiterModel({
+    int? userId,
     required String username,
+    required String password,
     required String position,
     required String role,
 }): super(
-  userId: userId,
+  userId: userId ??0,
   username: username,
+  password: password,
   position: position,
   role: role,
 );
-  factory RecruiterModel.fromJson(Map<String, dynamic> json) {
-    return RecruiterModel(
+  factory RegisterRecruiterModel.fromJson(Map<String, dynamic> json) {
+    return RegisterRecruiterModel(
       userId: json['userId'],
       username: json['username'],
+      password: json['password'],
       position: json['position'],
       role: json['role'],
     );
@@ -26,11 +29,12 @@ class RecruiterModel extends Recruiter{
     return {
       'userId': userId,
       'username': username,
+      'password': password,
       'position': position,
       'role': role,
     };
   }
-  static RecruiterModel toRecruiter(String str){
-    return RecruiterModel.fromJson(jsonDecode(str));
+  static RegisterRecruiterModel toRegisterRecruiter(String str){
+    return RegisterRecruiterModel.fromJson(jsonDecode(str));
   }
 }

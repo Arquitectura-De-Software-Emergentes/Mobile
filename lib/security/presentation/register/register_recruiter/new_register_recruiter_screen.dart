@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/security/infrastucture/data_sources/register_recruiter_remove_data_provider.dart';
+import 'package:teacher_finder/security/infrastucture/models/recuiter/register_recruiter_model.dart';
 
 import '../../../../common/styles/styles.dart';
 import '../../../../main.dart';
 import '../../login/login_screen.dart';
 
 class NewRegisterRecruiter extends StatefulWidget {
-  const NewRegisterRecruiter({super.key});
+  final String? username;
+  final String? password;
+  final String? position;
+
+  const NewRegisterRecruiter({super.key, this.username, this.password, this.position});
 
   @override
   State<NewRegisterRecruiter> createState() => _NewRegisterRecruiterState();
@@ -13,6 +19,21 @@ class NewRegisterRecruiter extends StatefulWidget {
 
 class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
   bool _obsureText = true;
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _positionController = TextEditingController();
+
+  Future<RegisterRecruiterModel> postRegisterRecruiter() async {
+    final registerRecruiterModel = RegisterRecruiterModel(
+      username: _usernameController.text,
+      password: _passwordController.text,
+      position: _positionController.text,
+      role: "RECRUITER",
+    );
+
+    return RegisterRecruiterRemoveDataProvider().postRegisterRecruiter(registerRecruiterModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +107,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                       EdgeInsets.symmetric(vertical: 0,horizontal: 30),
                       child:
                       TextField(
+                        controller: _usernameController,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(20),
                           hintStyle: TextStyle(
@@ -128,6 +150,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                       padding:
                       EdgeInsets.symmetric(vertical: 0,horizontal: 30),
                       child: TextField(
+                        controller: _passwordController,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(20),
                           hintStyle: TextStyle(
@@ -182,6 +205,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                       padding:
                       EdgeInsets.symmetric(vertical: 0,horizontal: 30),
                       child: TextField(
+                        controller: _positionController,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(20),
                           hintStyle: TextStyle(
@@ -203,7 +227,10 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        final result = await postRegisterRecruiter();
+                        print(result);
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
