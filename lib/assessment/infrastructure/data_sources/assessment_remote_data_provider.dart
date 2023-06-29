@@ -158,4 +158,17 @@ class AssessmentRemoteDataProvider {
       throw Exception(error);
     }
   }
+
+  Future<void> selectedTestByOffer(int jobOfferId, int testId) async {
+    try {
+      //http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/test/{testId}?assessmentId=1&testId=1
+
+      final response = await http.put(
+        Uri.parse(
+            '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/test/$testId?assessmentId=$jobOfferId&testId=$testId'),
+      );
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
 }
