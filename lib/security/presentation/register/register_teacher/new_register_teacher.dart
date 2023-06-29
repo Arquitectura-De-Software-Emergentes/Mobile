@@ -26,16 +26,6 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _cvController = TextEditingController();
 
-  Future<RegisterApplicantModel> postRegisterApplicant() async {
-    final registerApplicantModel = RegisterApplicantModel(
-      username: _usernameController.text,
-      password: _passwordController.text,
-      cv: ApplicantCvModel(cv: _cvController.text),
-      role: "APPLICANT",
-    );
-
-    return RegisterApplicantRemoveDataProvider().postRegisterApplicant(registerApplicantModel);
-  }
   @override
   void initState() {
     super.initState();
@@ -250,8 +240,13 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                         SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () async {
-                            final result= await postRegisterApplicant();
-                            print(result);
+                            print(_usernameController.text);
+                            print(_passwordController.text);
+                            print(_cvController.text);
+                            final registerApplicantRemoveDataProvider=RegisterApplicantRemoveDataProvider();
+                            registerApplicantRemoveDataProvider.postRegisterApplicant(_usernameController.text,_passwordController.text);
+                            //final result= await postRegisterApplicant();
+                            //print(result);
 
                             Navigator.push(
                               context,
