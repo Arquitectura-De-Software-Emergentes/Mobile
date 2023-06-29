@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 import 'package:teacher_finder/assessment/presentation/test/test_screen.dart';
+import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_teacher_screen.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/offers/domain/entities/offer.dart';
@@ -112,7 +113,6 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
     return BlocProvider<AppliedOffersListBloc>(
       create: (BuildContext context) => bloc..getAllAppliedOffers(),
       child: Scaffold(
-        drawer: const CustomDrawer(),
         appBar: const CustomAppBar(
           title: 'Applied offers',
         ),
@@ -216,7 +216,14 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                               height: 30,
                                               width: 80,
                                               child: ElevatedButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const VideoPresentationTeacherScreen(),
+                                                      ));
+                                                },
                                                 style: ElevatedButton.styleFrom(
                                                     backgroundColor:
                                                         Styles.secondaryColor,
