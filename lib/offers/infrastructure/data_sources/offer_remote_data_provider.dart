@@ -48,7 +48,7 @@ class OfferRemoteDataProvider {
   Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
       String id) async {
     try {
-      String url = "${ApiConfig.baseUrl}/applications/applicants/2";
+      String url = "${ApiConfig.baseUrl}/applications/applicants/6";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<AppliedOfferModel> listOffers =
@@ -68,7 +68,7 @@ class OfferRemoteDataProvider {
         "recruiterId": 2,
         "title": offer.title,
         "description": offer.description,
-        "initialDate": offer.initialDate.toIso8601String(),
+        "initialDate": offer.initialDate?.toIso8601String(),
         "endDate": offer.endDate.toIso8601String(),
         "salary": {
           "mount": offer.salary.mount,

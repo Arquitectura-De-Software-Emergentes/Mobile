@@ -270,16 +270,23 @@ class _LoginScreenState extends State<LoginScreen> {
       final currentState = _loginBloc.state;
       if (currentState is AuthenticatedState) {
         var user = currentState.user;
-        print(user.role);
+
+        print(user.id);
         switch (user.role) {
           case UserType.applicant:
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (context) => OffersListScreen(),
-            ), (route) => false);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OffersListScreen(),
+                ),
+                (route) => false);
           case UserType.recruiter:
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (context) => MyOffersListScreen(),
-            ), (route) => false);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyOffersListScreen(),
+                ),
+                (route) => false);
         }
       } else if (currentState is UnauthenticatedState) {
         const snackBar = SnackBar(

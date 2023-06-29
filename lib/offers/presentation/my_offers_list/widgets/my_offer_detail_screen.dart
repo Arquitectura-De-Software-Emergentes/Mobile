@@ -38,7 +38,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
             child: Row(
               children: [
                 Text(
-                  'Posted ${DateTime.now().difference(widget.offer.initialDate).inDays} days ago | ',
+                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago | ',
                   style: const TextStyle(fontSize: 15, color: Colors.grey),
                 ),
                 Text(
@@ -89,7 +89,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
                     children: [
                       const Icon(Icons.calendar_month),
                       Text(
-                        'End date: ${widget.offer.initialDate.day}/${widget.offer.initialDate.month}/${widget.offer.initialDate.year}',
+                        'End date: ${widget.offer.initialDate?.day}/${widget.offer.initialDate?.month}/${widget.offer.initialDate?.year}',
                         style: const TextStyle(fontSize: 15),
                       )
                     ],
