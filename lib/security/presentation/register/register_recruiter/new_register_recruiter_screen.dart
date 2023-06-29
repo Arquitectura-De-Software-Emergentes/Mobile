@@ -225,7 +225,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyOffersListScreen(),
+                            builder: (context) => LoginScreen(),
                           ),
                         );
                       },

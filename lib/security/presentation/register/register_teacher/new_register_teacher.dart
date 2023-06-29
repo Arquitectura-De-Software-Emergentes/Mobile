@@ -249,7 +249,7 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => OffersListScreen(),
+                                builder: (context) => LoginScreen(),
                               ),
                             );
                           },
