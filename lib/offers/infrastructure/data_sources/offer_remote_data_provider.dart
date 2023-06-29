@@ -31,7 +31,7 @@ class OfferRemoteDataProvider {
   Future<List<OfferModel>> getAllOffersByRecruiterId(int id) async {
     try {
       final response = await http
-          .get(Uri.parse("${ApiConfig.baseUrl}/$endpoint/recruiter/2"));
+          .get(Uri.parse("${ApiConfig.baseUrl}/$endpoint/recruiter/$id"));
       if (response.statusCode == 200) {
         final List<OfferModel> listOffers =
             OfferModel.toOfferList(response.body);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/assessment/presentation/test/test_screen.dart';
 import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_teacher_screen.dart';
-import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/my_applied_offers_list/my_applied_offers_list_screen.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 import 'package:teacher_finder/profiles/presentation/profile_teacher/profile_teacher_screen.dart';
@@ -44,12 +42,9 @@ class CustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
-
-              drawerOption(context, 'Applied Offers', MyAppliedOffersListScreen(), Icons.home),
+              drawerOption(context, 'Applied Offers',
+                  MyAppliedOffersListScreen(), Icons.home),
               drawerOption(context, 'Test', TestsListScreen(), Icons.list),
-              drawerOption(
-                  context, 'Test(teacher)', TestScreen(), Icons.library_add),
-
               drawerOption(context, 'Profile', const ProfileTeacherScreen(),
                   Icons.person),
               drawerOption(context, 'Video',
@@ -61,7 +56,8 @@ class CustomDrawer extends StatelessWidget {
                 indent: 30,
                 endIndent: 30,
               ),
-              drawerOption(context, 'Sign out', const LoginScreen(), Icons.logout),
+              drawerOption(
+                  context, 'Sign out', const LoginScreen(), Icons.logout),
             ],
           )),
     );

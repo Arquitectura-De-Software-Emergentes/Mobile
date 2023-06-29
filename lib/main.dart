@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/splash_screen.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
@@ -8,7 +9,9 @@ import 'dart:io';
 import 'common/widgets/custom_app_bar.dart';
 import 'offers/presentation/my_offers_list/my_offers_list_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   offerDependencies();
   assessmentDependencies();
   HttpOverrides.global = MyHttpOverrides();
