@@ -7,17 +7,24 @@ class RegisterRecruiterRemoveDataProvider{
   String endpoint= 'https://teacher-finder.up.railway.app/api/v1/auth/recruiters/register';
   //Enpoint GetProfileTeacherById
 
-  Future<RegisterRecruiterModel> postRegisterRecruiter(RegisterRecruiterModel registerRecruiterModel) async {
+  Future<void> postRegisterRecruiter(String username, String password, String position) async {
+    final objeto={
+      'username': username,
+      'password': password,
+      'position': position,
+      'role': "RECRUITER",
+    };
+
     final response = await http.post(
       Uri.parse('${endpoint}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(registerRecruiterModel.toJson()),
+      body: jsonEncode(objeto),
     );
 
     if (response.statusCode == 200) {
-      return RegisterRecruiterModel.toRegisterRecruiter(jsonDecode(response.body));
+      return;
     } else {
       throw Exception('Failed to load register_recruiter');
     }

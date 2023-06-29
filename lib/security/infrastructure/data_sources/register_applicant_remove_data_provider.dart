@@ -12,6 +12,7 @@ class RegisterApplicantRemoveDataProvider {
       'password': password,
       'role': "APPLICANT",
     };
+
     final response = await http.post(
       Uri.parse('${endpoint}'),
       headers: <String, String>{

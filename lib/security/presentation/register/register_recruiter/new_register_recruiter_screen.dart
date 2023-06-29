@@ -24,16 +24,6 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _positionController = TextEditingController();
 
-  Future<RegisterRecruiterModel> postRegisterRecruiter() async {
-    final registerRecruiterModel = RegisterRecruiterModel(
-      username: _usernameController.text,
-      password: _passwordController.text,
-      position: _positionController.text,
-      role: "RECRUITER",
-    );
-
-    return RegisterRecruiterRemoveDataProvider().postRegisterRecruiter(registerRecruiterModel);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -228,8 +218,8 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () async {
-                        final result = await postRegisterRecruiter();
-                        print(result);
+                        final registerRecruiterRemoveDataProvider=RegisterRecruiterRemoveDataProvider();
+                        registerRecruiterRemoveDataProvider.postRegisterRecruiter(_usernameController.text,_passwordController.text,_positionController.text);
 
                         Navigator.push(
                           context,

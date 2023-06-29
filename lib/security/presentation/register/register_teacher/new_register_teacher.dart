@@ -240,9 +240,6 @@ class _NewRegisterTeacherState extends State<NewRegisterTeacher> {
                         SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () async {
-                            print(_usernameController.text);
-                            print(_passwordController.text);
-                            print(_cvController.text);
                             final registerApplicantRemoveDataProvider=RegisterApplicantRemoveDataProvider();
                             registerApplicantRemoveDataProvider.postRegisterApplicant(_usernameController.text,_passwordController.text);
                             //final result= await postRegisterApplicant();
