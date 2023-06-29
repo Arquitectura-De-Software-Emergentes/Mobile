@@ -250,7 +250,7 @@ class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
                   });
                   if (!isEditing) {
                     try {
-                      //verificar que datos se envian 
+                      //verificar que datos se envian
                       print('Name: ${nameController.text}');
                       print('Description: ${descriptionController.text}');
                       print('Web Page: ${webPageController.text}');
