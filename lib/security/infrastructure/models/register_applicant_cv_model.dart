@@ -1,4 +1,4 @@
-import '../../../domain/applicant_cv.dart';
+import '../../domain/applicant_cv.dart';
 
 class ApplicantCvModel extends Cv{
   ApplicantCvModel({

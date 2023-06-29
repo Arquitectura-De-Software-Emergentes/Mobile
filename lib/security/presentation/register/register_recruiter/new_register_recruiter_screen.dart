@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/security/infrastucture/data_sources/register_recruiter_remove_data_provider.dart';
-import 'package:teacher_finder/security/infrastucture/models/recuiter/register_recruiter_model.dart';
+import 'package:teacher_finder/security/infrastructure/data_sources/register_recruiter_remove_data_provider.dart';
+import 'package:teacher_finder/security/infrastructure/models/register_recruiter_model.dart';
 
 import '../../../../common/styles/styles.dart';
 import '../../../../main.dart';

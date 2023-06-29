@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/main.dart';
-import 'package:teacher_finder/security/infrastucture/data_sources/register_applicant_remove_data_provider.dart';
-import 'package:teacher_finder/security/infrastucture/models/applicant/register_applicant_model.dart';
+import 'package:teacher_finder/security/infrastructure/data_sources/register_applicant_remove_data_provider.dart';
+import 'package:teacher_finder/security/infrastructure/models/register_applicant_model.dart';
 import 'package:teacher_finder/security/presentation/login/login_screen.dart';
 
-import '../../../infrastucture/models/applicant/register_applicant_cv_model.dart';
+import '../../../infrastructure/models/register_applicant_cv_model.dart';
 
 class NewRegisterTeacher extends StatefulWidget {
   final String? username;

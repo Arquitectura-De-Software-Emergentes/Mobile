@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../domain/recruiter_model.dart';
+import '../../domain/recruiter_model.dart';
 
 class RegisterRecruiterModel extends Recruiter{
   RegisterRecruiterModel({

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../models/recuiter/register_recruiter_model.dart';
+import '../models/register_recruiter_model.dart';
 
 class RegisterRecruiterRemoveDataProvider{
   String endpoint= 'https://teacher-finder.up.railway.app/api/v1/auth/recruiters/register';
