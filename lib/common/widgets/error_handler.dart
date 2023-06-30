@@ -28,7 +28,7 @@ class ErrorHandler extends StatelessWidget {
               minimumSize: Size(MediaQuery.of(context).size.width, 40),
             ),
             child: Text(
-              'Select test',
+              'HOME',
               style:
                   TextStyle(color: Styles.white, fontWeight: FontWeight.bold),
             ),

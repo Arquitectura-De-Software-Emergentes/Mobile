@@ -21,12 +21,6 @@ class _AlternativesListState extends State<AlternativesList> {
 
   @override
   Widget build(BuildContext context) {
-    final alternativeA = widget.createQuestionBloc.state.alternativeA;
-    final alternativeB = widget.createQuestionBloc.state.alternativeB;
-    final alternativeC = widget.createQuestionBloc.state.alternativeC;
-    final alternativeD = widget.createQuestionBloc.state.alternativeD;
-    final alternativeE = widget.createQuestionBloc.state.alternativeE;
-
     return Column(
       children: List.generate(
         CorrectAlternative.values.length,
@@ -79,7 +73,6 @@ class _AlternativesListState extends State<AlternativesList> {
                           color: Colors.white,
                           fontSize: 20,
                         ),
-                        maxLines: 5,
                         decoration: const InputDecoration(
                           fillColor: Colors.red,
                           labelStyle: TextStyle(color: Colors.white),

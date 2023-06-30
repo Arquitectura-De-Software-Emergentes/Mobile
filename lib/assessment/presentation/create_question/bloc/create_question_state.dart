@@ -2,6 +2,7 @@ part of 'create_question_bloc.dart';
 
 class CreateQuestionState extends Equatable {
   const CreateQuestionState({
+    this.points = const Points.pure(),
     this.isValid = false,
     this.testQuestion = const TestQuestion.pure(),
     this.alternativeA = const AlternativeA.pure(),
@@ -18,9 +19,11 @@ class CreateQuestionState extends Equatable {
   final AlternativeC alternativeC;
   final AlternativeD alternativeD;
   final AlternativeE alternativeE;
+  final Points points;
 
   CreateQuestionState copyWith({
     bool? isValid,
+    Points? points,
     TestQuestion? testQuestion,
     AlternativeA? alternativeA,
     AlternativeB? alternativeB,
@@ -30,6 +33,7 @@ class CreateQuestionState extends Equatable {
   }) =>
       CreateQuestionState(
         isValid: isValid ?? this.isValid,
+        points: points ?? this.points,
         testQuestion: testQuestion ?? this.testQuestion,
         alternativeA: alternativeA ?? this.alternativeA,
         alternativeB: alternativeB ?? this.alternativeB,
@@ -40,6 +44,7 @@ class CreateQuestionState extends Equatable {
   @override
   List<Object> get props => [
         isValid,
+        points,
         testQuestion,
         alternativeA,
         alternativeB,

@@ -42,3 +42,9 @@ class AlternativeEChanged extends CreateQuestionEvent {
 
   const AlternativeEChanged(this.alternativeE);
 }
+
+class PointsChanged extends CreateQuestionEvent {
+  final String points;
+
+  const PointsChanged(this.points);
+}

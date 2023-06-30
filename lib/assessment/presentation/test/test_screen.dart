@@ -3,6 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 import 'package:teacher_finder/assessment/presentation/test_result/test_result.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../../common/styles/styles.dart';
 import '../../domain/entities/question.dart';
@@ -14,7 +15,7 @@ class TestScreen extends StatelessWidget {
   TestScreen({super.key, required this.testId, required this.jobOfferId});
   final int testId;
   final int jobOfferId;
-  final int _duration = 1200;
+  final int _duration = 1800;
   final CountDownController _controller = CountDownController();
 
   final QuestionsListBloc questionsListBloc = QuestionsListBloc();
@@ -49,7 +50,7 @@ class TestScreen extends StatelessWidget {
               },
               timeFormatterFunction: (defaultFormatterFunction, duration) {
                 if (duration.inSeconds == 0) {
-                  return "Start";
+                  return "END";
                 } else {
                   return Function.apply(defaultFormatterFunction, [duration]);
                 }
@@ -106,14 +107,16 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                       AssessmentRemoteDataProvider();
 
                   final objectResult = await assessmentRemoteDataProvider
-                      .submitTest(questions, widget.jobOfferId, 1);
+                      .submitTest(questions, widget.jobOfferId, applicantId);
 
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                           builder: (context) => TestResultScreen(
+                                jobOfferId: jobOfferId,
                                 objectResult: objectResult,
-                              )));
+                              )),
+                      (route) => false);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,
@@ -154,20 +157,17 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
     Map<int, int?> selectedAlternatives,
     BuildContext context,
     List<Question> questions,
-  ) {
+  ) async {
     selectedAlternatives.forEach((index, alternativeId) {
-      print('Pregunta ${index + 1} - Opción seleccionada: $alternativeId');
       Question question = questions[index];
       question.responseId = alternativeId;
     });
     List<Question> questionsWhitResponse = [];
     questions.forEach((question) {
-      print('Pregunta ${question.id} - ResponseId: ${question.responseId}');
       questionsWhitResponse.add(question);
     });
-    print(questionsWhitResponse);
-    //TODO ID DEL LOGUEADO
-    _showDialog(context, widget.jobOfferId, 1, questionsWhitResponse);
+    int applicantId = await UserConfig.getUserId();
+    _showDialog(context, widget.jobOfferId, applicantId, questionsWhitResponse);
   }
 
   @override
@@ -180,7 +180,6 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
           height: MediaQuery.of(context).size.height * 0.6,
           child: BlocBuilder<QuestionsListBloc, QuestionsListState>(
             builder: (context, state) {
-              print(state.questions.length);
               return state.questions.isEmpty
                   ? Center(
                       child: state.status == QuestionsListStatus.loading
@@ -199,7 +198,10 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                               _handleSubmitButtonPressed(selectedAlternatives,
                                   context, state.questions);
                             },
-                            child: const Text('Submit')),
+                            child: const Text(
+                              'SUBMIT',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
                         Expanded(
                           child: ListView.builder(
                             itemCount: state.questions.length,
@@ -217,7 +219,11 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Text(question.statement),
+                                        Text(
+                                          question.statement,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ],
                                     ),
                                     subtitle: SizedBox(
@@ -263,11 +269,16 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                                         },
                                       ),
                                     ),
-                                    trailing: IconButton(
-                                      onPressed: () {
-                                        // questionsListBloc.deleteQuestion(question);
-                                      },
-                                      icon: Text(question.points.toString()),
+                                    trailing: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: Colors.green),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                            '${question.points.toString()}p.'),
+                                      ),
                                     ),
                                   ),
                                 ),

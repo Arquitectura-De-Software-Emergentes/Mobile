@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
 
 class TestResultScreen extends StatelessWidget {
-  const TestResultScreen({super.key, required this.objectResult});
+  const TestResultScreen(
+      {super.key, required this.objectResult, required this.jobOfferId});
   final Map<String, dynamic> objectResult;
+  final int jobOfferId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class TestResultScreen extends StatelessWidget {
         appBar: const CustomAppBar(
           title: 'Result',
         ),
-        drawer: const CustomDrawer(),
+        drawer: const ApplicantCustomDrawer(),
         body: Center(
           child: SizedBox(
             width: 300,
@@ -26,7 +28,7 @@ class TestResultScreen extends StatelessWidget {
               objectResult['hasPassed']
                   ? const Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: Colors.white,
                       size: 100,
                     )
                   : const Icon(
@@ -41,7 +43,7 @@ class TestResultScreen extends StatelessWidget {
               ),
               Text(
                 objectResult['submitDate'].toString(),
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 50,

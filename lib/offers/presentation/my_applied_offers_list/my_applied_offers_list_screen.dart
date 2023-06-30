@@ -4,8 +4,6 @@ import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment
 import 'package:teacher_finder/assessment/presentation/test/test_screen.dart';
 import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_teacher_screen.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
-import 'package:teacher_finder/offers/domain/entities/offer.dart';
 import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 import 'package:teacher_finder/offers/presentation/my_applied_offers_list/bloc/bloc.dart';
 import '../../../common/styles/styles.dart';
@@ -118,9 +116,6 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
         ),
         body: Column(
           children: [
-            const Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25),
-            ),
             Expanded(
               child: BlocBuilder<AppliedOffersListBloc, AppliedOffersListState>(
                 builder: (context, state) {
@@ -160,84 +155,83 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18),
                                             ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                          child: Text(
-                                            offer.description,
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            SizedBox(
-                                              height: 30,
-                                              width: 80,
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  final assessmentRemoteDataProvider =
-                                                      AssessmentRemoteDataProvider();
-                                                  final object =
-                                                      await assessmentRemoteDataProvider
-                                                          .getTestByOfferId(
-                                                              offer.jobOfferId);
-                                                  if (object['testId'] != 0) {
-                                                    //mostrar snackbar
-                                                    _showDialog(
-                                                        context,
-                                                        object['testId'],
-                                                        offer.jobOfferId);
-                                                  } else {
-                                                    _showDialogError(
-                                                        context, 'exam');
-                                                  }
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        Styles.secondaryColor,
-                                                    side: BorderSide.none,
-                                                    shape:
-                                                        const StadiumBorder()),
-                                                child: const Text(
-                                                  "TEST",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                SizedBox(
+                                                  height: 30,
+                                                  width: 80,
+                                                  child: ElevatedButton(
+                                                    onPressed: () async {
+                                                      final assessmentRemoteDataProvider =
+                                                          AssessmentRemoteDataProvider();
+                                                      final object =
+                                                          await assessmentRemoteDataProvider
+                                                              .getTestByOfferId(
+                                                                  offer
+                                                                      .jobOfferId);
+                                                      if (object['testId'] !=
+                                                          0) {
+                                                        //mostrar snackbar
+                                                        _showDialog(
+                                                            context,
+                                                            object['testId'],
+                                                            offer.jobOfferId);
+                                                      } else {
+                                                        _showDialogError(
+                                                            context, 'exam');
+                                                      }
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor: Styles
+                                                            .secondaryColor,
+                                                        side: BorderSide.none,
+                                                        shape:
+                                                            const StadiumBorder()),
+                                                    child: const Text(
+                                                      "TEST",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            SizedBox(
-                                              height: 30,
-                                              width: 80,
-                                              child: ElevatedButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const VideoPresentationTeacherScreen(),
-                                                      ));
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        Styles.secondaryColor,
-                                                    side: BorderSide.none,
-                                                    shape:
-                                                        const StadiumBorder()),
-                                                child: const Text(
-                                                  "VIDEO",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                                const SizedBox(
+                                                  height: 10,
                                                 ),
-                                              ),
+                                                SizedBox(
+                                                  height: 30,
+                                                  width: 80,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                VideoPresentationTeacherScreen(
+                                                              jobOfferId: offer
+                                                                  .jobOfferId,
+                                                            ),
+                                                          ));
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor: Styles
+                                                            .secondaryColor,
+                                                        side: BorderSide.none,
+                                                        shape:
+                                                            const StadiumBorder()),
+                                                    child: const Text(
+                                                      "VIDEO",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),

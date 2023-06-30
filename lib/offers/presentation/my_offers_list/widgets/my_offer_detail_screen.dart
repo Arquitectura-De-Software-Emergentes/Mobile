@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/appications/presentation/applications_list/applications_list.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 
 import '../../../../assessment/domain/entities/test.dart';
@@ -7,7 +8,7 @@ import '../../../domain/entities/offer.dart';
 import '../../../../common/widgets/offer_detail_requirements.dart';
 
 class MyOfferDetail extends StatefulWidget {
-  MyOfferDetail({super.key, required this.offer, required this.tests});
+  const MyOfferDetail({super.key, required this.offer, required this.tests});
   final Offer offer;
   final List<Test> tests;
 
@@ -18,7 +19,6 @@ class MyOfferDetail extends StatefulWidget {
 class _MyOfferDetailState extends State<MyOfferDetail> {
   Test? selectedTest;
 
-  // Test seleccionado
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,11 +38,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
             child: Row(
               children: [
                 Text(
-                  'Posted ${DateTime.now().difference(widget.offer.initialDate).inDays} days ago | ',
-                  style: const TextStyle(fontSize: 15, color: Colors.grey),
-                ),
-                Text(
-                  '${widget.offer.numberApplications} applicants',
+                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago',
                   style: const TextStyle(fontSize: 15, color: Colors.grey),
                 ),
               ],
@@ -89,7 +85,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
                     children: [
                       const Icon(Icons.calendar_month),
                       Text(
-                        'End date: ${widget.offer.initialDate.day}/${widget.offer.initialDate.month}/${widget.offer.initialDate.year}',
+                        'End date: ${widget.offer.initialDate?.day}/${widget.offer.initialDate?.month}/${widget.offer.initialDate?.year}',
                         style: const TextStyle(fontSize: 15),
                       )
                     ],
@@ -117,12 +113,9 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
                     'TESTS',
                     style: TextStyle(color: Colors.white),
                   ),
-                  dropdownColor: Styles
-                      .secondaryColor, // Color de fondo del menú desplegable
+                  dropdownColor: Styles.secondaryColor,
                   value: selectedTest,
                   onChanged: (Test? newValue) {
-                    // Actualizar el test seleccionado
-                    // setState(() {});
                     setState(() {
                       selectedTest = newValue;
                     });
@@ -177,7 +170,12 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
     );
   }
 
-  void showTeachers(Offer offer) {}
+  void showTeachers(Offer offer) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ApplicationsListScreen(offerId: offer.id)));
+  }
 
   void modifyOffer(Offer offer) {}
 }

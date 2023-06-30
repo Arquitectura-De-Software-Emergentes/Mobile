@@ -7,6 +7,7 @@ import '../../../infrastructure/inputs/alternativeB.dart';
 import '../../../infrastructure/inputs/alternativeC.dart';
 import '../../../infrastructure/inputs/alternativeD.dart';
 import '../../../infrastructure/inputs/alternativeE.dart';
+import '../../../infrastructure/inputs/points.dart';
 import '../../../infrastructure/inputs/test_question.dart';
 
 part 'create_question_event.dart';
@@ -21,6 +22,7 @@ class CreateQuestionBloc
     on<AlternativeCChanged>(_alternativeCChanged);
     on<AlternativeDChanged>(_alternativeDChanged);
     on<AlternativeEChanged>(_alternativeEChanged);
+    on<PointsChanged>(_pointsChanged);
   }
 
   void _testQuestionChanged(
@@ -36,6 +38,7 @@ class CreateQuestionBloc
           state.alternativeC,
           state.alternativeD,
           state.alternativeE,
+          state.points
         ]),
       ),
     );
@@ -54,6 +57,7 @@ class CreateQuestionBloc
           state.alternativeD,
           state.alternativeE,
           state.testQuestion,
+          state.points
         ]),
       ),
     );
@@ -72,6 +76,7 @@ class CreateQuestionBloc
           state.alternativeD,
           state.alternativeE,
           state.testQuestion,
+          state.points
         ]),
       ),
     );
@@ -90,6 +95,7 @@ class CreateQuestionBloc
           state.alternativeD,
           state.alternativeE,
           state.testQuestion,
+          state.points
         ]),
       ),
     );
@@ -108,6 +114,7 @@ class CreateQuestionBloc
           state.alternativeC,
           state.alternativeE,
           state.testQuestion,
+          state.points
         ]),
       ),
     );
@@ -126,9 +133,30 @@ class CreateQuestionBloc
           state.alternativeD,
           state.alternativeC,
           state.testQuestion,
+          state.points
         ]),
       ),
     );
+  }
+
+  void _pointsChanged(
+      PointsChanged event, Emitter<CreateQuestionState> emit) async {
+    final points = Points.dirty(event.points);
+    emit(
+      state.copyWith(
+        points: points,
+        isValid: Formz.validate([
+          state.alternativeE,
+          state.alternativeA,
+          state.alternativeB,
+          state.alternativeD,
+          state.alternativeC,
+          state.testQuestion,
+          state.points
+        ]),
+      ),
+    );
+    print(state.isValid);
   }
 
   void testQuestionChanged(String question) {
@@ -153,5 +181,9 @@ class CreateQuestionBloc
 
   void alternativeE(String alternativeE) {
     add(AlternativeEChanged(alternativeE));
+  }
+
+  void points(String points) {
+    add(PointsChanged(points));
   }
 }

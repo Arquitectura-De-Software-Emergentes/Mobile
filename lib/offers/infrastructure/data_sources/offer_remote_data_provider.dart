@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:teacher_finder/common/api_config/api_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:teacher_finder/common/user_config/user_config.dart';
 import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 
 import '../../domain/entities/offer.dart';
@@ -46,9 +47,9 @@ class OfferRemoteDataProvider {
   }
 
   Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
-      String id) async {
+      int id) async {
     try {
-      String url = "${ApiConfig.baseUrl}/applications/applicants/2";
+      String url = "${ApiConfig.baseUrl}/applications/applicants/$id";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<AppliedOfferModel> listOffers =
@@ -63,12 +64,13 @@ class OfferRemoteDataProvider {
   }
 
   Future<Offer> createOffer(Offer offer) async {
+    int recruiterId = await UserConfig.getUserId();
     try {
       final temp = {
-        "recruiterId": 2,
+        "recruiterId": recruiterId,
         "title": offer.title,
         "description": offer.description,
-        "initialDate": offer.initialDate.toIso8601String(),
+        "initialDate": offer.initialDate?.toIso8601String(),
         "endDate": offer.endDate.toIso8601String(),
         "salary": {
           "mount": offer.salary.mount,
@@ -79,7 +81,6 @@ class OfferRemoteDataProvider {
         "availability": offer.availability.value
       };
 
-      // OfferModel.toOfferJson(offer);
       final headers = {'Content-Type': 'application/json'};
 
       final response = await http.post(

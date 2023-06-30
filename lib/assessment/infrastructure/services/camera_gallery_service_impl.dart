@@ -10,7 +10,6 @@ class CameraGalleryServiceImpl extends CameraGalleryService {
 
     if (video == null) return null;
 
-    print('we have video: ${video.path}');
     return video.path;
   }
 
@@ -20,7 +19,6 @@ class CameraGalleryServiceImpl extends CameraGalleryService {
 
     if (video == null) return null;
 
-    print('we have video: ${video.path}');
     return video.path;
   }
 }

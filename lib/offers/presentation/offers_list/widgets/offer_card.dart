@@ -10,13 +10,21 @@ class OfferCard extends StatelessWidget {
   final Offer offer;
 
   String hoursOrDays() {
-    final difference = DateTime.now().difference(offer.initialDate);
-    if (difference.inHours > 24) {
-      int days = difference.inDays;
-      return 'Posted $days ${days == 1 ? 'day' : 'days'} ago';
+    final difference = offer.initialDate != null
+        ? DateTime.now().difference(offer.initialDate!)
+        : null;
+
+    //final difference = DateTime.now().difference(offer.initialDate!);
+    if (difference != null) {
+      if (difference!.inHours > 24) {
+        int days = difference.inDays;
+        return 'Posted $days ${days == 1 ? 'day' : 'days'} ago';
+      } else {
+        int hours = difference.inHours;
+        return 'Posted $hours ${hours == 1 ? 'hour' : 'hours'} ago';
+      }
     } else {
-      int hours = difference.inHours;
-      return 'Posted $hours ${hours == 1 ? 'hour' : 'hours'} ago';
+      return '0';
     }
   }
 
@@ -71,7 +79,7 @@ class OfferCard extends StatelessWidget {
                             const TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       Text(
-                        '${offer.maxApplications - offer.numberApplications} applications available',
+                        '${offer.maxApplications} applications',
                         style:
                             const TextStyle(fontSize: 14, color: Colors.grey),
                       ),

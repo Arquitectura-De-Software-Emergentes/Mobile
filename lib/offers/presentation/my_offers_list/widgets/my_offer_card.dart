@@ -33,12 +33,7 @@ class MyOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Text(
-                        '${offer.numberApplications.toString()} applications',
-                        style: TextStyle(
-                            color: offer.numberApplications >=
-                                    offer.maxApplications / 2
-                                ? Colors.green
-                                : Colors.red),
+                        '${offer.maxApplications.toString()} applications',
                       ),
                     ],
                   ),
@@ -63,7 +58,7 @@ class MyOfferCard extends StatelessWidget {
                                   color: Colors.grey,
                                 ),
                                 Text(
-                                  'From: ${offer.initialDate.day}/${offer.initialDate.month}/${offer.initialDate.year} to ${offer.endDate.day}/${offer.endDate.month}/${offer.endDate.year}',
+                                  'From: ${offer.initialDate?.day}/${offer.initialDate?.month}/${offer.initialDate?.year} to ${offer.endDate.day}/${offer.endDate.month}/${offer.endDate.year}',
                                   style: const TextStyle(
                                       fontSize: 15, color: Colors.grey),
                                 ),

@@ -10,7 +10,7 @@ class OfferDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +26,7 @@ class OfferDetail extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Posted ${DateTime.now().difference(offer.initialDate).inDays} days ago | ',
+                  'Posted ${DateTime.now().difference(offer.initialDate!).inDays} days ago | ',
                   style: const TextStyle(fontSize: 15, color: Colors.grey),
                 ),
                 Text(
@@ -74,13 +74,15 @@ class OfferDetail extends StatelessWidget {
                     children: [
                       const Icon(Icons.calendar_month),
                       Text(
-                        'End date: ${offer.initialDate.day}/${offer.initialDate.month}/${offer.initialDate.year}',
+                        'End date: ${offer.initialDate?.day}/${offer.initialDate?.month}/${offer.initialDate?.year}',
                         style: const TextStyle(fontSize: 15),
                       )
                     ],
                   ),
                 ),
-                const ApplyButton()
+                ApplyButton(
+                  jobOfferId: offer.id,
+                )
               ],
             ),
           ),
