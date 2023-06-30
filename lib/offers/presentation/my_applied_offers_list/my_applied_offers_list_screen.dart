@@ -188,8 +188,8 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                         },
                                                         style: ElevatedButton
                                                             .styleFrom(
-                                                          primary:
-                                                              Colors.indigo,
+                                                          primary: Styles
+                                                              .secondaryColor,
                                                           onPrimary:
                                                               Colors.white,
                                                           shape:
