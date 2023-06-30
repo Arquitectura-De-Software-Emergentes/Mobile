@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
 import 'package:teacher_finder/common/user_config/user_config.dart';
-import 'package:teacher_finder/profiles/infrastucture/data_sources/profile_recruiter_remove_data_provider.dart';
+import 'package:teacher_finder/profiles/infrastucture/data_sources/profile_recruiter_remote_data_provider.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
 
@@ -14,7 +14,7 @@ class ProfileRecruiterScreen extends StatefulWidget {
 
 class _ProfileRecruiterScreenState extends State<ProfileRecruiterScreen> {
   bool isEditing = false;
-  final _profileDataProvider = ProfileRecruiterRemoveDataProvider();
+  final _profileDataProvider = ProfileRecruiterRemoteDataProvider();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
