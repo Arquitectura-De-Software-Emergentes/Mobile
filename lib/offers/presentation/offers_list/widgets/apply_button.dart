@@ -15,14 +15,17 @@ class ApplyButton extends StatelessWidget {
         final applicationsRemoteDateSource = ApplicationsRemoteDateSource();
 
         int applicantId = await UserConfig.getUserId();
-        applicationsRemoteDateSource.applyJobOffer(jobOfferId, applicantId);
+        String message = await applicationsRemoteDateSource.applyJobOffer(
+            jobOfferId, applicantId);
+        print(message);
         Navigator.pop(context);
 
-        const snackBar = SnackBar(
+        final snackBar = SnackBar(
           content: Text(
-            'You\'ve successfully applied to this job.',
+            message,
           ),
-          backgroundColor: Colors.green,
+          backgroundColor:
+              message == 'already applied' ? Colors.red : Colors.green,
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },

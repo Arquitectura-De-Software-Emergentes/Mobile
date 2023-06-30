@@ -42,7 +42,6 @@ class OffersListScreen extends StatelessWidget {
                         }),
                       ),
                     ),
-                    const FilterButton(),
                   ],
                 ),
               ),
@@ -68,7 +67,7 @@ class OffersListScreen extends StatelessWidget {
                               ),
                               isScrollControlled: true,
                               builder: (context) => DraggableScrollableSheet(
-                                initialChildSize: 0.5,
+                                initialChildSize: 0.8,
                                 expand: false,
                                 builder: (context, scrollController) =>
                                     SizedBox(

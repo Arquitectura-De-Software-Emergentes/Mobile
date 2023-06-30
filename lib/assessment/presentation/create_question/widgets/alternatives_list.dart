@@ -73,7 +73,6 @@ class _AlternativesListState extends State<AlternativesList> {
                           color: Colors.white,
                           fontSize: 20,
                         ),
-                        maxLines: 5,
                         decoration: const InputDecoration(
                           fillColor: Colors.red,
                           labelStyle: TextStyle(color: Colors.white),

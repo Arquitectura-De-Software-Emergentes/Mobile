@@ -77,14 +77,13 @@ class _VideoPresentationTeacherScreenState
                   String result = await videoPresentationService
                       .recommendations1(await videoPresentationService
                           .extractText(selectedVideoFile!));
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VideoPresentationResult(
-                        result: result,
-                      ),
-                    ),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VideoPresentationResult(
+                                result: result,
+                              )),
+                      (route) => false);
                 } else {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(successSnackBar)

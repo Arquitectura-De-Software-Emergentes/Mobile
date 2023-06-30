@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import '../../../common/styles/styles.dart';
@@ -16,7 +16,7 @@ class _VideoPresentationResultState extends State<VideoPresentationResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomDrawer(),
+      drawer: const ApplicantCustomDrawer(),
       appBar: AppBar(
         title: const Text('Result'),
       ),

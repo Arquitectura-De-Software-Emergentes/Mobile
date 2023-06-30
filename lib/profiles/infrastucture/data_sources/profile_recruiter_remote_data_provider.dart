@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:teacher_finder/common/api_config/api_config.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
-class ProfileRecruiterRemoveDataProvider {
+class ProfileRecruiterRemoteDataProvider {
   String endpoint = 'recruiters';
   Future<void> updateRecruiterProfile(
       int recruiterId,
@@ -33,6 +34,20 @@ class ProfileRecruiterRemoveDataProvider {
       return;
     } else {
       throw Exception('Failed to load profile_recruiter');
+    }
+  }
+
+  Future<Map<String, dynamic>> getRecruiterProfile() async {
+//http://teacher-finder.up.railway.app/api/v1/recruiters/{recruiterId}/profiles?recruiterId=1
+
+    try {
+      int recruiterId = await UserConfig.getUserId();
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$recruiterId/profiles?recruiterId=$recruiterId'));
+      print(response);
+      return jsonDecode(response.body);
+    } catch (error) {
+      throw Exception(error);
     }
   }
 }

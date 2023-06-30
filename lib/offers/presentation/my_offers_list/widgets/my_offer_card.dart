@@ -33,12 +33,7 @@ class MyOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Text(
-                        '${offer.numberApplications.toString()} applications',
-                        style: TextStyle(
-                            color: offer.numberApplications >=
-                                    offer.maxApplications / 2
-                                ? Colors.green
-                                : Colors.red),
+                        '${offer.maxApplications.toString()} applications',
                       ),
                     ],
                   ),

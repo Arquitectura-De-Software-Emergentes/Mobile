@@ -69,67 +69,92 @@ class _CreateQuestionFormState extends State<CreateQuestionForm> {
     final alternativeC = createQuestionBloc.state.alternativeC;
     final alternativeD = createQuestionBloc.state.alternativeD;
     final alternativeE = createQuestionBloc.state.alternativeE;
+    final points = createQuestionBloc.state.points;
 
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(20.0),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.7,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            TextInput(
-              onChanged: (value) =>
-                  createQuestionBloc.testQuestionChanged(value),
-              title: 'Question',
-              label: 'Start typing your question...',
-              maxLines: 3,
-            ),
-            AlternativesList(
-              createQuestionBloc: createQuestionBloc,
-              onCorrectAlternativeSelected: handleCorrectAlternativeSelected,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final Question question = Question(
-                  id: 1,
-                  statement: testQuestion.value,
-                  options: [
-                    Option(
-                      id: 1,
-                      response: alternativeA.value,
-                      isCorrect: correctAlternative == CorrectAlternative.A,
-                    ),
-                    Option(
-                      id: 2,
-                      response: alternativeB.value,
-                      isCorrect: correctAlternative == CorrectAlternative.B,
-                    ),
-                    Option(
-                      id: 3,
-                      response: alternativeC.value,
-                      isCorrect: correctAlternative == CorrectAlternative.C,
-                    ),
-                    Option(
-                      id: 4,
-                      response: alternativeD.value,
-                      isCorrect: correctAlternative == CorrectAlternative.D,
-                    ),
-                    Option(
-                      id: 5,
-                      response: alternativeE.value,
-                      isCorrect: correctAlternative == CorrectAlternative.E,
-                    ),
-                  ],
-                  points: 2,
-                  responseId: 1,
-                );
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextInput(
+                onChanged: (value) =>
+                    createQuestionBloc.testQuestionChanged(value),
+                title: 'Question',
+                label: 'Start typing your question...',
+                maxLines: 3,
+                errorMessage: testQuestion.errorMessage,
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: SizedBox(
+                  width: 150,
+                  child: TextInput(
+                    onChanged: (value) => createQuestionBloc.points(value),
+                    title: 'Points',
+                    label: '',
+                    maxLines: 1,
+                    errorMessage: points.errorMessage,
+                  ),
+                ),
+              ),
+              AlternativesList(
+                createQuestionBloc: createQuestionBloc,
+                onCorrectAlternativeSelected: handleCorrectAlternativeSelected,
+              ),
+              ElevatedButton(
+                onPressed: createQuestionBloc.state.isValid
+                    ? () {
+                        final Question question = Question(
+                          id: 1,
+                          statement: testQuestion.value,
+                          options: [
+                            Option(
+                              id: 1,
+                              response: alternativeA.value,
+                              isCorrect:
+                                  correctAlternative == CorrectAlternative.A,
+                            ),
+                            Option(
+                              id: 2,
+                              response: alternativeB.value,
+                              isCorrect:
+                                  correctAlternative == CorrectAlternative.B,
+                            ),
+                            Option(
+                              id: 3,
+                              response: alternativeC.value,
+                              isCorrect:
+                                  correctAlternative == CorrectAlternative.C,
+                            ),
+                            Option(
+                              id: 4,
+                              response: alternativeD.value,
+                              isCorrect:
+                                  correctAlternative == CorrectAlternative.D,
+                            ),
+                            Option(
+                              id: 5,
+                              response: alternativeE.value,
+                              isCorrect:
+                                  correctAlternative == CorrectAlternative.E,
+                            ),
+                          ],
+                          points: int.tryParse(points.value),
+                          responseId: 0,
+                        );
 
-                widget.questionsListBloc.addQuestion(question, widget.test.id);
-                Navigator.pop(context);
-              },
-              child: const Text('Add'),
-            ),
-          ],
+                        widget.questionsListBloc
+                            .addQuestion(question, widget.test.id);
+                        Navigator.pop(context);
+                      }
+                    : null,
+                child: const Text('Add'),
+              ),
+            ],
+          ),
         ),
       ),
     );

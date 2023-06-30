@@ -10,7 +10,7 @@ class OfferDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

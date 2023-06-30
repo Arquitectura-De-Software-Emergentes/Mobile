@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
 
-enum AlternativeCInputError { empty, length }
+enum AlternativeCInputError { empty }
 
 class AlternativeC extends FormzInput<String, AlternativeCInputError> {
   const AlternativeC.pure() : super.pure('');
@@ -12,9 +12,7 @@ class AlternativeC extends FormzInput<String, AlternativeCInputError> {
     if (displayError == AlternativeCInputError.empty) {
       return 'the field is required';
     }
-    if (displayError == AlternativeCInputError.length) {
-      return 'min 2 characters';
-    }
+
     return null;
   }
 
@@ -23,7 +21,6 @@ class AlternativeC extends FormzInput<String, AlternativeCInputError> {
     if (value.isEmpty || value.trim().isEmpty) {
       return AlternativeCInputError.empty;
     }
-    if (value.length < 2) return AlternativeCInputError.length;
 
     return null;
   }

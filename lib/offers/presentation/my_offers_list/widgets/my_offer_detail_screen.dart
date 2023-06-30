@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/appications/presentation/applications_list/applications_list.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 
 import '../../../../assessment/domain/entities/test.dart';
@@ -37,11 +38,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
             child: Row(
               children: [
                 Text(
-                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago | ',
-                  style: const TextStyle(fontSize: 15, color: Colors.grey),
-                ),
-                Text(
-                  '${widget.offer.numberApplications} applicants',
+                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago',
                   style: const TextStyle(fontSize: 15, color: Colors.grey),
                 ),
               ],
@@ -173,7 +170,12 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
     );
   }
 
-  void showTeachers(Offer offer) {}
+  void showTeachers(Offer offer) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ApplicationsListScreen(offerId: offer.id)));
+  }
 
   void modifyOffer(Offer offer) {}
 }

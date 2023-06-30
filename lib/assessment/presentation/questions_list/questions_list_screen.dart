@@ -78,7 +78,7 @@ class QuestionList extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
                               title: Text(
-                                  '${question.statement} (${question.points.toString()})'),
+                                  '${index + 1})  ${question.statement} (${question.points.toString()})'),
                               subtitle: SizedBox(
                                 height: 100,
                                 child: ListView.builder(
@@ -86,7 +86,8 @@ class QuestionList extends StatelessWidget {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final option = question.options[index];
-                                    return Text(option.response);
+                                    return Text(
+                                        '      \u2022 ${option.response}');
                                   },
                                 ),
                               ),
@@ -115,7 +116,7 @@ class QuestionList extends StatelessWidget {
                 ),
                 isScrollControlled: true,
                 builder: (context) => DraggableScrollableSheet(
-                  initialChildSize: 0.9,
+                  initialChildSize: 0.95,
                   expand: false,
                   builder: (context, scrollController) => SizedBox(
                     child: SingleChildScrollView(
