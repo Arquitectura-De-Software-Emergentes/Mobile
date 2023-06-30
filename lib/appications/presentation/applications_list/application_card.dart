@@ -38,6 +38,8 @@ class _ApplicantCardState extends State<ApplicantCard> {
   bool _expanded = false;
   final assessmentRemoteDataProvider = AssessmentRemoteDataProvider();
 
+  final stylesTitles =
+      const TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -54,7 +56,7 @@ class _ApplicantCardState extends State<ApplicantCard> {
               subtitle: SizedBox(
                   width: 100,
                   child: score == null
-                      ? Text('Test result: N/A')
+                      ? const Text('Test result: N/A')
                       : Text('Test Result: $score')),
               leading: score == null
                   ? const Icon(
@@ -68,7 +70,10 @@ class _ApplicantCardState extends State<ApplicantCard> {
                           color: Colors.green,
                         )
                       : const Icon(Icons.person, size: 50, color: Colors.red),
-              title: Text('${widget.name} ${widget.lastName}'),
+              title: Text(
+                '${widget.name} ${widget.lastName}',
+                style: stylesTitles,
+              ),
               trailing: IconButton(
                 icon: Icon(
                   _expanded
@@ -88,7 +93,10 @@ class _ApplicantCardState extends State<ApplicantCard> {
               },
               children: [
                 ListTile(
-                  title: const Text('Academic Information'),
+                  title: Text(
+                    'Academic Information',
+                    style: stylesTitles,
+                  ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -99,7 +107,7 @@ class _ApplicantCardState extends State<ApplicantCard> {
                   ),
                 ),
                 ListTile(
-                  title: const Text('Contact Information'),
+                  title: Text('Contact Information', style: stylesTitles),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -109,7 +117,7 @@ class _ApplicantCardState extends State<ApplicantCard> {
                   ),
                 ),
                 ListTile(
-                  title: const Text('Personal Information'),
+                  title: Text('Personal Information', style: stylesTitles),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -117,6 +125,38 @@ class _ApplicantCardState extends State<ApplicantCard> {
                       Text('Address: ${widget.address}'),
                     ],
                   ),
+                ),
+                FutureBuilder<Map<String, dynamic>>(
+                  future:
+                      assessmentRemoteDataProvider.getVideoResultByApplicantId(
+                    widget.applicantId,
+                    widget.jobOfferId,
+                  ),
+                  builder: (_, snapshot) {
+                    if (snapshot.hasData) {
+                      final response = snapshot.data;
+                      if (response?['status'] != 404) {
+                        return ListTile(
+                          title: Text('Video result', style: stylesTitles),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${response?['feedback']}'),
+                            ],
+                          ),
+                        );
+                      }
+                    } else {
+                      return const ListTile(
+                        title: Text('Video result'),
+                        subtitle: Text('no video'),
+                      );
+                    }
+                    return const ListTile(
+                      title: Text('Video result'),
+                      subtitle: Text('no video'),
+                    );
+                  },
                 ),
               ],
             );

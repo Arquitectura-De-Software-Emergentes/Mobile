@@ -113,6 +113,7 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => TestResultScreen(
+                                jobOfferId: jobOfferId,
                                 objectResult: objectResult,
                               )),
                       (route) => false);

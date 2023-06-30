@@ -171,4 +171,47 @@ class AssessmentRemoteDataProvider {
       throw Exception(error);
     }
   }
+
+  Future<void> saveRecommendation(String recommendation, int jobOfferId) async {
+    try {
+      String truncatedString = recommendation.substring(0, 180);
+
+      final headers = {'Content-Type': 'application/json'};
+
+      int applicantId = await UserConfig.getUserId();
+      final body = {"applicantId": applicantId, "feedback": truncatedString};
+//http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/video-presentations?jobOfferId=1
+      print(jobOfferId);
+      print(applicantId);
+      final response = await http.post(
+          Uri.parse(
+              '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/video-presentations?jobOfferId=$jobOfferId'),
+          body: jsonEncode(body),
+          headers: headers);
+      print(response.body);
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> getVideoResultByApplicantId(
+      int applicantId, int jobOfferId) async {
+//http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/applicants/{applicantId}/video-presentations?jobOfferId=1&applicantId=1
+    try {
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/applicants/$applicantId/video-presentations?jobOfferId=$jobOfferId&applicantId=$applicantId'));
+      print('responseee:${response.body}');
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      }
+      if (response.statusCode == 404) {
+        //print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        throw Exception(response.body);
+      }
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
 }

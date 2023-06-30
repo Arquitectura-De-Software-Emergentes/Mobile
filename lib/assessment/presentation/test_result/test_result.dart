@@ -6,8 +6,10 @@ import 'package:teacher_finder/offers/presentation/offers_list/offers_list_scree
 import '../../../common/widgets/custom_app_bar.dart';
 
 class TestResultScreen extends StatelessWidget {
-  const TestResultScreen({super.key, required this.objectResult});
+  const TestResultScreen(
+      {super.key, required this.objectResult, required this.jobOfferId});
   final Map<String, dynamic> objectResult;
+  final int jobOfferId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
