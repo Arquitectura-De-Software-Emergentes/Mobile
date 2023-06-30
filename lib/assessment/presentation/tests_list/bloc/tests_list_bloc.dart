@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teacher_finder/assessment/infrastructure/repositories/assessment_repository.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../../domain/entities/test.dart';
 
@@ -21,8 +22,10 @@ class TestsListBloc extends Bloc<TestsListEvent, TestsListState> {
     emit(state.copyWith(
       status: TestsListStatus.loading,
     ));
+    int recruiterId = await UserConfig.getUserId();
     try {
-      final tests = await assessmentRepository.getAllTestsByRecruiterId(1);
+      final tests =
+          await assessmentRepository.getAllTestsByRecruiterId(recruiterId);
       return emit(state.copyWith(
         status: TestsListStatus.success,
         tests: tests,

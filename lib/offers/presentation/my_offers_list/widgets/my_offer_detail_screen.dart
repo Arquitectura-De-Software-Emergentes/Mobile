@@ -7,7 +7,7 @@ import '../../../domain/entities/offer.dart';
 import '../../../../common/widgets/offer_detail_requirements.dart';
 
 class MyOfferDetail extends StatefulWidget {
-  MyOfferDetail({super.key, required this.offer, required this.tests});
+  const MyOfferDetail({super.key, required this.offer, required this.tests});
   final Offer offer;
   final List<Test> tests;
 

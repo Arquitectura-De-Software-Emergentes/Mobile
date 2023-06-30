@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:teacher_finder/common/api_config/api_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:teacher_finder/common/user_config/user_config.dart';
 import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 
 import '../../domain/entities/offer.dart';
@@ -48,6 +49,7 @@ class OfferRemoteDataProvider {
   Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
       String id) async {
     try {
+      //todo
       String url = "${ApiConfig.baseUrl}/applications/applicants/6";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -63,9 +65,11 @@ class OfferRemoteDataProvider {
   }
 
   Future<Offer> createOffer(Offer offer) async {
+    //todo id
+    int recruiterId = await UserConfig.getUserId();
     try {
       final temp = {
-        "recruiterId": 2,
+        "recruiterId": recruiterId,
         "title": offer.title,
         "description": offer.description,
         "initialDate": offer.initialDate?.toIso8601String(),

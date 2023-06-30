@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 import 'package:teacher_finder/main.dart';
 import 'package:teacher_finder/offers/presentation/my_offers_list/my_offers_list_screen.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
@@ -188,8 +189,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               BlocBuilder<LoginScreenBloc, AuthenticationState>(
                                 builder: (context, state) {
                                   return ElevatedButton(
-                                    onPressed: () {
+                                    onPressed: () async {
                                       _signIn();
+                                      print(
+                                          'iddefined: ${await UserConfig.getUserId()}');
                                     },
                                     style: ElevatedButton.styleFrom(
                                       primary: Styles.secondaryColor,
