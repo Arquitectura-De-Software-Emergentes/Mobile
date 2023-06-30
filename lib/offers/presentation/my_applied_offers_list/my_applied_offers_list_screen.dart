@@ -155,81 +155,81 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18),
                                             ),
-                                            Column(
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
-                                                SizedBox(
-                                                  height: 30,
-                                                  width: 80,
-                                                  child: ElevatedButton(
-                                                    onPressed: () async {
-                                                      final assessmentRemoteDataProvider =
-                                                          AssessmentRemoteDataProvider();
-                                                      final object =
-                                                          await assessmentRemoteDataProvider
-                                                              .getTestByOfferId(
-                                                                  offer
-                                                                      .jobOfferId);
-                                                      if (object['testId'] !=
-                                                          0) {
-                                                        //mostrar snackbar
-                                                        _showDialog(
+                                                Row(
+                                                  children: [
+                                                    SizedBox(
+                                                      child: ElevatedButton(
+                                                        onPressed: () async {
+                                                          final assessmentRemoteDataProvider =
+                                                              AssessmentRemoteDataProvider();
+                                                          final object =
+                                                              await assessmentRemoteDataProvider
+                                                                  .getTestByOfferId(
+                                                                      offer
+                                                                          .jobOfferId);
+                                                          if (object[
+                                                                  'testId'] !=
+                                                              0) {
+                                                            _showDialog(
+                                                                context,
+                                                                object[
+                                                                    'testId'],
+                                                                offer
+                                                                    .jobOfferId);
+                                                          } else {
+                                                            _showDialogError(
+                                                                context,
+                                                                'exam');
+                                                          }
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Styles
+                                                              .secondaryColor,
+                                                          onPrimary:
+                                                              Colors.white,
+                                                          shape:
+                                                              const CircleBorder(),
+                                                        ),
+                                                        child: const Icon(
+                                                          Icons.book,
+                                                          size: 25,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      child: ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.push(
                                                             context,
-                                                            object['testId'],
-                                                            offer.jobOfferId);
-                                                      } else {
-                                                        _showDialogError(
-                                                            context, 'exam');
-                                                      }
-                                                    },
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Styles
-                                                            .secondaryColor,
-                                                        side: BorderSide.none,
-                                                        shape:
-                                                            const StadiumBorder()),
-                                                    child: const Text(
-                                                      "TEST",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                SizedBox(
-                                                  height: 30,
-                                                  width: 80,
-                                                  child: ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                VideoPresentationTeacherScreen(
-                                                              jobOfferId: offer
-                                                                  .jobOfferId,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  VideoPresentationTeacherScreen(
+                                                                jobOfferId: offer
+                                                                    .jobOfferId,
+                                                              ),
                                                             ),
-                                                          ));
-                                                    },
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Styles
-                                                            .secondaryColor,
-                                                        side: BorderSide.none,
-                                                        shape:
-                                                            const StadiumBorder()),
-                                                    child: const Text(
-                                                      "VIDEO",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                          );
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors.red,
+                                                          onPrimary:
+                                                              Colors.white,
+                                                          shape:
+                                                              const CircleBorder(),
+                                                        ),
+                                                        child: const Icon(
+                                                          Icons.video_call,
+                                                          size: 25,
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
