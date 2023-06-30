@@ -9,8 +9,9 @@ import '../../../common/styles/styles.dart';
 import '../../infrastructure/services/camera_gallery_service_impl.dart';
 
 class VideoPresentationTeacherScreen extends StatefulWidget {
-  const VideoPresentationTeacherScreen({Key? key}) : super(key: key);
-
+  const VideoPresentationTeacherScreen({Key? key, required this.jobOfferId})
+      : super(key: key);
+  final int jobOfferId;
   @override
   State<VideoPresentationTeacherScreen> createState() =>
       _VideoPresentationTeacherScreenState();
@@ -81,6 +82,7 @@ class _VideoPresentationTeacherScreenState
                       context,
                       MaterialPageRoute(
                           builder: (context) => VideoPresentationResult(
+                                jobOfferId: widget.jobOfferId,
                                 result: result,
                               )),
                       (route) => false);

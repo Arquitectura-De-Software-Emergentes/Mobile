@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import '../../../common/styles/styles.dart';
 
 class VideoPresentationResult extends StatefulWidget {
-  const VideoPresentationResult({super.key, required this.result});
+  const VideoPresentationResult(
+      {super.key, required this.result, required this.jobOfferId});
   final String result;
+  final int jobOfferId;
   @override
   State<VideoPresentationResult> createState() =>
       _VideoPresentationResultState();
 }
 
 class _VideoPresentationResultState extends State<VideoPresentationResult> {
+  final assessmentRemoteDataProvider = AssessmentRemoteDataProvider();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +58,12 @@ class _VideoPresentationResultState extends State<VideoPresentationResult> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                assessmentRemoteDataProvider.saveRecommendation(
+                    widget.result, widget.jobOfferId);
+                Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => OffersListScreen()));
+                    MaterialPageRoute(builder: (context) => OffersListScreen()),
+                    (route) => false);
               },
               child: const Align(
                 alignment: Alignment.center,

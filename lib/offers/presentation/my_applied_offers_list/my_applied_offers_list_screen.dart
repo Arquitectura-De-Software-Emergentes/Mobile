@@ -210,7 +210,10 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                const VideoPresentationTeacherScreen(),
+                                                                VideoPresentationTeacherScreen(
+                                                              jobOfferId: offer
+                                                                  .jobOfferId,
+                                                            ),
                                                           ));
                                                     },
                                                     style: ElevatedButton.styleFrom(
@@ -231,12 +234,6 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                               ],
                                             ),
                                           ],
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                          child: Text(
-                                            offer.description,
-                                          ),
                                         ),
                                       ],
                                     ),
