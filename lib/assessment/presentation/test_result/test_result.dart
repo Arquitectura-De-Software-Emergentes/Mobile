@@ -26,7 +26,7 @@ class TestResultScreen extends StatelessWidget {
               objectResult['hasPassed']
                   ? const Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: Colors.white,
                       size: 100,
                     )
                   : const Icon(
