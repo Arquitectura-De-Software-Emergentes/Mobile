@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 import 'package:teacher_finder/offers/infrastructure/models/applied_offer_model.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 part 'offers_list_event.dart';
@@ -22,7 +23,8 @@ class AppliedOffersListBloc
       status: OffersListStatus.loading,
     ));
     try {
-      final offers = await offerRepository.getAllAppliedOffers('6');
+      int applicantId = await UserConfig.getUserId();
+      final offers = await offerRepository.getAllAppliedOffers(applicantId);
 
       return emit(state.copyWith(
         status: OffersListStatus.success,

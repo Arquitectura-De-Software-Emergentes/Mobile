@@ -47,10 +47,10 @@ class OfferRemoteDataProvider {
   }
 
   Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
-      String id) async {
+      int id) async {
     try {
       //todo
-      String url = "${ApiConfig.baseUrl}/applications/applicants/6";
+      String url = "${ApiConfig.baseUrl}/applications/applicants/$id";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final List<AppliedOfferModel> listOffers =
