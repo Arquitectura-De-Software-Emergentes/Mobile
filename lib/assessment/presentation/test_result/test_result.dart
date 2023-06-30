@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/common/styles/styles.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
+import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/offers/presentation/offers_list/offers_list_screen.dart';
 
 import '../../../common/widgets/custom_app_bar.dart';
@@ -16,7 +16,7 @@ class TestResultScreen extends StatelessWidget {
         appBar: const CustomAppBar(
           title: 'Result',
         ),
-        drawer: const CustomDrawer(),
+        drawer: const ApplicantCustomDrawer(),
         body: Center(
           child: SizedBox(
             width: 300,
