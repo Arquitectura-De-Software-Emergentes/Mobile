@@ -21,12 +21,6 @@ class _AlternativesListState extends State<AlternativesList> {
 
   @override
   Widget build(BuildContext context) {
-    final alternativeA = widget.createQuestionBloc.state.alternativeA;
-    final alternativeB = widget.createQuestionBloc.state.alternativeB;
-    final alternativeC = widget.createQuestionBloc.state.alternativeC;
-    final alternativeD = widget.createQuestionBloc.state.alternativeD;
-    final alternativeE = widget.createQuestionBloc.state.alternativeE;
-
     return Column(
       children: List.generate(
         CorrectAlternative.values.length,

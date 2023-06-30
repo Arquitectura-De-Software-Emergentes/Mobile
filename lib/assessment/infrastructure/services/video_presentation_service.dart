@@ -28,7 +28,6 @@ class VideoPresentationService {
         throw response.body;
       }
     } catch (e) {
-      print('error:::$e');
       throw Exception(e);
     }
   }
@@ -64,15 +63,12 @@ class VideoPresentationService {
         throw Exception(response.body);
       }
     } catch (e) {
-      print('Error: $e');
       throw Exception(e);
     }
   }
 
   Future<String> recommendations1(String extractText) async {
     OpenAI.apiKey = apiKey;
-    print('entre');
-    // Start using!
     final completion = await OpenAI.instance.completion.create(
       model: "text-davinci-003",
       prompt:
@@ -80,8 +76,6 @@ class VideoPresentationService {
       maxTokens: 500,
     );
 
-    // Printing the output to the console
-    print(completion.choices[0].text);
     return completion.choices[0].text;
   }
 }

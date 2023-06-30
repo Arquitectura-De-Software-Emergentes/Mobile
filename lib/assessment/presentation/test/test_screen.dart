@@ -158,17 +158,13 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
     List<Question> questions,
   ) async {
     selectedAlternatives.forEach((index, alternativeId) {
-      print('Pregunta ${index + 1} - Opción seleccionada: $alternativeId');
       Question question = questions[index];
       question.responseId = alternativeId;
     });
     List<Question> questionsWhitResponse = [];
     questions.forEach((question) {
-      print('Pregunta ${question.id} - ResponseId: ${question.responseId}');
       questionsWhitResponse.add(question);
     });
-    print(questionsWhitResponse);
-    //TODO ID DEL LOGUEADO
     int applicantId = await UserConfig.getUserId();
     _showDialog(context, widget.jobOfferId, applicantId, questionsWhitResponse);
   }
@@ -183,7 +179,6 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
           height: MediaQuery.of(context).size.height * 0.6,
           child: BlocBuilder<QuestionsListBloc, QuestionsListState>(
             builder: (context, state) {
-              print(state.questions.length);
               return state.questions.isEmpty
                   ? Center(
                       child: state.status == QuestionsListStatus.loading

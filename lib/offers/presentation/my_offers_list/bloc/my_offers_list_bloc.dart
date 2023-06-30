@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
-import 'package:teacher_finder/assessment/infrastructure/repositories/assessment_repository.dart';
 import 'package:teacher_finder/common/user_config/user_config.dart';
 import 'package:teacher_finder/offers/infrastructure/repositories/offer_repository.dart';
 
@@ -65,7 +64,6 @@ class MyOffersListBloc extends Bloc<MyOffersListEvent, MyOffersListState> {
     ));
     try {
       final assessmentRemoteDataProvider = AssessmentRemoteDataProvider();
-      //todo id
       int recruiterId = await UserConfig.getUserId();
       final List<Test> tests = await assessmentRemoteDataProvider
           .getAllTestsByRecruiterId(recruiterId);

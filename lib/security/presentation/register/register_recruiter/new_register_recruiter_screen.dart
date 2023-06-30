@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_finder/offers/presentation/my_offers_list/my_offers_list_screen.dart';
 import 'package:teacher_finder/security/infrastructure/data_sources/register_recruiter_remove_data_provider.dart';
-import 'package:teacher_finder/security/infrastructure/models/register_recruiter_model.dart';
 
 import '../../../../common/styles/styles.dart';
-import '../../../../main.dart';
 import '../../login/login_screen.dart';
 
 class NewRegisterRecruiter extends StatefulWidget {
@@ -12,7 +9,8 @@ class NewRegisterRecruiter extends StatefulWidget {
   final String? password;
   final String? position;
 
-  const NewRegisterRecruiter({super.key, this.username, this.password, this.position});
+  const NewRegisterRecruiter(
+      {super.key, this.username, this.password, this.position});
 
   @override
   State<NewRegisterRecruiter> createState() => _NewRegisterRecruiterState();
@@ -25,7 +23,6 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _positionController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,13 +33,14 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
         backgroundColor: Colors.transparent,
         body: ListView(
           children: [
-            SizedBox(height: 50),
-            Padding(padding: EdgeInsets.all(30),
+            const SizedBox(height: 50),
+            Padding(
+              padding: EdgeInsets.all(30),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
@@ -52,9 +50,9 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
@@ -65,7 +63,7 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: Text(
                         'Create an Account!',
                         style: TextStyle(
@@ -74,10 +72,9 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -92,16 +89,15 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0,horizontal: 30),
-                      child:
-                      TextField(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 30),
+                      child: TextField(
                         controller: _usernameController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
-                          hintStyle: TextStyle(
+                          contentPadding: const EdgeInsets.all(20),
+                          hintStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 18,
                           ),
@@ -118,10 +114,9 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         cursorColor: Styles.secondaryColor,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -136,15 +131,15 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0,horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 30),
                       child: TextField(
                         controller: _passwordController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
-                          hintStyle: TextStyle(
+                          contentPadding: const EdgeInsets.all(20),
+                          hintStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 18,
                           ),
@@ -158,11 +153,13 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                             ),
                           ),
                           suffixIcon: IconButton(
-                            icon:  Icon(
-                              _obsureText ? Icons.visibility : Icons.visibility_off,
-                            color: Styles.secondaryColor,
+                            icon: Icon(
+                              _obsureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Styles.secondaryColor,
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
                                 _obsureText = !_obsureText;
                               });
@@ -173,10 +170,9 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         obscureText: _obsureText,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -191,15 +187,15 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0,horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 30),
                       child: TextField(
                         controller: _positionController,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(20),
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Colors.grey,
                             fontSize: 18,
                           ),
@@ -216,11 +212,16 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         cursorColor: Styles.secondaryColor,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () async {
-                        final registerRecruiterRemoveDataProvider=RegisterRecruiterRemoveDataProvider();
-                        registerRecruiterRemoveDataProvider.postRegisterRecruiter(_usernameController.text,_passwordController.text,_positionController.text);
+                        final registerRecruiterRemoveDataProvider =
+                            RegisterRecruiterRemoveDataProvider();
+                        registerRecruiterRemoveDataProvider
+                            .postRegisterRecruiter(
+                                _usernameController.text,
+                                _passwordController.text,
+                                _positionController.text);
 
                         Navigator.push(
                           context,
@@ -234,14 +235,14 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 1),
                       ),
                       child: Container(
                         width: 200,
                         height: 50,
                         alignment: Alignment.center,
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(
                             color: Colors.white,
@@ -251,12 +252,12 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Already have an account?'),
+                          const Text('Already have an account?'),
                           TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -276,10 +277,8 @@ class _NewRegisterRecruiterState extends State<NewRegisterRecruiter> {
                             ),
                           ),
                         ])
-
                   ],
                 ),
-
               ),
             )
           ],

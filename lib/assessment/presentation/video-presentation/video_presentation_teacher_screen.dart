@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/assessment/infrastructure/services/video_presentation_service.dart';
 import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_result.dart';
-import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../common/styles/styles.dart';
@@ -74,9 +73,7 @@ class _VideoPresentationTeacherScreenState
                   //print(await videoPresentationService
                   // .extractText(selectedVideoFile!));
                   print('sent');
-                  print(await videoPresentationService.recommendations1(
-                      await videoPresentationService
-                          .extractText(selectedVideoFile!)));
+
                   String result = await videoPresentationService
                       .recommendations1(await videoPresentationService
                           .extractText(selectedVideoFile!));
@@ -120,7 +117,7 @@ class _VideoPresentationTeacherScreenState
                       child: VideoPlayer(_controller!),
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                 },
               )
