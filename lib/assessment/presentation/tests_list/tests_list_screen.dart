@@ -108,19 +108,20 @@ class TestsList extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 18),
                                               ),
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            QuestionListScreen(
-                                                          test: test,
-                                                        ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          QuestionListScreen(
+                                                        test: test,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Text('ADD QUESTIONS'))
+                                                    ),
+                                                  );
+                                                },
+                                                icon: const Icon(Icons.add),
+                                              )
                                             ]),
                                       ),
                                     )

@@ -3,15 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/assessment/infrastructure/services/video_presentation_service.dart';
 import 'package:teacher_finder/assessment/presentation/video-presentation/video_presentation_result.dart';
-import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../common/styles/styles.dart';
 import '../../infrastructure/services/camera_gallery_service_impl.dart';
 
 class VideoPresentationTeacherScreen extends StatefulWidget {
-  const VideoPresentationTeacherScreen({Key? key}) : super(key: key);
-
+  const VideoPresentationTeacherScreen({Key? key, required this.jobOfferId})
+      : super(key: key);
+  final int jobOfferId;
   @override
   State<VideoPresentationTeacherScreen> createState() =>
       _VideoPresentationTeacherScreenState();
@@ -74,20 +74,18 @@ class _VideoPresentationTeacherScreenState
                   //print(await videoPresentationService
                   // .extractText(selectedVideoFile!));
                   print('sent');
-                  print(await videoPresentationService.recommendations1(
-                      await videoPresentationService
-                          .extractText(selectedVideoFile!)));
+
                   String result = await videoPresentationService
                       .recommendations1(await videoPresentationService
                           .extractText(selectedVideoFile!));
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VideoPresentationResult(
-                        result: result,
-                      ),
-                    ),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VideoPresentationResult(
+                                jobOfferId: widget.jobOfferId,
+                                result: result,
+                              )),
+                      (route) => false);
                 } else {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(successSnackBar)
@@ -120,7 +118,7 @@ class _VideoPresentationTeacherScreenState
                       child: VideoPlayer(_controller!),
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                 },
               )

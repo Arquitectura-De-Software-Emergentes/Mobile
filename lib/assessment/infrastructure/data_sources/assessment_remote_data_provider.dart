@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:teacher_finder/assessment/domain/entities/question.dart';
 import 'package:teacher_finder/assessment/infrastructure/models/test_model.dart';
 import 'package:teacher_finder/common/api_config/api_config.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../domain/entities/test.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +19,6 @@ class AssessmentRemoteDataProvider {
         final List<TestModel> tests = TestModel.toTestList(response.body);
         return tests;
       } else {
-        print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
@@ -28,9 +28,10 @@ class AssessmentRemoteDataProvider {
 
   Future<Test> createTest(Test test) async {
     try {
+      int recruiterId = await UserConfig.getUserId();
       final headers = {'Content-Type': 'application/json'};
       final temp = {
-        "recruiterId": 1,
+        "recruiterId": recruiterId,
         "title": test.title,
         "minimunScore": test.minScore,
         "numQuestions": test.numQuestions
@@ -44,11 +45,9 @@ class AssessmentRemoteDataProvider {
         final Test test = TestModel.toTest(response.body);
         return test;
       } else {
-        print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
-      print('error:$error');
       throw Exception(error);
     }
   }
@@ -66,8 +65,6 @@ class AssessmentRemoteDataProvider {
         }).toList(),
         "points": question.points,
       };
-      print(body);
-//https://teacher-finder.up.railway.app/api/v1/assessments/tests/3/questions?testId=3
       final response = await http.post(
         Uri.parse(
             '${ApiConfig.baseUrl}/$endpoint/tests/$testId/questions?testId=$testId'),
@@ -76,13 +73,10 @@ class AssessmentRemoteDataProvider {
       );
 
       if (response.statusCode == 200) {
-        print('Success');
       } else {
-        print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
-      print('Error: $error');
       throw Exception(error);
     }
   }
@@ -96,18 +90,15 @@ class AssessmentRemoteDataProvider {
         final Test test = TestModel.toTest(response.body);
         return test;
       } else {
-        print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
-      print(error);
       throw Exception(error);
     }
   }
 
   Future<Map<String, dynamic>> getTestByOfferId(int offerId) async {
     try {
-      //http://teacher-finder.up.railway.app/api/v1/assessments/1?jobOfferId=1
       final response = await http.get(Uri.parse(
           '${ApiConfig.baseUrl}/$endpoint/$offerId?jobOfferId=$offerId'));
 
@@ -115,19 +106,15 @@ class AssessmentRemoteDataProvider {
         final assessmentInfo = jsonDecode(response.body);
         return assessmentInfo;
       } else {
-        print(response.body);
         throw Exception(response.body);
       }
     } catch (error) {
-      print(error);
       throw Exception(error);
     }
   }
 
   Future<Map<String, dynamic>> submitTest(
       List<Question> questions, int jobOfferId, int applicantId) async {
-//  'http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/tests/applicant/{applicantId}/submit?jobOfferId=1&applicantId=1' \
-
     try {
       final headers = {'Content-Type': 'application/json'};
       List<Map<String, dynamic>> requestBody = questions.map((question) {
@@ -150,9 +137,8 @@ class AssessmentRemoteDataProvider {
           '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/tests/applicant/$applicantId/submit?jobOfferId=$jobOfferId&applicantId=$applicantId',
         ),
         headers: headers,
-        body: json.encode(requestBody), // Convertir el cuerpo a JSON
+        body: json.encode(requestBody),
       );
-      print(response.body);
       return jsonDecode(response.body);
     } catch (error) {
       throw Exception(error);
@@ -161,12 +147,69 @@ class AssessmentRemoteDataProvider {
 
   Future<void> selectedTestByOffer(int jobOfferId, int testId) async {
     try {
-      //http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/test/{testId}?assessmentId=1&testId=1
-
       final response = await http.put(
         Uri.parse(
             '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/test/$testId?assessmentId=$jobOfferId&testId=$testId'),
       );
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> getTestResult(
+      int jobOfferId, int applicantId) async {
+    //http://teacher-finder.up.railway.app/api/v1/assessments/18/test-results/applicant/6?jobOfferId=18&applicantId=6
+    print(applicantId);
+    print(jobOfferId);
+    //assessments
+    try {
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/test-results/applicant/$applicantId?jobOfferId=$jobOfferId&applicantId=$applicantId'));
+      print(response.body);
+      return jsonDecode(response.body);
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  Future<void> saveRecommendation(String recommendation, int jobOfferId) async {
+    try {
+      String truncatedString = recommendation.substring(0, 180);
+
+      final headers = {'Content-Type': 'application/json'};
+
+      int applicantId = await UserConfig.getUserId();
+      final body = {"applicantId": applicantId, "feedback": truncatedString};
+//http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/video-presentations?jobOfferId=1
+      print(jobOfferId);
+      print(applicantId);
+      final response = await http.post(
+          Uri.parse(
+              '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/video-presentations?jobOfferId=$jobOfferId'),
+          body: jsonEncode(body),
+          headers: headers);
+      print(response.body);
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> getVideoResultByApplicantId(
+      int applicantId, int jobOfferId) async {
+//http://teacher-finder.up.railway.app/api/v1/assessments/{jobOfferId}/applicants/{applicantId}/video-presentations?jobOfferId=1&applicantId=1
+    try {
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/applicants/$applicantId/video-presentations?jobOfferId=$jobOfferId&applicantId=$applicantId'));
+      print('responseee:${response.body}');
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      }
+      if (response.statusCode == 404) {
+        //print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        throw Exception(response.body);
+      }
     } catch (error) {
       throw Exception(error);
     }

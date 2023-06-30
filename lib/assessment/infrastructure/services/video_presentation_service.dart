@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dart_openai/dart_openai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class VideoPresentationService {
-  final apiKey = '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';
+  final apiKey = dotenv.get('API_KEY');
 
   Future<String> extractText(File file) async {
     const apiUrl = 'https://api.openai.com/v1/audio/transcriptions';
@@ -28,7 +29,6 @@ class VideoPresentationService {
         throw response.body;
       }
     } catch (e) {
-      print('error:::$e');
       throw Exception(e);
     }
   }
@@ -64,15 +64,12 @@ class VideoPresentationService {
         throw Exception(response.body);
       }
     } catch (e) {
-      print('Error: $e');
       throw Exception(e);
     }
   }
 
   Future<String> recommendations1(String extractText) async {
     OpenAI.apiKey = apiKey;
-    print('entre');
-    // Start using!
     final completion = await OpenAI.instance.completion.create(
       model: "text-davinci-003",
       prompt:
@@ -80,8 +77,6 @@ class VideoPresentationService {
       maxTokens: 500,
     );
 
-    // Printing the output to the console
-    print(completion.choices[0].text);
     return completion.choices[0].text;
   }
 }
