@@ -41,7 +41,7 @@ class TestResultScreen extends StatelessWidget {
               ),
               Text(
                 objectResult['submitDate'].toString(),
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 50,

@@ -49,7 +49,6 @@ class OfferRemoteDataProvider {
   Future<List<AppliedOfferModel>> getAllAppliedOffersByApplicantId(
       int id) async {
     try {
-      //todo
       String url = "${ApiConfig.baseUrl}/applications/applicants/$id";
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -65,7 +64,6 @@ class OfferRemoteDataProvider {
   }
 
   Future<Offer> createOffer(Offer offer) async {
-    //todo id
     int recruiterId = await UserConfig.getUserId();
     try {
       final temp = {
@@ -83,7 +81,6 @@ class OfferRemoteDataProvider {
         "availability": offer.availability.value
       };
 
-      // OfferModel.toOfferJson(offer);
       final headers = {'Content-Type': 'application/json'};
 
       final response = await http.post(

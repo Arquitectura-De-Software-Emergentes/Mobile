@@ -57,7 +57,6 @@ class QuestionList extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.8,
           child: BlocBuilder<QuestionsListBloc, QuestionsListState>(
             builder: (context, state) {
-              print(state.questions.length);
               return state.questions.isEmpty
                   ? Center(
                       child: state.status == QuestionsListStatus.loading

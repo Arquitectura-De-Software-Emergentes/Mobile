@@ -15,7 +15,7 @@ import 'bloc/create_question_bloc.dart';
 import 'widgets/alternatives_list.dart';
 
 class CreateQuestionScreen extends StatelessWidget {
-  CreateQuestionScreen({
+  const CreateQuestionScreen({
     super.key,
     required this.test,
     required this.questionsListBloc,
@@ -124,7 +124,6 @@ class _CreateQuestionFormState extends State<CreateQuestionForm> {
                   responseId: 1,
                 );
 
-                print((question.options[0].isCorrect));
                 widget.questionsListBloc.addQuestion(question, widget.test.id);
                 Navigator.pop(context);
               },

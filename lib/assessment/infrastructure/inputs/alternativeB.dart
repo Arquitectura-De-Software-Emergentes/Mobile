@@ -20,8 +20,9 @@ class AlternativeB extends FormzInput<String, AlternativeBInputError> {
 
   @override
   AlternativeBInputError? validator(String value) {
-    if (value.isEmpty || value.trim().isEmpty)
+    if (value.isEmpty || value.trim().isEmpty) {
       return AlternativeBInputError.empty;
+    }
     if (value.length < 2) return AlternativeBInputError.length;
 
     return null;

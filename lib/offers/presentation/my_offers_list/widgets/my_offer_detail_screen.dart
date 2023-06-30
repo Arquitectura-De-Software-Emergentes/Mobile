@@ -18,7 +18,6 @@ class MyOfferDetail extends StatefulWidget {
 class _MyOfferDetailState extends State<MyOfferDetail> {
   Test? selectedTest;
 
-  // Test seleccionado
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -117,12 +116,9 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
                     'TESTS',
                     style: TextStyle(color: Colors.white),
                   ),
-                  dropdownColor: Styles
-                      .secondaryColor, // Color de fondo del menú desplegable
+                  dropdownColor: Styles.secondaryColor,
                   value: selectedTest,
                   onChanged: (Test? newValue) {
-                    // Actualizar el test seleccionado
-                    // setState(() {});
                     setState(() {
                       selectedTest = newValue;
                     });

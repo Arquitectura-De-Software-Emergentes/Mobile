@@ -20,8 +20,9 @@ class AlternativeC extends FormzInput<String, AlternativeCInputError> {
 
   @override
   AlternativeCInputError? validator(String value) {
-    if (value.isEmpty || value.trim().isEmpty)
+    if (value.isEmpty || value.trim().isEmpty) {
       return AlternativeCInputError.empty;
+    }
     if (value.length < 2) return AlternativeCInputError.length;
 
     return null;

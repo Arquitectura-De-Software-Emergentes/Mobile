@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:teacher_finder/security/infrastructure/models/register_applicant_model.dart';
 
 class RegisterApplicantRemoveDataProvider {
-  String endpoint = 'https://teacher-finder.up.railway.app/api/v1/auth/applicants/register';
-  //Enpoint GetProfileTeacherById
+  String endpoint =
+      'https://teacher-finder.up.railway.app/api/v1/auth/applicants/register';
 
-  Future<void>postRegisterApplicant( String username, String password) async {
+  Future<void> postRegisterApplicant(String username, String password) async {
     final objeto = {
       'username': username,
       'password': password,
@@ -14,7 +13,7 @@ class RegisterApplicantRemoveDataProvider {
     };
 
     final response = await http.post(
-      Uri.parse('${endpoint}'),
+      Uri.parse(endpoint),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -27,5 +26,4 @@ class RegisterApplicantRemoveDataProvider {
       throw Exception('Failed to load register_applicant');
     }
   }
-
 }
