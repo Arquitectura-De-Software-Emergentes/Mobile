@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dart_openai/dart_openai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class VideoPresentationService {
-  final apiKey = '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';
+  final apiKey = dotenv.get('API_KEY');
 
   Future<String> extractText(File file) async {
     const apiUrl = 'https://api.openai.com/v1/audio/transcriptions';
