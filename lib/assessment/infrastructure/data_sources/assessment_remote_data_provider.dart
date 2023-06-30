@@ -155,4 +155,20 @@ class AssessmentRemoteDataProvider {
       throw Exception(error);
     }
   }
+
+  Future<Map<String, dynamic>> getTestResult(
+      int jobOfferId, int applicantId) async {
+    //http://teacher-finder.up.railway.app/api/v1/assessments/18/test-results/applicant/6?jobOfferId=18&applicantId=6
+    print(applicantId);
+    print(jobOfferId);
+    //assessments
+    try {
+      final response = await http.get(Uri.parse(
+          '${ApiConfig.baseUrl}/$endpoint/$jobOfferId/test-results/applicant/$applicantId?jobOfferId=$jobOfferId&applicantId=$applicantId'));
+      print(response.body);
+      return jsonDecode(response.body);
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
 }

@@ -41,8 +41,8 @@ class ApplicantCustomDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               drawerOption(context, 'Home', OffersListScreen(), Icons.home),
-              drawerOption(context, 'Profile', const ProfileTeacherScreen(),
-                  Icons.person),
+              drawerOption(
+                  context, 'Profile', ProfileTeacherScreen(), Icons.person),
               drawerOption(context, 'Applied Offers',
                   const MyAppliedOffersListScreen(), Icons.person),
               Divider(
