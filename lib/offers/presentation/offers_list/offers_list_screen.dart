@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/common/widgets/applicant_custom_drawer.dart';
 import 'package:teacher_finder/common/widgets/custom_app_bar.dart';
-import 'package:teacher_finder/common/widgets/custom_drawer.dart';
 import 'package:teacher_finder/common/widgets/error_handler.dart';
 
 import 'widgets/offer_card.dart';

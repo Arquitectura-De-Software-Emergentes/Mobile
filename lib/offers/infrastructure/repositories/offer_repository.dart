@@ -28,8 +28,9 @@ class OfferRepository extends OfferInterface {
     return response;
   }
 
-  Future<List<AppliedOfferModel>> getAllAppliedOffers(String id) async {
-    final response = await offerRemoteDataProvider.getAllAppliedOffersByApplicantId(id);
+  Future<List<AppliedOfferModel>> getAllAppliedOffers(int id) async {
+    final response =
+        await offerRemoteDataProvider.getAllAppliedOffersByApplicantId(id);
     return response;
   }
 }

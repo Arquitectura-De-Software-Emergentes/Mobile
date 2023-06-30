@@ -3,6 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teacher_finder/assessment/infrastructure/data_sources/assessment_remote_data_provider.dart';
 import 'package:teacher_finder/assessment/presentation/test_result/test_result.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../../common/styles/styles.dart';
 import '../../domain/entities/question.dart';
@@ -106,14 +107,15 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                       AssessmentRemoteDataProvider();
 
                   final objectResult = await assessmentRemoteDataProvider
-                      .submitTest(questions, widget.jobOfferId, 1);
+                      .submitTest(questions, widget.jobOfferId, applicantId);
 
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                           builder: (context) => TestResultScreen(
                                 objectResult: objectResult,
-                              )));
+                              )),
+                      (route) => false);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Styles.secondaryColor,
@@ -154,7 +156,7 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
     Map<int, int?> selectedAlternatives,
     BuildContext context,
     List<Question> questions,
-  ) {
+  ) async {
     selectedAlternatives.forEach((index, alternativeId) {
       print('Pregunta ${index + 1} - Opción seleccionada: $alternativeId');
       Question question = questions[index];
@@ -167,7 +169,8 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
     });
     print(questionsWhitResponse);
     //TODO ID DEL LOGUEADO
-    _showDialog(context, widget.jobOfferId, 1, questionsWhitResponse);
+    int applicantId = await UserConfig.getUserId();
+    _showDialog(context, widget.jobOfferId, applicantId, questionsWhitResponse);
   }
 
   @override

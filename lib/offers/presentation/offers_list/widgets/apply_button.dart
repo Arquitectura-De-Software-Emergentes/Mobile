@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_finder/appications/infrastructure/applications_remote_data_source.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../../../common/styles/styles.dart';
 
@@ -10,10 +11,11 @@ class ApplyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {
+      onPressed: () async {
         final applicationsRemoteDateSource = ApplicationsRemoteDateSource();
-        //todo
-        applicationsRemoteDateSource.applyJobOffer(jobOfferId, 2);
+
+        int applicantId = await UserConfig.getUserId();
+        applicationsRemoteDateSource.applyJobOffer(jobOfferId, applicantId);
         Navigator.pop(context);
 
         const snackBar = SnackBar(
