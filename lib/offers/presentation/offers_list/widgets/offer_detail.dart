@@ -80,7 +80,9 @@ class OfferDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                const ApplyButton()
+                ApplyButton(
+                  jobOfferId: offer.id,
+                )
               ],
             ),
           ),

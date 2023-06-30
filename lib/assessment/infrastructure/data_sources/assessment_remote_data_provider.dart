@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:teacher_finder/assessment/domain/entities/question.dart';
 import 'package:teacher_finder/assessment/infrastructure/models/test_model.dart';
 import 'package:teacher_finder/common/api_config/api_config.dart';
+import 'package:teacher_finder/common/user_config/user_config.dart';
 
 import '../../domain/entities/test.dart';
 import 'package:http/http.dart' as http;
@@ -28,9 +29,10 @@ class AssessmentRemoteDataProvider {
 
   Future<Test> createTest(Test test) async {
     try {
+      int recruiterId = await UserConfig.getUserId();
       final headers = {'Content-Type': 'application/json'};
       final temp = {
-        "recruiterId": 1,
+        "recruiterId": recruiterId,
         "title": test.title,
         "minimunScore": test.minScore,
         "numQuestions": test.numQuestions
