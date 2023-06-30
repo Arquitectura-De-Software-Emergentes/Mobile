@@ -171,9 +171,10 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                                   .getTestByOfferId(
                                                                       offer
                                                                           .jobOfferId);
+
                                                           if (object[
                                                                   'testId'] !=
-                                                              0) {
+                                                              null) {
                                                             _showDialog(
                                                                 context,
                                                                 object[
@@ -181,9 +182,16 @@ class _MyAppliedOffersListScreenState extends State<MyAppliedOffersListScreen> {
                                                                 offer
                                                                     .jobOfferId);
                                                           } else {
-                                                            _showDialogError(
-                                                                context,
-                                                                'exam');
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              const SnackBar(
+                                                                backgroundColor:
+                                                                    Colors.red,
+                                                                content: Text(
+                                                                    'No test available'),
+                                                              ),
+                                                            );
                                                           }
                                                         },
                                                         style: ElevatedButton
