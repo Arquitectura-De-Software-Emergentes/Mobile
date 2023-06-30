@@ -77,8 +77,7 @@ class MyOffersList extends StatelessWidget {
                           ),
                           isScrollControlled: true,
                           builder: (context) => DraggableScrollableSheet(
-                            initialChildSize: 0.6,
-                            maxChildSize: 0.6,
+                            initialChildSize: 0.8,
                             expand: false,
                             builder: (context, scrollController) => SizedBox(
                               child: SingleChildScrollView(

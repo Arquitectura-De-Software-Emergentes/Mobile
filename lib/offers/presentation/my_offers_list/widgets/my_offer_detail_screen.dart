@@ -38,11 +38,7 @@ class _MyOfferDetailState extends State<MyOfferDetail> {
             child: Row(
               children: [
                 Text(
-                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago | ',
-                  style: const TextStyle(fontSize: 15, color: Colors.grey),
-                ),
-                Text(
-                  '${widget.offer.numberApplications} applicants',
+                  'Posted ${DateTime.now().difference(widget.offer.initialDate!).inDays} days ago',
                   style: const TextStyle(fontSize: 15, color: Colors.grey),
                 ),
               ],

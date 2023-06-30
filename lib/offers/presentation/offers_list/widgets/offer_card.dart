@@ -79,7 +79,7 @@ class OfferCard extends StatelessWidget {
                             const TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       Text(
-                        '${offer.maxApplications - offer.numberApplications} applications available',
+                        '${offer.maxApplications} applications',
                         style:
                             const TextStyle(fontSize: 14, color: Colors.grey),
                       ),

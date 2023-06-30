@@ -15,7 +15,7 @@ class TestScreen extends StatelessWidget {
   TestScreen({super.key, required this.testId, required this.jobOfferId});
   final int testId;
   final int jobOfferId;
-  final int _duration = 1200;
+  final int _duration = 1800;
   final CountDownController _controller = CountDownController();
 
   final QuestionsListBloc questionsListBloc = QuestionsListBloc();
@@ -50,7 +50,7 @@ class TestScreen extends StatelessWidget {
               },
               timeFormatterFunction: (defaultFormatterFunction, duration) {
                 if (duration.inSeconds == 0) {
-                  return "Start";
+                  return "END";
                 } else {
                   return Function.apply(defaultFormatterFunction, [duration]);
                 }
@@ -197,7 +197,10 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                               _handleSubmitButtonPressed(selectedAlternatives,
                                   context, state.questions);
                             },
-                            child: const Text('Submit')),
+                            child: const Text(
+                              'SUBMIT',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
                         Expanded(
                           child: ListView.builder(
                             itemCount: state.questions.length,
@@ -215,7 +218,11 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Text(question.statement),
+                                        Text(
+                                          question.statement,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ],
                                     ),
                                     subtitle: SizedBox(
@@ -261,11 +268,16 @@ class _QuestionsByTestState extends State<QuestionsByTest> {
                                         },
                                       ),
                                     ),
-                                    trailing: IconButton(
-                                      onPressed: () {
-                                        // questionsListBloc.deleteQuestion(question);
-                                      },
-                                      icon: Text(question.points.toString()),
+                                    trailing: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: Colors.green),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                            '${question.points.toString()}p.'),
+                                      ),
                                     ),
                                   ),
                                 ),

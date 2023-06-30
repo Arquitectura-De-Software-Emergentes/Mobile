@@ -44,7 +44,7 @@ class ApplicantCustomDrawer extends StatelessWidget {
               drawerOption(
                   context, 'Profile', ProfileTeacherScreen(), Icons.person),
               drawerOption(context, 'Applied Offers',
-                  const MyAppliedOffersListScreen(), Icons.person),
+                  const MyAppliedOffersListScreen(), Icons.list),
               Divider(
                 color: Colors.white.withOpacity(0.5),
                 height: 10,

@@ -115,7 +115,7 @@ class QuestionList extends StatelessWidget {
                 ),
                 isScrollControlled: true,
                 builder: (context) => DraggableScrollableSheet(
-                  initialChildSize: 0.9,
+                  initialChildSize: 0.95,
                   expand: false,
                   builder: (context, scrollController) => SizedBox(
                     child: SingleChildScrollView(
